@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
 		@user = User.authenticate(params[:user][:email],params[:user][:password])
 		if @user # if user is authenticated
 			session[:user_id] = @user.id
-			redirect_to login_url, :notice => "You have logged in, need to fix as you should not see login now"
+			redirect_to user_path(@user.id), :notice => "You are logged in and this is your home/show page"
+			# redirect_to login_url, :notice => "You have logged in, need to fix as you should not see login now"
 		else # if user is not authenticated oncreate
 			flash.now[:error] = "Can't log you in"
 			# sends back to login form?

@@ -2,3 +2,5 @@
 <h1>Individual user #<%= @user.id  %>'s' homepage!</h1>
 
 <h2>Only user #<%= @user.id  %> should be able to see this, or maybe admins all can, but certainly you need to be logged in!</h2>
+
+<h3><%= link_to "LOGOUT", logout_url  %></h3>
