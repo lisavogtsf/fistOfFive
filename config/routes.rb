@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'polls/index'
-
-  get 'polls/create'
-
-  get 'polls/update'
-
-  get 'polls/destroy'
-
   root to: 'sites#index'
 
   resources :users do

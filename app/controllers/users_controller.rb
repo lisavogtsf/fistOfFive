@@ -1,5 +1,16 @@
 class UsersController < ApplicationController
 
+	before_action :find_user, :except => [:index, :new, :create]
+
+	def index
+		@users = User.all
+	end
+
+	def show
+		@polls = @user.polls
+		## add @ results??
+	end
+
 	def new
 		@user = User.new
 	end
@@ -15,16 +26,17 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def show
-		set_user
-	end
 
-	def set_user
-		@user = User.find(params[:id])
-	end
+	private
 
-	def user_params
-		params.require(:user).permit(:type, :email, :password, :password_confirmation)
-	end
+		def find_user
+			@user = User.find(params[:id])
+			## allows only the user to see this
+			redirect_to root_path unless @user
+		end
+
+		def user_params
+			params.require(:user).permit(:type, :email, :password, :password_confirmation)
+		end
 
 end

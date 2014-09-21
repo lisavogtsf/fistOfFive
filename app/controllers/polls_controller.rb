@@ -12,6 +12,7 @@ class PollsController < ApplicationController
 
 	def new
 		@poll = Poll.new
+	end
 
 	def create
 		poll = Poll.new(poll_params)
@@ -19,8 +20,9 @@ class PollsController < ApplicationController
 			@user.polls << poll 
 			redirect_to user_polls_path(@user.id)
 		else
-			flash[:error] = post.errors.full_messages.to_sentence
+			flash[:error] = poll.errors.full_messages.to_sentence
 			redirect_to user_path @user.id
+		end
 	end
 
 	def update
@@ -28,6 +30,7 @@ class PollsController < ApplicationController
 			redirect_to user_polls_path(@user)
 		else
 			redirect_to user_poll_path @user.id, @poll.id
+		end
 	end
 
 	def destroy
@@ -35,20 +38,20 @@ class PollsController < ApplicationController
 		redirect_to user_polls_path @user.id
 	end
 
-	private
-		def find_user
-			user_id = params[:user_id]
-			user = User.find_by_id(user_id)
-			redirect_to users_path unless @user
-		end
+private
+	def find_user
+		user_id = params[:user_id]
+		user = User.find_by_id(user_id)
+		redirect_to users_path unless @user
+	end
 
-		def find_user_poll
-			id = params[:id]
-			poll = Poll.find_by_id(id)
-			redirect_to user_polls_path(@user.id) unless @poll
-		end
+	def find_user_poll
+		id = params[:id]
+		poll = Poll.find_by_id(id)
+		redirect_to user_polls_path(@user.id) unless @poll
+	end
 
-		def poll_params
-			params.require(:poll). permit(:topic)
-
+	def poll_params
+		params.require(:poll). permit(:topic)
+	end
 end
