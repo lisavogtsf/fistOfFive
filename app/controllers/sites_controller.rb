@@ -1,11 +1,12 @@
 class SitesController < ApplicationController
 
-	before_action :is_authenticated?
+	## Sites Controller directs to the root page which does not require security.  The only concern is that logged in users should not be able to logon again
+
+	# before_action :is_authenticated?
 	# before_filter :is_authenticated?, :except => :index
 
 	def index
-		render text: "Hi #{current_user.email}!! This note is in the Site controller"
-		
+
 	end
 
 end
