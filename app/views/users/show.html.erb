@@ -3,6 +3,10 @@
 
 <h2>Only user #<%= @user.id  %> should be able to see this, or maybe admins all can, but certainly you need to be logged in!</h2>
 
+<h3>Go to <%= link_to "all users", users_path  %></h3>
+
+<h3>Start a <%= link_to "new poll", new_user_poll_path(@user.id)  %></h3>
+
 <h3>Go to <%= link_to "your polls", user_polls_path(@user.id)  %>!</h3>
 
 <h3><%= link_to "LOGOUT", logout_url  %></h3>

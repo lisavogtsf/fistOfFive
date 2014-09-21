@@ -3,9 +3,12 @@
 
 <h2>Should show all of a user's polls</h2>
 
-
+<h3>Start a <%= link_to "new poll", new_user_poll_path  %></h3>
 <div>
 	<% @polls.each do |poll| %>
-		<%= render_partial: 'poll', :locals => {:poll => poll, :user => @user}  %>
+		<p> <%= poll.id  %>, <%= poll.topic  %></p>
+		<p><a href="<%=poll.id  %>">Go to poll</a></p>
+
+		<%#= render partial: 'poll', locals: {poll: @poll, user: @user}  %>
 	<% end %>
 </div>

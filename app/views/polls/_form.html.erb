@@ -1,0 +1,6 @@
+<!--polls  _form.html.erb -->
+
+<%= form_for [user, poll] do |f|  %>
+	<%= f.text_field :topic, class: "form-control", placeholder: "Title"  %>
+	<%= f.submit  %>
+<% end %>
