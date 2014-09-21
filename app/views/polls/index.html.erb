@@ -4,3 +4,8 @@
 <h2>Should show all of a user's polls</h2>
 
 
+<div>
+	<% @polls.each do |poll| %>
+		<%= render_partial: 'poll', :locals => {:poll => poll, :user => @user}  %>
+	<% end %>
+</div>
