@@ -1,7 +1,22 @@
 <!-- show.html.erb -->
 <h2>Show details of a poll</h2>
 
-Show Poll details--not wporking
+<h3>Allows user to review poll before sending it out</h3>
+
+<h4>Poll author email: <%= @user.email  %></h4>
+<h4>Poll topic: <%= @poll.topic  %></h4>
+
+
+<!-- testing -->
+<%= @poll  %><br/>
+Poll ID <%= @poll.id  %><br/>
+Poll.user_id <%= @poll.user_id  %><br/>
+Poll.topic <%= @poll.topic  %><br/>
+<br/>
+User  <%= @user  %><br/>
+User.id <%= @user.id  %><br/>
+User.email <%= @user.email  %>
+
 
 <%#= render partial: 'poll', locals: {poll: @poll, user: @user} %>
 <h3>
