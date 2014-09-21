@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 
+	has_many :polls
+
 	## validations go here
 	validates :email, presence: true, uniqueness: {case_sensitive: false}
 	validates :password, length: {minimum: 3}, on: :create

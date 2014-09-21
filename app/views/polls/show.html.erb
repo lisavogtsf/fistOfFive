@@ -1,0 +1,6 @@
+<!-- show.html.erb -->
+<div>
+	<% @polls.each do |poll| %>
+		<%= render_partial: 'poll', :locals => {:poll => poll, :user => @user}  %>
+	<% end %>
+</div>
