@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   post 'send_sms' => 'sendtexts#send_text_message'
+  get 'sms' => 'receivetexts#index'
 
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'

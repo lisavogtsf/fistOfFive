@@ -13,7 +13,7 @@
 <!-- want post to send_sms in the sendtexts controller -->
 <!-- <button>Send to class</button><br/> -->
 <%#= button_to "Send poll via SMS", action: "send_sms"  %>
-<%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user  %>
+<%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id  %>
 
 <!-- testing -->
 <%= @poll  %><br/>

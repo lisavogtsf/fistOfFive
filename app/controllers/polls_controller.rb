@@ -2,7 +2,7 @@ class PollsController < ApplicationController
 
 	## unclear on use of below
 	before_action :find_user
-	before_action :find_user_poll, :except => [:index, :new, :create]
+	before_action :find_user_poll
 
 	# automatically supplies @user and @poll to all actions
 
