@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   	resources :polls
   end
 
+  post 'send_sms' => 'sendtexts#send_text_message'
+
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
 
