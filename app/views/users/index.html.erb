@@ -1,5 +1,9 @@
 <h1>All users</h1>
 
+<% flash.each do |k,v| %>
+	<h2 id="<%= k %>"><%= v %></h2>
+<% end %>
+
 <% @users.each do |user| %>
 	<p>User email: <%= user.email  %></p>
 <% end %>

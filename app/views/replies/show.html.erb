@@ -2,4 +2,8 @@
 
 <h1>Show a single reply</h1>
 
+<% flash.each do |k,v| %>
+	<h2 id="<%= k %>"><%= v %></h2>
+<% end %>
+
 <%= @reply.response  %><br/>

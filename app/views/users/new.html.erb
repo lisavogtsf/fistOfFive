@@ -1,5 +1,9 @@
 <h1>Sign up as new user</h1>
 
+<% flash.each do |k,v| %>
+	<h2 id="<%= k %>"><%= v %></h2>
+<% end %>
+
 <h2>Want users who are not logged in to see this</h2>
 <h2>Users who ARE logged in should not see this</h2>
 

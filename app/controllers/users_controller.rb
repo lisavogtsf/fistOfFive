@@ -29,10 +29,10 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 
 		if @user.save
-			redirect_to root_path, :notice => "Signed up!"
+			redirect_to user_path(@user.id), :notice => "Signed up!"
 		else
 			## what's this?
-			render "new"
+			redirect_to signup, :notice => "Error signing up"
 		end
 	end
 

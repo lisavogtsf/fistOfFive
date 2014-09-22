@@ -1,6 +1,10 @@
 <h1>Polls#index</h1>
 <p>Find me in app/views/polls/index.html.erb</p>
 
+<% flash.each do |k,v| %>
+	<h2 id="<%= k %>"><%= v %></h2>
+<% end %>
+
 <h2>Should show all of a user's polls</h2>
 
 <h3>Start a <%= link_to "new poll", new_user_poll_path  %></h3>
