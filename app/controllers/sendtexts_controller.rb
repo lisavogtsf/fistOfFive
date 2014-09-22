@@ -5,30 +5,29 @@ class SendtextsController < ApplicationController
 	end
 
 	def send_text_message
-		# initially set up to receive a destination number through a form post
-		# number_to_send_to = params[:number_to_send_to]
+
+		numbers_for_recipients = ["4159671051", "4158465918"]
+
 		@user = User.find(params[:user])
 		@poll = Poll.find_by_id(params[:id])
 		message_content = @poll.topic
 		message_template = "Please reply with feedback on: "
 		message_scale = " (scale of 0-5)"
 
-		number_to_send_to = "4159671051"
-		# list_of_numbers = {
-		# 	num1: "4159671051",
-		# 	num2: "4158465918"
-		# }
-
 		twilio_sid = ENV['TWILIO_ACCOUNT_SID']
 		twilio_token = ENV['TWILIO_AUTH_TOKEN']
 		twilio_phone_number = ENV['TWILIO_NUMBER']
 
 		@twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
-		@twilio_client.account.sms.messages.create(
-			:from => "+1#{twilio_phone_number}",
-			:to => "+1#{number_to_send_to}",
-			:body => message_template + message_content + message_scale
-			)
+
+		for number_to_send_to in numbers_for_recipients
+			binding.pry
+			@twilio_client.account.sms.messages.create(
+				:from => "+1#{twilio_phone_number}",
+				:to => "+1#{number_to_send_to}",
+				:body => message_template + message_content + message_scale
+				)
+		end
 
 		# redirect_to user_poll_path(@user.id, @poll.id)
 		redirect_to user_poll_replies_path(@user.id, @poll.id)
