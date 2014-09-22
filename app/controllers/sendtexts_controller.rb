@@ -6,7 +6,7 @@ class SendtextsController < ApplicationController
 
 	def send_text_message
 
-		numbers_for_recipients = ["4159671051", "4158465918"]
+		numbers_for_recipients = ["4159671051", "4158465918", "3238068310"]
 
 		@user = User.find(params[:user])
 		@poll = Poll.find_by_id(params[:id])
