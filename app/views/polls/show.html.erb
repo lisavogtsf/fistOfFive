@@ -1,14 +1,19 @@
 <!-- show.html.erb -->
 <h2>Show details of a poll</h2>
 
+<% flash.each do |k,v| %>
+	<h2 id="<%= k %>"><%= v %></h2>
+<% end %>
+
 <h3>Allows user to review poll before sending it out</h3>
 
 <h4>Poll author email: <%= @user.email  %></h4>
 <h4>Poll topic: <%= @poll.topic  %></h4>
 
 <!-- want post to send_sms in the sendtexts controller -->
-<button>Send to class</button><br/>
-<%= button_to "Send poll via SMS", action: "send_sms"  %>
+<!-- <button>Send to class</button><br/> -->
+<%#= button_to "Send poll via SMS", action: "send_sms"  %>
+<%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user  %>
 
 <!-- testing -->
 <%= @poll  %><br/>

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+	before_action :is_authenticated?
 	before_action :find_user, :except => [:index, :new, :create]
 
 	def index
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
 
 		def find_user
 			@user = User.find(params[:id])
-			## allows only the user to see this
+			## allows only the user to see this??
 			redirect_to root_path unless @user
 		end
 

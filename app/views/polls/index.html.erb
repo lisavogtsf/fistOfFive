@@ -7,7 +7,7 @@
 <div>
 	<% @polls.each do |poll| %>
 		<p> <%= poll.id  %>, <%= poll.topic  %></p>
-		<p><a href="<%=poll.id  %>">Go to poll</a></p>
+		<p><a href="polls/<%= poll.id  %>">Go to poll</a></p>
 
 		<%#= render partial: 'poll', locals: {poll: @poll, user: @user}  %>
 	<% end %>
