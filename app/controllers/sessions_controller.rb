@@ -2,6 +2,9 @@ class SessionsController < ApplicationController
 
 	def new
 		# my login form
+		if session[:user_id] != nil
+			redirect_to user_path(session[:user_id] )
+		end
 	end
 
 	def create
