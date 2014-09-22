@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-	before_action :is_authenticated?, :except => [:new, :create]
 	before_action :find_user, :except => [:index, :new, :create]
-	before_action :check_current_user
+	before_action :is_authenticated?, :except => [:new, :create]
+	before_action :correct_user?, :except =>[:index, :new, :create]
 
 
 	def index
@@ -11,37 +11,58 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		if @not_current_user
-			redirect_to users_path, :notice => "You are not authorized to view this user's page"
-		else
+		## validate that this is the correct user
+		if correct_user?
 			@polls = @user.polls
-			## add @replies for each poll??
 			## access via @poll.replies
+		else
+			redirect_to user_path(@current_user.id), :notice => "You are not authorized to view this user's page"
 		end
 	end
 
 	def new
-		## this is the signup route, don't need current user
-		@user = User.new
-	end
-
-	def create
-		@user = User.new(user_params)
-
-		if @user.save
-			redirect_to user_path(@user.id), :notice => "Signed up!"
+		## this is the signup route, don't need current user check
+		## if user is logged in, don't want them to sign up
+		if session[:user_id] != nil
+			redirect_to user_path(session[:user_id] )
 		else
-			## what's this?
-			redirect_to signup, :notice => "Error signing up"
+			@user = User.new
 		end
 	end
 
+	def create
+		if session[:user_id] == nil
+			@user = User.new(user_params)
+			if @user.save
+				auth_user = User.authenticate(@user.email, @user.password)
+				if auth_user
+					session[:user_id] = @user.id
+					redirect_to user_path(@user.id), :notice => "Signed up!"
+				end
+			else
+				if User.find_by_email(@user.email)
+					redirect_to signup_path, :notice => 'An account with that email already exists'
+				elsif
+					@user.password.length < 4
+					redirect_to signup_path, :notice => "Password must be at least four characters"
+				elsif @user.password != @user.password_confirmation
+					redirect_to signup_path, :notice => "Password must match password confirmation"
+				end
+			end	
+		else
+			session[:user_id] = nil
+			redirect_to login_path, :notice => "Please log in again"
+		end
+	end
+
+	# only the user should be able to edit their own account
 	# def edit
 	# end
 
 	# def update
 	# end
 
+	# only the user should be able to destroy their own account
 	# def destroy
 	# end
 
@@ -58,12 +79,11 @@ class UsersController < ApplicationController
 			params.require(:user).permit(:type, :email, :password, :password_confirmation)
 		end
 
-		def check_current_user
-			if @user != @current_user
-				@not_current_user = true
-			else
-				@not_current_user = false
-			end
+		def correct_user?
+			@user = User.find(params[:id])
+			@current_user ||= User.find_by(id: session[:user_id])
+			## returns result of this comparison
+			@user == @current_user
 		end
 
 end

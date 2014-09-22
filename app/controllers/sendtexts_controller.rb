@@ -21,7 +21,7 @@ class SendtextsController < ApplicationController
 		@twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
 		for number_to_send_to in numbers_for_recipients
-			binding.pry
+
 			@twilio_client.account.sms.messages.create(
 				:from => "+1#{twilio_phone_number}",
 				:to => "+1#{number_to_send_to}",

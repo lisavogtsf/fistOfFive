@@ -1,17 +1,21 @@
 class PollsController < ApplicationController
 
 	## unclear on use of below
+	before_action :is_authenticated?
 	before_action :find_user
 	before_action :find_user_poll
-	before_action :check_current_user
+	before_action :correct_user?
 	## how do I want to do permissions here?
 
 	# automatically supplies @user and @poll to all actions
 
 	def index
-		## do I want users to see other users' polls?
-		#@user #= User.find_by_id(params[:user_id])
-		@polls = @user.polls
+		if correct_user?
+			@polls = @user.polls
+		else
+			## do I want users to see other users' polls?
+			redirect_to user_polls_path(@current_user.id), :notice => "You are not authorized to view this user's page"
+		end
 	end
 
 	def show
@@ -19,10 +23,10 @@ class PollsController < ApplicationController
 	end
 
 	def new
-		if @not_current_user
-			redirect_to user_poll_path, :notice => "You are not authorized to create a poll in someone else's account"
+		if correct_user?
+			@poll = @user.polls.new
 		else
-			@poll = Poll.new
+			redirect_to user_path(@current_user.id), :notice => "You are not authorized to create a poll in someone else's account"
 		end
 	end
 
@@ -65,12 +69,11 @@ private
 		# redirect_to user_polls_path(@user.id) unless @poll
 	end
 
-	def check_current_user
-		if @user != @current_user
-			@not_current_user = true
-		else
-			@not_current_user = false
-		end
+	def correct_user?
+		@user = find_user
+		@current_user ||= User.find_by(id: session[:user_id])
+		## returns result of this comparison
+		@user == @current_user
 	end
 
 	def poll_params
