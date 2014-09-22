@@ -1,6 +1,6 @@
 class SendtextsController < ApplicationController
 
-	# necessary??
+	# necessary?
 	def index
 	end
 
