@@ -23,6 +23,7 @@ class ReceiveMessagesController < ApplicationController
 		@reply = Reply.new
 		@reply.response = message_body
 		@reply.poll_id = @poll.id
+		@reply.from_number = from_number
 		@reply.save
 
 	end
