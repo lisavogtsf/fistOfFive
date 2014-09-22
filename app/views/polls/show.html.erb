@@ -10,24 +10,9 @@
 <h4>Poll author email: <%= @user.email  %></h4>
 <h4>Poll topic: <%= @poll.topic  %></h4>
 
-<!-- want post to send_sms in the sendtexts controller -->
-<!-- <button>Send to class</button><br/> -->
-<%#= button_to "Send poll via SMS", action: "send_sms"  %>
 <%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id  %>
 
-<!-- testing -->
-<%= @poll  %><br/>
-Poll ID <%= @poll.id  %><br/>
-Poll.user_id <%= @poll.user_id  %><br/>
-Poll.topic <%= @poll.topic  %><br/>
-<br/>
-User  <%= @user  %><br/>
-User.id <%= @user.id  %><br/>
-User.email <%= @user.email  %>
+<h3>Results</h3>
+<!-- what would be on results#index, start there? -->
 
-
-<%#= render partial: 'poll', locals: {poll: @poll, user: @user} %>
-<h3>
-	<%#= @poll.id, @poll.topic  %>
-</h3>
 
