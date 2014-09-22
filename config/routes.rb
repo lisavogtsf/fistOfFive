@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users do
   	resources :polls do 
-        resources :replies
+        resources :replies, except: :create 
       end
   end
 

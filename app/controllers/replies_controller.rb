@@ -8,12 +8,13 @@ class RepliesController < ApplicationController
 		@replies = @poll.replies
 	end
 
-	def new
-	end
+	## no such form
+	# def new
+	# end
 
-	def create
-
-	end
+	# def create
+	# 	## in receive_messages_controller.rb
+	# end
 
 	def show
 		@reply = find_user_poll_reply
