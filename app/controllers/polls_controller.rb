@@ -3,10 +3,13 @@ class PollsController < ApplicationController
 	## unclear on use of below
 	before_action :find_user
 	before_action :find_user_poll
+	before_action :check_current_user
+	## how do I want to do permissions here?
 
 	# automatically supplies @user and @poll to all actions
 
 	def index
+		## do I want users to see other users' polls?
 		#@user #= User.find_by_id(params[:user_id])
 		@polls = @user.polls
 	end
@@ -16,7 +19,11 @@ class PollsController < ApplicationController
 	end
 
 	def new
-		@poll = Poll.new
+		if @not_current_user
+			redirect_to user_poll_path, :notice => "You are not authorized to create a poll in someone else's account"
+		else
+			@poll = Poll.new
+		end
 	end
 
 	def create
@@ -58,7 +65,16 @@ private
 		# redirect_to user_polls_path(@user.id) unless @poll
 	end
 
+	def check_current_user
+		if @user != @current_user
+			@not_current_user = true
+		else
+			@not_current_user = false
+		end
+	end
+
 	def poll_params
 		params.require(:poll). permit(:topic)
 	end
+
 end

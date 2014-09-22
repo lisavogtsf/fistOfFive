@@ -12,7 +12,8 @@
 
 <%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id  %>
 
-<h3>Results</h3>
+<h3>View Replies</h3>
+<%= link_to "View all replies to this poll", user_poll_replies_path(@user.id, @poll.id)  %><br/>
 <!-- what would be on results#index, start there? -->
 
 

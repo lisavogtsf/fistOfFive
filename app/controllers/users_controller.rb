@@ -1,18 +1,27 @@
 class UsersController < ApplicationController
 
-	before_action :is_authenticated?
+	before_action :is_authenticated?, :except => [:new, :create]
 	before_action :find_user, :except => [:index, :new, :create]
+	before_action :check_current_user
+
 
 	def index
+		## ok if not current user
 		@users = User.all
 	end
 
 	def show
-		@polls = @user.polls
-		## add @ results??
+		if @not_current_user
+			redirect_to users_path, :notice => "You are not authorized to view this user's page"
+		else
+			@polls = @user.polls
+			## add @replies for each poll??
+			## access via @poll.replies
+		end
 	end
 
 	def new
+		## this is the signup route, don't need current user
 		@user = User.new
 	end
 
@@ -27,6 +36,15 @@ class UsersController < ApplicationController
 		end
 	end
 
+	# def edit
+	# end
+
+	# def update
+	# end
+
+	# def destroy
+	# end
+
 
 	private
 
@@ -38,6 +56,14 @@ class UsersController < ApplicationController
 
 		def user_params
 			params.require(:user).permit(:type, :email, :password, :password_confirmation)
+		end
+
+		def check_current_user
+			if @user != @current_user
+				@not_current_user = true
+			else
+				@not_current_user = false
+			end
 		end
 
 end

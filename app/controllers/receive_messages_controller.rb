@@ -14,7 +14,15 @@ class ReceiveMessagesController < ApplicationController
 		@user = User.find_by_id(6)
 		@poll = Poll.find_by_id(4)
 
-		redirect_to new_user_poll_reply_path(@poll.id, @user.id)
+		@reply = Reply.new
+		@reply.response = message_body
+		# if @reply.save ## skipping error messages
+		## for testing purposes, grace poll 4
+		@user = User.find(6)
+		@poll = Poll.find(4)
+		redirect_to user_poll_replies_path(@user.id, @poll.id)
+		# post request so needs to be create?
+		# redirect_to new_user_poll_reply_path(@poll.id, @user.id)
 
 
 		## don't really know what next thing is

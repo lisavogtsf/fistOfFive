@@ -30,7 +30,8 @@ class SendtextsController < ApplicationController
 			:body => message_template + message_content + message_scale
 			)
 
-		redirect_to user_poll_path(@user.id, @poll.id)
+		# redirect_to user_poll_path(@user.id, @poll.id)
+		redirect_to user_poll_replies_path(@user.id, @poll.id)
 
 		# redirect_to user_poll_path(@user.id, @poll.id), :notice => "message sent"
 	end
