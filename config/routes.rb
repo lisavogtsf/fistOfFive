@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: 'sites#index'
 
   resources :users do
-  	resources :polls
+  	resources :polls do 
+        resources :replies
+      end
   end
 
   post 'send_sms' => 'sendtexts#send_text_message'

@@ -4,15 +4,22 @@ class ReceiveMessagesController < ApplicationController
   protect_from_forgery with: :null_session
 
 	def index
-
-		# let's pretend that we've mapped this action to 
+		# mapped this action to 
 		# http://localhost:3000/sms in the routes.rb file
 
 		message_body = params["Body"]
 		from_number = params["From"]
+		
+		# for testing
+		@user = User.find_by_id(6)
+		@poll = Poll.find_by_id(4)
 
-		SMSLogger.log_text_message from_number, message_body
-				binding.pry
+		redirect_to new_user_poll_reply_path(@poll.id, @user.id)
+
+
+		## don't really know what next thing is
+		# SMSLogger.log_text_message from_number, message_body
+
 		## next need to create a result from this
 	end
 

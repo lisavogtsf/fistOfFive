@@ -1,0 +1,8 @@
+<!-- index.html.erb -->
+<h1>Index for Replies, Replies#Index</h1>
+
+	<% @replies.each do |reply| %>
+		<p> Reply ID: <%= reply.id  %>, Feedback: <%= reply.response  %></p>
+		<p><a href="replies/<%= reply.id  %>">Go to reply</a></p>
+
+	<% end %>

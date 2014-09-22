@@ -1,3 +1,24 @@
+receiving sms, trying to make new reply out of it
+
+Started POST "/sms" for 127.0.0.1 at 2014-09-21 22:39:58 -0700
+Processing by ReceiveMessagesController#index as */*
+  Parameters: {"ToCountry"=>"US", "ToState"=>"IL", "SmsMessageSid"=>"SM70f3dbf25a8b5b082f954afc46adb175", "NumMedia"=>"0", "ToCity"=>"WYOMING", "FromZip"=>"", "SmsSid"=>"SM70f3dbf25a8b5b082f954afc46adb175", "FromState"=>"CA", "SmsStatus"=>"received", "FromCity"=>"", "Body"=>"How do I link this to a poll?", "FromCountry"=>"US", "To"=>"+13096064908", "ToZip"=>"61491", "MessageSid"=>"SM70f3dbf25a8b5b082f954afc46adb175", "AccountSid"=>"AC51fb9c55cb4848ea2d33b9a6bda43014", "From"=>"+14159671051", "ApiVersion"=>"2010-04-01"}
+Can't verify CSRF token authenticity
+  User Load (0.7ms)  SELECT  "users".* FROM "users"  WHERE "users"."id" = 6 LIMIT 1
+  Poll Load (0.4ms)  SELECT  "polls".* FROM "polls"  WHERE "polls"."id" = 4 LIMIT 1
+Redirected to http://513fb97b.ngrok.com/users/4/polls/6/replies/new
+Completed 302 Found in 4ms (ActiveRecord: 1.1ms)
+
+
+Started POST "/users/4/polls/6/replies/new" for 127.0.0.1 at 2014-09-21 22:39:59 -0700
+
+ActionController::RoutingError (No route matches [POST] "/users/4/polls/6/replies/new"):
+--
+but from rake routes
+new_user_poll_reply GET    /users/:user_id/polls/:poll_id/replies/new(.:format)      replies#new
+
+
+--------
 
 successful sms post receive, but then broke down
 

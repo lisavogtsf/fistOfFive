@@ -12,6 +12,7 @@ class PollsController < ApplicationController
 	end
 
 	def show
+		@poll = find_user_poll
 	end
 
 	def new
