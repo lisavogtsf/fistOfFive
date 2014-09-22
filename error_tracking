@@ -1,0 +1,11 @@
+
+successful sms post receive, but then broke down
+
+Started POST "/sms" for 127.0.0.1 at 2014-09-21 21:25:10 -0700
+  ActiveRecord::SchemaMigration Load (0.5ms)  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by ReceiveMessagesController#index as */*
+  Parameters: {"ToCountry"=>"US", "ToState"=>"IL", "SmsMessageSid"=>"SM4c13ebfc19c4cc4710a3a0b3ef726024", "NumMedia"=>"0", "ToCity"=>"WYOMING", "FromZip"=>"", "SmsSid"=>"SM4c13ebfc19c4cc4710a3a0b3ef726024", "FromState"=>"CA", "SmsStatus"=>"received", "FromCity"=>"", "Body"=>"Again again", "FromCountry"=>"US", "To"=>"+13096064908", "ToZip"=>"61491", "MessageSid"=>"SM4c13ebfc19c4cc4710a3a0b3ef726024", "AccountSid"=>"AC51fb9c55cb4848ea2d33b9a6bda43014", "From"=>"+14159671051", "ApiVersion"=>"2010-04-01"}
+Can't verify CSRF token authenticity
+Completed 422 Unprocessable Entity in 11ms
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
