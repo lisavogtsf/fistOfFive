@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
 
 	## authentication?
+	before_action :is_authenticated?
 
 	def index
 		@students = Student.all

@@ -18,7 +18,14 @@
 body {
  	background-image: url("fake-brick-wallpaper.jpg")
  }
- .row {
- 	background-color: white;
- /*	background-color: teal;
- */}
+ .container {
+ 	/*background-color: white;*/
+}
+.splash {
+	background-color: white;
+	text-align: center;
+}
+.headroom {
+	/* create diff for mobile? */
+	height: 75px;
+}

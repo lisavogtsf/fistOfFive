@@ -7,15 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<!-- <body ng-app="FoFApp"> -->
 	<div class="container">
-		<div class="row">
-	<!-- <div ng-view></div> -->
-	<%= yield %>
-		</div><!-- closes row -->
-	</div><!-- closes container -->
+		<!-- <div class="row"> -->
+
+			<%= yield %>
+
 <!-- for testing purposes, show params -->
-<%= params.inspect  %>
+<!-- <%= params.inspect  %> -->
+		<!-- </div> --><!-- closes row -->
+	</div><!-- closes container -->
+
 
 </body>
 </html>
