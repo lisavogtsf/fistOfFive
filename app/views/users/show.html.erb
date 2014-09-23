@@ -1,3 +1,13 @@
 <!-- show.html.erb -->
 
 <%= render partial: "user_navbar", locals: {user: @user} %>
+
+
+
+
+<!-- render partial with all polls data?? in later column so it will collapse-->
+<div class="row polls-preview">
+	<%= for poll in @polls do  %>
+	<%= render partial: "polls/polls_preview", locals: {poll: poll, user: @user} %>
+	<% end %>
+</div>

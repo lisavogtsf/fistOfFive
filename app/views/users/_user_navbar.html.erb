@@ -1,5 +1,5 @@
 <!-- _user_navbar.html.erb -->
-<div class="navbar navbar-inverse">
+<div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-header">
 		<!-- collapse has to do with working with mobile -->
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
@@ -32,6 +32,15 @@
     	<li class="active"><a href="<%= @user.id %>"><%= @user.first_name ||  @user.email  %></a></li>
       <li><a href="/logout">Logout</a></li>
     </ul>
+   <!--  from del's microblog -->
+<!-- 		<ul class="hidden-xs nav navbar-nav">
+         <li><%#= link_to "New User", new_user_path %> </li>
+         <% if user && user.id%>
+           <li> <%#= link_to "New Post", new_user_post_path(user.id) %></li>
+           <li> <%#= link_to "Posts", user_posts_path(user.id) %> </li>
+           <li> <%#= link_to "Pages", user_pages_path(user.id) %> </li>
+         <% end %>
+      </ul> -->
   </div>
 </div>
 
