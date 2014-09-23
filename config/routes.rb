@@ -8,6 +8,10 @@ Rails.application.routes.draw do
       end
   end
 
+  resources :students do
+  end
+
+
   post 'send_sms' => 'sendtexts#send_text_message'
   post 'sms' => 'receive_messages#index'
   ## testing
