@@ -29,28 +29,9 @@
       <input type="text" class="form-control col-lg-8" placeholder="Search">
     </form>
     <ul class="nav navbar-nav navbar-right">
-    	<li class="active"><a href="<%= @user.id %>"><%= @user.first_name ||  @user.email  %></a></li>
+    	<li class="active"><%= link_to @user.first_name ||  @user.email , user_path  %></li>
       <li><a href="/logout">Logout</a></li>
+      <li><a href="#"></a></li>
     </ul>
-   <!--  from del's microblog -->
-<!-- 		<ul class="hidden-xs nav navbar-nav">
-         <li><%#= link_to "New User", new_user_path %> </li>
-         <% if user && user.id%>
-           <li> <%#= link_to "New Post", new_user_post_path(user.id) %></li>
-           <li> <%#= link_to "Posts", user_posts_path(user.id) %> </li>
-           <li> <%#= link_to "Pages", user_pages_path(user.id) %> </li>
-         <% end %>
-      </ul> -->
   </div>
 </div>
-
-
-
-<!-- 	<ul class="hidden-xs nav navbar-nav">
-         <li><%#= link_to "New User", new_user_path %> </li>
-         <% if user && user.id%>
-           <li> <%#= link_to "New Post", new_user_post_path(user.id) %></li>
-           <li> <%#= link_to "Posts", user_posts_path(user.id) %> </li>
-           <li> <%#= link_to "Pages", user_pages_path(user.id) %> </li>
-         <% end %>
-      </ul>
