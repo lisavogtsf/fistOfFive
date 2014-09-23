@@ -1,0 +1,9 @@
+<!-- index.html.erb -->
+<%= render partial: "users/user_navbar", locals: {user: @user, page_title: "Polls"} %>
+
+<div class="row">
+	<% for poll in @polls do  %>
+		<%= render partial: "poll_preview", locals: {user: @user, poll: poll}  %>
+	<% end %>
+</div>
+

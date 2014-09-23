@@ -1,0 +1,8 @@
+<!-- index.html.erb -->
+<%= render partial: "users/user_navbar", locals: {user: @user, page_title: "Students"} %>
+
+<div class="row">
+	<% for student in @students do  %>
+		<%= render partial: "student_preview", locals: {student: student}  %>
+	<% end %>
+</div>

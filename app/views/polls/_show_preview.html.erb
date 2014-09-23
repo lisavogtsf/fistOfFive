@@ -1,0 +1,12 @@
+<!-- _show_preview.html.erb -->
+
+<div class="row">
+	<div  class="col-xs-offset-1 col-xs-11 col-sm-offset-2 col-sm-10">
+		<p>
+			<h4>Poll ID: <%= poll.id  %> <%= link_to poll.topic.titleize, user_poll_path(user.id, poll.id) %> </h4>
+  			<small><%= poll.created_at.strftime("%b %d, %Y %I:%M%P")  %></small><%= button_to  "Delete?", user_poll_path(@user.id, poll.id), method: :delete, class: "btn-sm btn-warning" %>
+
+   		</p>
+			
+	</div>
+</div>
