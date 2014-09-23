@@ -11,7 +11,7 @@
 <!-- 		<a class="navbar-brand" href="#">Fo5</a> -->		
 </div>
   <div class="navbar-collapse collapse navbar-inverse-collapse">
-    <ul class="nav navbar-nav">
+    <!-- <ul class="nav navbar-nav">
       <li><a href="#">Link</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -25,7 +25,7 @@
           <li><a href="#">One more separated link</a></li>
         </ul>
       </li>
-    </ul>
+    </ul> -->
     <form class="navbar-form navbar-left">
       <input type="text" class="form-control col-lg-8" placeholder="Search">
     </form>
@@ -33,13 +33,15 @@
       <ul class="nav navbar-nav navbar-right">
         <% if @reply && @reply.id %>
           <!-- <li>REPLY NAVBAR</li> -->
+          <li><%= link_to "View All Polls", user_polls_path(@user.id)  %></li>
+          <li><%= link_to "View All Results", user_poll_replies_path(@user.id, @poll.id)  %></li>
           <li class="active"><%= link_to @user.first_name ||  @user.email , user_path(@user.id)  %></li>
                       <li><%= @user.id  %></li>
 
         <% elsif @poll && @poll.id %>
           <!-- <li>POLL NAVBAR</li> -->
+          <li><%= link_to "View All Polls", user_polls_path(@user.id)  %></li>
               <li class="active"><%= link_to @user.first_name ||  @user.email , user_path(@user.id)  %></li>
-                      <li><%= @user.id  %></li>
 
         <% elsif @user && @user.id %>
          <!--  <li>USER NAVBAR</li> -->
