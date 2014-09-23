@@ -24,7 +24,9 @@ body {
 	background-color: white;
 	text-align: center;
 }
-.headroom {
-	/* create diff for mobile? */
-	height: 75px;
+.jumbotron {
+ 	text-align: center;
+}
+.inline {
+	display: inline-block;
 }
