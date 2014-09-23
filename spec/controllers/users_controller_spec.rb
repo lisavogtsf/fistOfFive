@@ -8,12 +8,14 @@ RSpec.describe UsersController, :type => :controller do
 			# changed it to make it pass
 			# this is a successful redirect because we are not logged in
 			expect(response.status).to eq(302)
-			# expect(response).to be_success
-			# expect(response).to have_http_status(200)
 		end
 		# it "renders the index template" do 
 		# 	get :index
 		# 	expect(response).to render_template("index")
+		# end
+		# it "will respond successfully with 200 once I can log in for testing purposes" do
+		# 	get :index
+		# 	expect(response).to have_http_status(200)
 		# end
 	end
 	describe "GET #new ie signup page" do 
