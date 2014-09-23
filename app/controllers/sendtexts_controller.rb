@@ -6,7 +6,8 @@ class SendtextsController < ApplicationController
 
 	def send_text_message
 
-		numbers_for_recipients = ["4159671051", "4158465918", "3238068310"]
+		numbers_for_recipients = ["4159671051", "4158465918"]
+		# , "3238068310"
 
 		@user = User.find(params[:user])
 		@poll = Poll.find_by_id(params[:id])
@@ -29,6 +30,9 @@ class SendtextsController < ApplicationController
 				)
 		end
 
+		## mark poll as sent and open
+		@poll.time_sent = Time.now
+		@poll.is_open = true
 		# redirect_to user_poll_path(@user.id, @poll.id)
 		redirect_to user_poll_replies_path(@user.id, @poll.id)
 

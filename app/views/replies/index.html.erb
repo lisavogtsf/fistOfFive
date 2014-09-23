@@ -5,8 +5,30 @@
 	<h2 id="<%= k %>"><%= v %></h2>
 <% end %>
 
+<div id="serverData">Poll replies will appear here</div>
+
+
+<h2>Original format</h2>
 	<% @replies.each do |reply| %>
 		<p> Reply ID: <%= reply.id  %>, Feedback: <%= reply.response  %></p>
 		<p><a href="replies/<%= reply.id  %>">Go to reply</a></p>
 
 	<% end %>
+
+<script type="text/javascript">
+	//check for browser support
+	if(typeof(EventSource)!=="undefined"){
+		//create an object, passing it the name and location of the server side script
+		var eSource = new EventSource("serverSideScriptHere");
+		//detect message receipt
+		eSource.onmessage = function(event){
+			//write the received data to the page
+			document.getElementById("serverData").innerHTML = event.data;
+		};
+	}
+	else {
+		document.getElementById("serverData").innerHTML = "Whoops! Your browser doesn't receive server-sent events.";
+	}
+
+
+</script>

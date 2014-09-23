@@ -37,8 +37,9 @@ class PollsController < ApplicationController
 	def create
 		poll = Poll.new(poll_params)
 		if poll.save && @user
+			poll.is_open = false
 			@user.polls << poll 
-			redirect_to user_polls_path(@user.id)
+			redirect_to user_poll_path(@user.id, poll.id)
 		else
 			flash[:error] = poll.errors.full_messages.to_sentence
 			redirect_to user_path @user.id

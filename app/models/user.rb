@@ -5,12 +5,10 @@ class User < ActiveRecord::Base
 	has_many :polls
 
 	## validations go here
+	## regex, only letters in name?
+	## regex on email?
 	validates :email, presence: true, uniqueness: {case_sensitive: false}
-	validates :password, length: {minimum: 3}, on: :create
-
-
-
-
+	validates :password, presence: true, length: {minimum: 3}, on: :create
 
 	## need to learn about Rails single table inheritance
 	## uses type, but then need to create child classes
