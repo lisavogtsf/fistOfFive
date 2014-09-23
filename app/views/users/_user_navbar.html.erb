@@ -7,7 +7,8 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="#">Fo5</a>		
+		<%= link_to "Fo5", root_path, class: "navbar-brand" %>
+<!-- 		<a class="navbar-brand" href="#">Fo5</a> -->		
 </div>
   <div class="navbar-collapse collapse navbar-inverse-collapse">
     <ul class="nav navbar-nav">
@@ -28,10 +29,27 @@
     <form class="navbar-form navbar-left">
       <input type="text" class="form-control col-lg-8" placeholder="Search">
     </form>
-    <ul class="nav navbar-nav navbar-right">
-    	<li class="active"><%= link_to @user.first_name ||  @user.email , user_path  %></li>
-      <li><a href="/logout">Logout</a></li>
-      <li><a href="#"></a></li>
-    </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% if @reply && @reply.id %>
+          <!-- <li>REPLY NAVBAR</li> -->
+          <li class="active"><%= link_to @user.first_name ||  @user.email , user_path(@user.id)  %></li>
+                      <li><%= @user.id  %></li>
+
+        <% elsif @poll && @poll.id %>
+          <!-- <li>POLL NAVBAR</li> -->
+              <li class="active"><%= link_to @user.first_name ||  @user.email , user_path(@user.id)  %></li>
+                      <li><%= @user.id  %></li>
+
+        <% elsif @user && @user.id %>
+         <!--  <li>USER NAVBAR</li> -->
+      	<li class="active"><%= link_to @user.first_name ||  @user.email , user_path(@user.id)  %></li>
+
+
+        <% end %>
+
+        <li><a href="/logout">Logout</a></li>
+        <li><a href="#"></a></li>
+      </ul>
   </div>
 </div>
