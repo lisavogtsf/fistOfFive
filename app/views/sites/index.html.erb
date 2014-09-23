@@ -1,12 +1,9 @@
 <div class="col-md-7">
-	<h1>Sites#index--Site home page</h1>
-	<p>Find me in app/views/sites/index.html.erb</p>
+	<h1>Fist of Five</h1>
 
 	<% flash.each do |k,v| %>
 		<h2 id="<%= k %>"><%= v %></h2>
 	<% end %>
-
-	<h2>Want all not logged in users to see this--logged in, depends on how implemented</h2>
 
 	<h2>Go to the <%= link_to "login page", login_path %></h2>
 	<h2>Go to the <%= link_to "sign up page", signup_path %></h2>

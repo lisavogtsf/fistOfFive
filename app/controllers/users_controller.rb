@@ -56,15 +56,15 @@ class UsersController < ApplicationController
 	end
 
 	# only the user should be able to edit their own account
-	# def edit
-	# end
+	def edit
+	end
 
-	# def update
-	# end
+	def update
+	end
 
 	# only the user should be able to destroy their own account
-	# def destroy
-	# end
+	def destroy
+	end
 
 
 	private

@@ -43,3 +43,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'twilio-ruby'
 gem 'sinatra'
+
+group :development, :test do
+	gem 'rspec-rails', '~>3.0.0'
+end
