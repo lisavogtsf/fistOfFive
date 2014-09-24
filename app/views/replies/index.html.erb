@@ -1,2 +1,10 @@
 <!-- index.html.erb -->
 <%= render partial: "users/user_navbar", locals: {user: @user, poll: @poll, reply: @reply, page_title: "Poll Results"} %>
+
+<div class="row">
+	<div class="col-md-offset-4 coll-md-8">
+		<% for reply in @replies do  %>
+			<%= render partial: "reply_preview", locals: {user: @user, poll: @poll, reply: reply}  %>
+		<% end %>
+	</div>
+</div>
