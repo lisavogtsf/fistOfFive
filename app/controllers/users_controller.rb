@@ -33,17 +33,16 @@ class UsersController < ApplicationController
 	def create
 		if session[:user_id] == nil
 			@user = User.new(user_params)
-			if @user.save
+			if @user.save # user saved successfully
 				auth_user = User.authenticate(@user.email, @user.password)
 				if auth_user
 					session[:user_id] = @user.id
 					redirect_to user_path(@user.id), :notice => "Signed up!"
 				end
-			else
+			else # user not saved successfully?
 				if User.find_by_email(@user.email)
 					redirect_to signup_path, :notice => 'An account with that email already exists'
-				elsif
-					@user.password.length < 4
+				elsif @user.password && @user.password.length < 4
 					redirect_to signup_path, :notice => "Password must be at least four characters"
 				elsif @user.password != @user.password_confirmation
 					redirect_to signup_path, :notice => "Password must match password confirmation"
