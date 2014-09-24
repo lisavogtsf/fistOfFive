@@ -49,3 +49,7 @@ group :development, :test do
 end
 
 gem "em-eventsource", "~>0.1.2"
+
+group :production do
+  gem 'rails_12factor'
+end
