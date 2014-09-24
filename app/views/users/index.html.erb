@@ -3,6 +3,10 @@
 <%= render partial: "user_navbar", locals: {user: @user, page_title: "Users"} %>
 
 <div class="row">
+	<!-- display flash messages -->
+	<% flash.each do |k,v| %>
+		<h2 id="<%= k %>"><%= v %></h2>
+	<% end %>
 	<% for user in @users do  %>
 		<%= render partial: "user_preview", locals: {user: user}  %>
 	<% end %>

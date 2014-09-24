@@ -3,6 +3,10 @@
 
 <div class="row">
 	<div class="col-md-offset-1 col-md-6">
+	<!-- display flash messages -->
+	<% flash.each do |k,v| %>
+		<h2 id="<%= k %>"><%= v %></h2>
+	<% end %>
 		<%= render partial: "new_user_form", locals: {user: @user, form_title: "Edit User Information", button_label: "Save Changes"}   %>
 	</div>
 </div>
