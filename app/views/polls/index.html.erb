@@ -2,6 +2,10 @@
 <%= render partial: "users/user_navbar", locals: {user: @user, page_title: "Polls"} %>
 
 <div class="row">
+	<!-- display flash messages -->
+	<% flash.each do |k,v| %>
+		<h2 id="<%= k %>"><%= v %></h2>
+	<% end %>
 	<div  class="col-xs-offset-1 col-xs-11 col-sm-offset-2 col-sm-10">
 		<% for poll in @polls do  %>
 			<%= render partial: "poll_preview", locals: {user: @user, poll: poll}  %>

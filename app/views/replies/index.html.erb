@@ -3,6 +3,10 @@
 
 <div class="row">
 	<div class="col-md-offset-4 coll-md-8">
+	<!-- display flash messages -->
+	<% flash.each do |k,v| %>
+		<h2 id="<%= k %>"><%= v %></h2>
+	<% end %>
 		<% for reply in @replies do  %>
 			<%= render partial: "reply_preview", locals: {user: @user, poll: @poll, reply: reply}  %>
 		<% end %>
