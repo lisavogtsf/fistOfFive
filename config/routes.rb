@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users do
   	resources :polls do 
-        resources :replies, except: :create 
+        resources :replies
       end
   end
 
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # ## testing
   # get 'sms' => 'receive_messages#index'
 
-  post '/search', to: 'replies#search'
+  # post '/search', to: 'replies#search'
 
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
@@ -27,6 +27,6 @@ Rails.application.routes.draw do
 
   delete 'logout' => 'sessions#destroy'
   # for development only
-  get '/logout' => 'sessions#destroy'
+  # get '/logout' => 'sessions#destroy'
   
 end

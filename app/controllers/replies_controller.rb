@@ -24,14 +24,13 @@ class RepliesController < ApplicationController
 		end
 	end
 
-	def search
-		find_user
-		find_user_poll
-		find_user_poll_reply
+	# def search
+	# 	find_user
+	# 	find_user_poll
+	# 	find_user_poll_reply
 
-
-		render :json => @results
-	end
+	# 	render :json => @results
+	# end
 
 	## no such form
 	# def new

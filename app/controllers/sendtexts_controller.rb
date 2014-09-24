@@ -34,7 +34,7 @@ class SendtextsController < ApplicationController
 		@poll.time_sent = Time.now
 		@poll.is_open = true
 		# redirect_to user_poll_path(@user.id, @poll.id)
-		redirect_to user_poll_replies_path(@poll.user_id, @poll.id), :notice => "poll sent"
+		redirect_to user_poll_path(@poll.user_id, @poll.id), :notice => "poll sent"
 
 		# redirect_to user_poll_path(@user.id, @poll.id), :notice => "message sent"
 	end

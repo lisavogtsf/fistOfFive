@@ -7,8 +7,13 @@
 	<% flash.each do |k,v| %>
 		<h2 id="<%= k %>"><%= v %></h2>
 	<% end %>
+
+
+	What is going on here?
+
+	<h2>Replies to Poll <%= @poll.id  %>, <%= @poll.topic.titleize  %></h2>
 		<% for reply in @replies do  %>
-			<%= render partial: "reply_preview", locals: {user: @user, poll: @poll, reply: reply}  %>
+			<%#= render partial: "reply_preview", locals: {user: @user, poll: @poll, reply: reply}  %>
 		<% end %>
 	</div>
 </div>
