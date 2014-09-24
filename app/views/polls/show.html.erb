@@ -5,19 +5,25 @@
 
 <!-- display flash messages -->
 <div class="row">
-	<div  class="col-xs-offset-1 col-xs-11 col-sm-offset-2 col-sm-10">
+	<div class="col-md-offset-1 col-md-6">
 		<% flash.each do |k,v| %>
 			<h2 id="<%= k %>"><%= v %></h2>
 		<% end %>
 
 		<h1><%= @poll.topic.titleize  %></h1>
-
-
 		<%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id  %>
 		<%= render partial: "poll_details", locals: {user: @user, poll: @poll}  %>
-
+		<% for reply in @poll.replies do %>
+			<%= render partial: "replies/reply_preview", locals: {user: @user, poll: @poll}  %>
+		<% end %>
 <!-- 		<div class="no-data">No poll data currently available</div>
 		<canvas id="myChart" width="800px" height="400"></canvas> -->
+	</div>
+	<div class="col-md-4">
+		<h3><%= link_to "Your Polls", user_polls_path(@user.id)  %></h3>
+		<% for poll in @user.polls do  %>
+			<%= render partial: "polls/poll_preview", locals: {poll: poll, user: @user} %>
+		<% end %>
 	</div>
 </div>
 
