@@ -9,15 +9,13 @@
 		<% flash.each do |k,v| %>
 			<h2 id="<%= k %>"><%= v %></h2>
 		<% end %>
+
 		<h1><%= @poll.topic.titleize  %></h1>
+
+		<%= link_to "Send poll via SMS", send_sms_path(@poll), method: :post, class: "btn btn-primary"  %>
 		<%= render partial: "poll_details", locals: {user: @user, poll: @poll}  %>
 
-			
-
-
-		<%= link_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id, class: "btn btn-lg btn-primary"  %>
-
-
+		
 		<%= image_tag("https://cdn.tutsplus.com/vector/uploads/legacy/tuts/69_Quality_Bar/Picture-14.jpg")  %>
 	</div>
 </div>

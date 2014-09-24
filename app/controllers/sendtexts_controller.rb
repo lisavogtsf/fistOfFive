@@ -9,7 +9,7 @@ class SendtextsController < ApplicationController
 		numbers_for_recipients = ["4159671051", "4158465918"]
 		# , "3238068310"
 
-		@user = User.find(params[:user])
+		# @user = User.find(params[:user])
 		@poll = Poll.find_by_id(params[:id])
 		message_content = @poll.topic
 		message_template = "Please reply with feedback on: "
@@ -34,7 +34,7 @@ class SendtextsController < ApplicationController
 		@poll.time_sent = Time.now
 		@poll.is_open = true
 		# redirect_to user_poll_path(@user.id, @poll.id)
-		redirect_to user_poll_replies_path(@user.id, @poll.id), :notice => "poll sent"
+		redirect_to user_poll_replies_path(@poll.user_id, @poll.id), :notice => "poll sent"
 
 		# redirect_to user_poll_path(@user.id, @poll.id), :notice => "message sent"
 	end

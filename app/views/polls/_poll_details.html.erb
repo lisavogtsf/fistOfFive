@@ -1,13 +1,8 @@
 <!-- _poll_details.html.erb -->
 
 <div class="row">
-	
-		<p>
-			<h4>Poll ID: <%= poll.id  %> <%= link_to poll.topic.titleize, user_poll_path(user.id, poll.id) %> </h4>
-  			<small><%= poll.created_at.strftime("%b %d, %Y %I:%M%P")  %></small>
-		</p>
-<%= link_to "Delete Poll", user_poll_path(@user.id, poll.id), method: :delete, class: "btn btn-danger" %>
-   		
-	
-	
+	<h4>Poll ID: <%= poll.id  %>, created <%= poll.created_at.strftime("%b %d, %Y %I:%M%P")  %></h4>
+	<%= link_to "Edit Poll", edit_user_poll_path(@user.id, poll.id), class: "btn btn-info" %>
+	<%= link_to "Delete Poll", user_poll_path(@user.id, poll.id), method: :delete, class: "btn btn-danger" %>
+ 
 </div>
