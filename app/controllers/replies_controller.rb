@@ -5,6 +5,7 @@ class RepliesController < ApplicationController
 	before_action :find_user_poll
 	before_action :find_user_poll_reply
 	before_action :correct_user?
+	before_action :render_layout_if_html
 
 	def index
 		## looking at replies for the correct user?
@@ -15,14 +16,6 @@ class RepliesController < ApplicationController
 		end	
 	end
 
-	## no such form
-	# def new
-	# end
-
-	# def create
-	# 	## in receive_messages_controller.rb
-	# end
-
 	def show
 		if correct_user?
 			@reply = find_user_poll_reply
@@ -30,6 +23,23 @@ class RepliesController < ApplicationController
 			redirect_to user_polls_path(@current_user.id), :notice => "You are not authorized to view this user's poll results"
 		end
 	end
+
+	def search
+		find_user
+		find_user_poll
+		find_user_poll_reply
+
+
+		render :json => @results
+	end
+
+	## no such form
+	# def new
+	# end
+
+	# def create
+	# 	## in receive_messages_controller.rb
+	# end
 
 	## does editing  a reply make sense?
 	# def edit
@@ -63,4 +73,9 @@ class RepliesController < ApplicationController
 			@user == @current_user
 		end
 
+		def render_layout_if_html
+      		if request.format.symbol == :html
+        			render "layouts/application"
+      		end
+    		end
 end

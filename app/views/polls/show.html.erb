@@ -16,8 +16,8 @@
 		<%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id  %>
 		<%= render partial: "poll_details", locals: {user: @user, poll: @poll}  %>
 
-		
-		<%= image_tag("https://cdn.tutsplus.com/vector/uploads/legacy/tuts/69_Quality_Bar/Picture-14.jpg")  %>
+<!-- 		<div class="no-data">No poll data currently available</div>
+		<canvas id="myChart" width="800px" height="400"></canvas> -->
 	</div>
 </div>
 
