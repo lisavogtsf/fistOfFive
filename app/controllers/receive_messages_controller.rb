@@ -3,6 +3,7 @@ class ReceiveMessagesController < ApplicationController
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
 
+	before_action :find_user
 
 ## moving to replies controller
 
@@ -22,10 +23,22 @@ class ReceiveMessagesController < ApplicationController
 
 		@reply = Reply.new
 		@reply.response = message_body
-		@reply.poll_id = @poll.id
 		@reply.from_number = from_number
-		@reply.save
+		@reply.poll_id = @poll.id
+		@reply.user_id = @poll.user_id		
+		@poll.replies << @reply
 
+		@reply.save
+		
+		render :nothing => true, :status => 200, :content_type => 'text/html'
+		## want redirect?
+		# redirect_to user_poll_replies_path
 	end
+
+	private
+
+		def find_user
+			@user = User.find_by_id(params[:user_id])
+		end
 
 end

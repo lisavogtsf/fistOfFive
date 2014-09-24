@@ -4,4 +4,12 @@
 <%= render partial: "users/user_navbar", locals: {user: @user, poll: @poll, page_title: "Poll Details"} %>
 
 <h1>Poll details</h1>
+<div class="row">
+	<%= render partial: "poll_details", locals: {user: @user, poll: @poll}  %>
+
+	poll sent/unsent??
+	poll open/closed??
+
+	<%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id  %>
+</div>
 

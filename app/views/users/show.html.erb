@@ -4,10 +4,21 @@
 
 
 
+<div class="row">
+	<div class="col-md-offset-1 col-md-6">
+		<a href="#"><h2>Start a new poll with jQuery?</h2></a>
 
-<!-- render partial with all polls data?? in later column so it will collapse-->
-<div class="row polls-preview">
-	<% for poll in @polls do  %>
-	<%= render partial: "polls/poll_preview", locals: {poll: poll, user: @user} %>
-	<% end %>
-</div>
+		<h3>Your account information, edit with jQuery?</h3>
+		<h4>First name: <%= @user.first_name  %></h4>
+		<h4>Last name: <%= @user.last_name  %></h4>
+		<h4>Email: <%= @user.email  %></h4>
+	</div>
+	<!-- render partial with all polls data?? in later column so it will collapse-->
+	<div class="col-md-4">
+		<h3><%= link_to "Your Polls", user_polls_path(@user.id)  %></h3>
+		<% for poll in @polls do  %>
+			<%= render partial: "polls/poll_preview", locals: {poll: poll, user: @user} %>
+		<% end %>
+	</div>
+
+</div><!-- closes row -->

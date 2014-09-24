@@ -2,10 +2,5 @@
 
 <!-- show poll topic, with link, date and number of replies -->
 <div class="row">
-	<div  class="col-xs-offset-1 col-xs-11 col-sm-offset-2 col-sm-10">
-		<p>
-			<h4>Poll ID: <%= poll.id  %> <%= link_to poll.topic.titleize, user_poll_path(user.id, poll.id) %> </h4>
-		</p>
-			
-	</div>
+	<p>Poll ID: <%= poll.id  %> <%= link_to poll.topic.titleize, user_poll_path(user.id, poll.id) %></p>
 </div>
