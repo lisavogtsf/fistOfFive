@@ -6,9 +6,19 @@
 	<% flash.each do |k,v| %>
 		<h2 id="<%= k %>"><%= v %></h2>
 	<% end %>
+
 	<div  class="col-xs-offset-1 col-xs-11 col-sm-offset-2 col-sm-10">
+		<h2><%= link_to "Start a new poll", new_user_poll_path(@user.id)  %></h2>
 		<% for poll in @polls do  %>
-			<%= render partial: "poll_preview", locals: {user: @user, poll: poll}  %>
+			<ul>
+				<li><%= render partial: "poll_preview", locals: {user: @user, poll: poll}  %></li>
+				<li class="indent">
+					
+					<%= link_to "Edit Poll", edit_user_poll_path(@user.id, poll.id), class: "btn btn-info btn-xs" %></li>
+					<%= link_to "Delete Poll", user_poll_path(@user.id, poll.id), method: :delete, class: "btn btn-danger btn-xs" %>
+					
+				</li>
+			</ul>
 		<% end %>
 	</div>
 </div>
