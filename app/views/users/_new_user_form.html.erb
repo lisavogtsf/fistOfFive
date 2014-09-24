@@ -3,7 +3,7 @@
 <div class="row">
 	<%= form_for @user, html: {class: "form-horizontal"} do |f|  %>
 	<fieldset>
-		<legend>Sign up</legend>
+		<legend><%= form_title  %></legend>
 		<div class="form-group">
 			<%= f.text_field :first_name, class: "form-control", placeholder: "First name", autofocus: true  %>				
 		</div>	<!-- closes form-group -->

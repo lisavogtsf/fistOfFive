@@ -6,8 +6,13 @@
 	<div class="col-sm-offset-2 col-sm-8">
 		<div class="jumbotron">
 			<h1>Fist of Five</h1>
-				<%= link_to "Login", login_path, method: :get, class: "btn btn-danger btn-lg"  %>
-				<%= link_to "Sign up", signup_path, method: :get, class: "btn btn-warning btn-lg"  %>
+			<!-- display flash messages -->
+			<% flash.each do |k,v| %>
+				<h2 id="<%= k %>"><%= v %></h2>
+			<% end %>
+			
+			<%= link_to "Login", login_path, method: :get, class: "btn btn-danger btn-lg"  %>
+			<%= link_to "Sign up", signup_path, method: :get, class: "btn btn-warning btn-lg"  %>
 		</div><!-- closes jumbotron -->
 	</div>
 	

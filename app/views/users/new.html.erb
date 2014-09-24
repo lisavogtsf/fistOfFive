@@ -5,8 +5,11 @@
 	<div class="col-sm-offset-2 col-sm-8">
 		<div class="jumbotron">
 			<h1>Fist of Five</h1>
-<!-- partial -->
-			<%= render partial: "new_user_form", locals: {user: @user, button_label: "Save Changes"}   %>
+			<!-- display flash messages -->
+			<% flash.each do |k,v| %>
+				<h2 id="<%= k %>"><%= v %></h2>
+			<% end %>
+			<%= render partial: "new_user_form", locals: {user: @user, form_title: "Sign Up", button_label: "Sign Up"}   %>
 		</div><!-- closes column -->
 	</div>
 	

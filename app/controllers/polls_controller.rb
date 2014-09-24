@@ -40,7 +40,7 @@ class PollsController < ApplicationController
 		if poll.save && @user
 			poll.is_open = false
 			@user.polls << poll 
-			redirect_to user_poll_path(@user.id, poll.id)
+			redirect_to user_poll_path(@user.id, poll.id), :notice => "Poll created"
 		else
 			flash[:error] = poll.errors.full_messages.to_sentence
 			redirect_to user_path @user.id
@@ -48,11 +48,13 @@ class PollsController < ApplicationController
 	end
 
 	def update
-		if @poll.update_attributes(poll_params)
-			redirect_to user_polls_path(@user)
-		else
-			redirect_to user_poll_path @user.id, @poll.id
-		end
+		@poll.update_attributes(poll_params)
+		redirect_to user_poll_path @user.id, @poll.id, :notice => "Poll updated"
+		# if @poll.update_attributes(poll_params)
+		# 	redirect_to user_polls_path(@user)
+		# else
+		# 	redirect_to user_poll_path @user.id, @poll.id
+		# end
 	end
 
 	def destroy
@@ -83,7 +85,7 @@ private
 	end
 
 	def poll_params
-		params.require(:poll). permit(:topic)
+		params.require(:poll). permit(:topic, :is_open, :user_id, :time_sent)
 	end
 
 end

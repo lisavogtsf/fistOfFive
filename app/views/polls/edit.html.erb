@@ -1,0 +1,8 @@
+<!-- edit.html.erb -->
+<%= render partial: "users/user_navbar", locals: {user: @user, poll: @poll, page_title: "Edit Poll"} %>
+
+<div class="row">
+	<div class="col-md-offset-1 col-md-6">
+		<%= render partial: "poll_form", locals: {user: @user, form_title: "Edit Poll", button_label: "Review Edited Poll"}   %>
+	</div>
+</div>
