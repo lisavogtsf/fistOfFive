@@ -6,12 +6,15 @@
 
 <div class="row">
 	<div class="col-md-offset-1 col-md-6">
-		<a href="#"><h2>Start a new poll with jQuery?</h2></a>
+		<a href="#"><h2>Start a new poll?</h2></a>
 
-		<h3>Your account information, edit with jQuery?</h3>
+		<h3>Account information</h3>
 		<h4>First name: <%= @user.first_name  %></h4>
 		<h4>Last name: <%= @user.last_name  %></h4>
 		<h4>Email: <%= @user.email  %></h4>
+		<h4>Password: *******</h4>
+		<%= link_to "Edit", edit_user_path(@user.id), class: "btn btn-info" %>
+		<%= link_to "Delete", edit_user_path(@user.id), class: "btn btn-danger" %>
 	</div>
 	<!-- render partial with all polls data?? in later column so it will collapse-->
 	<div class="col-md-4">

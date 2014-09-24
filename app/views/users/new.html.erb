@@ -1,11 +1,12 @@
 <!-- new.html.erb -->
-<!-- signup -->
+<!-- signup THIS ONE IS DIFFERENT FROM OTHER USERS VIEWS-->
+
 <div class="row">
 	<div class="col-sm-offset-2 col-sm-8">
 		<div class="jumbotron">
 			<h1>Fist of Five</h1>
 <!-- partial -->
-			<%= render partial: "new_user_form", locals: {user: @user}   %>
+			<%= render partial: "new_user_form", locals: {user: @user, button_label: "Save Changes"}   %>
 		</div><!-- closes column -->
 	</div>
 	

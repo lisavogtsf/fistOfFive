@@ -6,14 +6,9 @@
 	<div class="col-sm-offset-2 col-sm-8">
 		<div class="jumbotron">
 			<h1>Fist of Five</h1>
-		</div><!-- closes column -->
-		<div class="row">
-			<div class="col-md-12 in-line">
-				<%= button_to "Login", login_path, method: :get, class: "btn btn-danger btn-lg"  %>
-				<%= button_to "Sign up", signup_path, method: :get, class: "btn btn-warning btn-lg"  %>
-			</div>
-			
-		</div>
+				<%= link_to "Login", login_path, method: :get, class: "btn btn-danger btn-lg"  %>
+				<%= link_to "Sign up", signup_path, method: :get, class: "btn btn-warning btn-lg"  %>
+		</div><!-- closes jumbotron -->
 	</div>
 	
 </div>

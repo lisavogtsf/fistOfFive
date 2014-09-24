@@ -1,0 +1,8 @@
+
+<%= render partial: "user_navbar", locals: {user: @user, page_title: "Edit User"} %>
+
+<div class="row">
+	<div class="col-md-offset-1 col-md-6">
+		<%= render partial: "new_user_form", locals: {user: @user, button_label: "Save Changes"}   %>
+	</div>
+</div>
