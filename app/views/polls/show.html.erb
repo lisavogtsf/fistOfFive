@@ -12,7 +12,8 @@
 
 		<h1><%= @poll.topic.titleize  %></h1>
 
-		<%= link_to "Send poll via SMS", send_sms_path(@poll), method: :post, class: "btn btn-primary"  %>
+
+		<%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id  %>
 		<%= render partial: "poll_details", locals: {user: @user, poll: @poll}  %>
 
 		

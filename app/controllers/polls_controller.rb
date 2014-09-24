@@ -21,6 +21,7 @@ class PollsController < ApplicationController
 	def show
 		if correct_user?
 			@poll = find_user_poll
+			
 		else
 			redirect_to user_polls_path(@current_user.id), :notice => "You are not authorized to view this user's page"
 		end
