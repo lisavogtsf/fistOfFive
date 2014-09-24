@@ -66,6 +66,9 @@ class UsersController < ApplicationController
 
 	# only the user should be able to destroy their own account
 	def destroy
+		@user.destroy
+		session[:user_id] = nil
+		redirect_to root_path, :notice => "Profile deleted"
 	end
 
 

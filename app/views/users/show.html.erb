@@ -13,8 +13,8 @@
 		<h4>Last name: <%= @user.last_name  %></h4>
 		<h4>Email: <%= @user.email  %></h4>
 		<h4>Password: *******</h4>
-		<%= link_to "Edit", edit_user_path(@user.id), class: "btn btn-info" %>
-		<%= link_to "Delete", edit_user_path(@user.id), class: "btn btn-danger" %>
+		<%= link_to "Edit Account", edit_user_path(@user.id), class: "btn btn-info" %>
+		<%= link_to "Delete Account", user_path(@user.id), method: :delete, class: "btn btn-danger" %>
 	</div>
 	<!-- render partial with all polls data?? in later column so it will collapse-->
 	<div class="col-md-4">
