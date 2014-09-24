@@ -3,13 +3,9 @@
 <!-- details of one poll, make new, and results -->
 <%= render partial: "users/user_navbar", locals: {user: @user, poll: @poll, page_title: "Poll Details"} %>
 
-<h1>Poll details</h1>
+<h1><%= @poll.topic.titleize  %></h1>
 <div class="row">
 	<%= render partial: "poll_details", locals: {user: @user, poll: @poll}  %>
-
-	poll sent/unsent??
-	poll open/closed??
-
-	<%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id  %>
+	<%= image_tag("https://cdn.tutsplus.com/vector/uploads/legacy/tuts/69_Quality_Bar/Picture-14.jpg")  %>
 </div>
 

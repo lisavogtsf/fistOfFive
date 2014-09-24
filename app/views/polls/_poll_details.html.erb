@@ -8,5 +8,9 @@
 
    		</p>
 			
+			poll sent/unsent??
+	poll open/closed??
+
+	<%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id  %>
 	</div>
 </div>
