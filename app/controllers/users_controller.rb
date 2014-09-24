@@ -60,6 +60,8 @@ class UsersController < ApplicationController
 	end
 
 	def update
+		@user.update_attributes(user_params)
+		redirect_to user_path, :notice => "Profile updated"
 	end
 
 	# only the user should be able to destroy their own account
@@ -76,7 +78,7 @@ class UsersController < ApplicationController
 		end
 
 		def user_params
-			params.require(:user).permit(:type, :email, :password, :password_confirmation)
+			params.require(:user).permit(:first_name, :last_name, :type, :email, :password, :password_confirmation)
 		end
 
 		def correct_user?
