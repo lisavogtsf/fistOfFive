@@ -1,0 +1,9 @@
+<!-- new.html.erb -->
+<%= render partial: "users/user_navbar", locals: {user: @user, page_title: "New Student"} %>
+
+
+<div class="row">
+
+		<%= render partial: "student_form", locals: {student: student, form_title: "New Student", button_label: "Save Student"} %>
+
+</div>

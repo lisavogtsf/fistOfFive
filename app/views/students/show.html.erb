@@ -1,0 +1,10 @@
+<!-- show.html.erb -->
+
+<%= render partial: "users/user_navbar", locals: {user: @user, page_title: "Student"} %>
+
+
+<div class="row">
+
+		<%= render partial: "student_details", locals: {student: @student}  %>
+
+</div>

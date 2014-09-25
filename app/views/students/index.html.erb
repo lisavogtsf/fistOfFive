@@ -3,6 +3,8 @@
 
 <div class="row">
 	<% for student in @students do  %>
+		<a href="<%= student.id  %>">
 		<%= render partial: "student_preview", locals: {student: student}  %>
+		</a>
 	<% end %>
 </div>

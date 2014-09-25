@@ -21,6 +21,7 @@
 	</div>
 	<!-- render partial with all polls data?? in later column so it will collapse-->
 	<div class="col-md-4">
+		<h3><%= link_to "View Students", students_path(@user.id)  %></h3>
 		<h3><%= link_to "Your Polls", user_polls_path(@user.id)  %></h3>
 		<% for poll in @polls do  %>
 			<%= render partial: "polls/poll_preview", locals: {poll: poll, user: @user} %>
