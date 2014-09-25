@@ -2,9 +2,17 @@
 <%= render partial: "users/user_navbar", locals: {user: @user, page_title: "Students"} %>
 
 <div class="row">
-	<% for student in @students do  %>
-		<a href="<%= student.id  %>">
-		<%= render partial: "student_preview", locals: {student: student}  %>
-		</a>
-	<% end %>
+	<div class="col-sm-offset-2 col-sm-8">
+		<% for student in @students do  %>			
+			<ul>
+				<li><a href="<%= student.id  %>"><%= render partial: "student_preview", locals: {student: student}  %></a></li>
+				<li class="indent">
+						
+					<%= link_to "Edit Student", edit_student_path(@user.id, student.id), class: "btn btn-info btn-xs" %></li>
+					<%= link_to "Delete Student", student_path(@user.id, student.id), method: :delete, class: "btn btn-danger btn-xs" %>
+						
+					</li>
+				</ul>
+		<% end %>
+	</div>
 </div>

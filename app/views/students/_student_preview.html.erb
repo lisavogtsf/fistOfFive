@@ -1,7 +1,7 @@
 <!-- _student_preview.html.erb -->
 
 <div class="row">
-	<div class="col-md-offset-2 col-md-10">
-		<h4><%= student.first_name  %> <%= student.last_name  %> <%= student.sms_phone_number  %></h4>
-	</div>
+
+		<h4><%= student.first_name  %> <%= student.last_name  %> <%= number_to_phone(student.sms_phone_number.to_i, area_code: true)%></h4>
+
 </div>
