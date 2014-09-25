@@ -33,7 +33,7 @@
 	<div class="col-md-4">
 		<%= render partial: "poll_details", locals: {user: @user, poll: @poll}  %>
 		<% if @poll.replies.count > 0 %>
-		<h4><%= link_to "Complete Replies", user_polls_path(@user.id)  %></h4>
+		<h4>Full SMS Replies</h4>
 		<% end %>
 		<% for reply in @poll.replies do  %>
 			<%= render partial: "replies/reply_preview", locals: {poll: @poll, user: @user, reply: reply} %>
