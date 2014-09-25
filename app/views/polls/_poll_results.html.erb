@@ -1,0 +1,33 @@
+<h1>Poll bar graph awesomeness</h1>
+
+			0: <%= @results[0]  %>
+			1: <%= @results[1]  %>
+			2: <%= @results[2]  %>
+			3: <%= @results[3]  %>
+			4: <%= @results[4]  %>
+			5: <%= @results[5]  %>
+
+
+<h1>5</h1>
+<div class="progress progress-striped active">
+  <div class="progress-bar" style="width: <%= @results[5]*10  %>% "></div>
+</div>
+
+<div class="progress progress-striped active">
+  <div class="progress-bar progress-bar-info" style="width: <%= @results[4]*10  %>% "></div>
+</div>
+
+<div class="progress progress-striped active">
+  <div class="progress-bar progress-bar-success" style="width: <%= @results[3]*10  %>% "></div>
+</div>
+
+<div class="progress progress-striped active">
+  <div class="progress-bar progress-bar-warning" style="width: <%= @results[2]*10  %>% "></div>
+</div>
+
+<div class="progress progress-striped active">
+  <div class="progress-bar progress-bar-danger" style="width: <%= @results[1]*10  %>% "></div>
+</div>
+<div class="progress progress-striped active">
+  <div class="progress-bar progress-bar-default" style="width: <%= @results[0]*10  %>% "></div>
+</div>

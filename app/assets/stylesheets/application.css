@@ -45,12 +45,8 @@ li {
 small {
 	color: black;
 }
-.no-data {
-
-}
-/*chart styling*/
-#myChart {
-
+.results {
+	display: inline-block;
 }
 
 
