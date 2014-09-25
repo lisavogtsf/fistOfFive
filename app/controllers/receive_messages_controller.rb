@@ -21,7 +21,7 @@ class ReceiveMessagesController < ApplicationController
 		## and info on poll -- what poll is open?
 		## for testing
 
-		@poll = Poll.find_by_id(14)
+		@poll = Poll.find_by_id(13)
 
 		@reply = Reply.new
 		@reply.response = message_body
