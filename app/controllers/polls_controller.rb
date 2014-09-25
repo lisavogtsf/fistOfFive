@@ -40,19 +40,18 @@ class PollsController < ApplicationController
 			end
 			@results = scale_counter
 
-			#percentage results
-			@percent_results = @results
-			total = 0
-			for num in @results 
-				num +=
-				total = num 
-			end
-			i = 0
-			for per_res in @results
-				per_res = (per_res/total)
-				@percent_results[i] = per_res
-			end
-			@percent_results
+			# #percentage results
+			# @percent_results = @results
+			# # get sum of array known to have +0 items
+			# total = @percent_results.inject(:+)
+			# i = 0
+			# while i < @results.length do
+			# 	@percent_results[i] = (@results[i]/total)*100
+			# 	i += 1
+
+			# end
+			# @percent_results
+			
 		else
 			redirect_to user_polls_path(@current_user.id), :notice => "You are not authorized to view this user's page"
 		end
