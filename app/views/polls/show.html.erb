@@ -12,24 +12,26 @@
 
 		<h2><%= @poll.topic.titleize  %></h2>
 <%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id  %>
-		<%= render partial: "poll_details", locals: {user: @user, poll: @poll}  %>
 
 		<% if @poll.replies.count > 0 %>
-			<div id="display-results">
+
 
 		<%= render partial: "poll_results", locals: {user: @user, poll: @poll, results: @results, percent_results: @percent_results}  %>		
 
 		<% end %>
+
 		<%= link_to "Edit Poll", edit_user_poll_path(@user.id, @poll.id), class: "btn btn-info btn-md" %>
 		<%= link_to "Delete Poll", user_poll_path(@user.id, @poll.id), method: :delete, class: "btn btn-danger btn-md" %>
-	</div>
+	
 <!-- 		<div class="no-data">No poll data currently available</div>
 		<canvas id="myChart" width="800px" height="400"></canvas> -->
 	</div>
 
 	<div class="col-md-4">
-
+		<%= render partial: "poll_details", locals: {user: @user, poll: @poll}  %>
+		<% if @poll.replies.count > 0 %>
 		<h4><%= link_to "Complete Replies", user_polls_path(@user.id)  %></h4>
+		<% end %>
 		<% for reply in @poll.replies do  %>
 			<%= render partial: "replies/reply_preview", locals: {poll: @poll, user: @user, reply: reply} %>
 		<% end %>

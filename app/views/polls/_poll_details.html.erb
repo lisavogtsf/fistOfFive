@@ -2,10 +2,10 @@
 
 <div class="row">
 	<h4>Poll ID: <%= poll.id  %>, created <%= poll.created_at.strftime("%b %d, %Y %I:%M%P")  %></h4>
-<!-- 	<% if poll.time_sent %>
-	<h4>Most recently sent: <%= poll.time_sent.strftime("%b %d, %Y %I:%M%P")%></h4>
-	<% end %> -->
-<!-- 	<h4>Poll open? <%= poll.is_open  %></h4> -->
+	<% if poll.time_sent %>
+ 		<h4>Most recently sent: <%= poll.time_sent.strftime("%b %d, %Y %I:%M%P")%></h4>
+	<% end %> 
+	<h4>Poll open? <%= poll.is_open  %></h4>
 	<h4>Number of replies: <%= @poll.replies.count  %></h4>
  
 </div>
