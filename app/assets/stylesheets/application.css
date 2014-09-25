@@ -15,7 +15,7 @@
  */
 
 body {
-	background-image: url("assets/fake-brick-wallpaper.jpg");
+	background-image: url("../assets/fake-brick-wallpaper.jpg");
 	background-color: rgba(250, 250, 250, .9);
  }
 .navbar-spacer {
