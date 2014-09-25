@@ -7,13 +7,13 @@ class SendtextsController < ApplicationController
 	def send_text_message
 
 		numbers_for_recipients = ["4159671051", "4158465918"]
-		# , "3238068310"
+
 
 		# @user = User.find(params[:user])
 		@poll = Poll.find_by_id(params[:id])
 		message_content = @poll.topic
 		message_template = "Please reply with feedback on: "
-		message_scale = " (scale of 0-5)"
+		message_scale = " (scale of 0-5, then optional question or comment)"
 
 		twilio_sid = ENV['TWILIO_ACCOUNT_SID']
 		twilio_token = ENV['TWILIO_AUTH_TOKEN']
@@ -23,9 +23,11 @@ class SendtextsController < ApplicationController
 
 		for number_to_send_to in numbers_for_recipients
 
+			formatted_num = number_to_send_to.gsub(/\D/,'')
+
 			@twilio_client.account.sms.messages.create(
 				:from => "+1#{twilio_phone_number}",
-				:to => "+1#{number_to_send_to}",
+				:to => "+1#{formatted_num}",
 				:body => message_template + message_content + message_scale
 				)
 		end
