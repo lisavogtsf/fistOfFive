@@ -32,7 +32,7 @@
 
         <% elsif @user && @user.id %>
          <!--  <li>USER NAVBAR</li> -->
-            <li><%= link_to "View All Students", students_path(@user.id)  %></li>
+            <li><%= link_to "View All Students", students_path %></li>
       	<li class="active"><%= link_to @user.first_name ||  @user.email , user_path(@user.id)  %></li>
 
         <% elsif @student && @student.id %>
