@@ -22,6 +22,24 @@ class PollsController < ApplicationController
 		if correct_user?
 			@poll = find_user_poll
 			@replies = @poll.replies
+
+			scale = [0, 1, 2, 3, 4, 5]
+			scale_counter = [] # end [3, 5, 19, 4, 5, 4]
+			
+			for scale_num in scale 
+				# for each number in the scale, zero out, then go through replies adding
+
+				scale_counter[scale_num] = 0
+				for reply in @replies
+					num_reply = reply.response[0].to_i
+					
+					if num_reply == scale_num
+						scale_counter[scale_num] += 1
+					end
+				end 
+			end
+
+			@results = scale_counter
 		else
 			redirect_to user_polls_path(@current_user.id), :notice => "You are not authorized to view this user's page"
 		end
