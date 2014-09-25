@@ -11,7 +11,10 @@
 		<% end %>
 
 		<h2><%= @poll.topic.titleize  %></h2>
+
 <%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id  %>
+
+<!-- <button class="btn btn-default" id="send-SMS"><%#= link_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", method: :post, user: @user, id: @poll.id %></button> -->
 
 		<% if @poll.replies.count > 0 %>
 
