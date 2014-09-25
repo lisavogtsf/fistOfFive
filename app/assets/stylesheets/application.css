@@ -48,7 +48,9 @@ small {
 .results {
 	display: inline-block;
 }
-
+.splash {
+	max-height: 200px;
+}
 
 /* Navbar options from surgeprotector
 4: .navbar.navbar-default.navbar-fixed-top {
