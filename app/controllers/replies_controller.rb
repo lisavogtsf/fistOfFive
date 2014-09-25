@@ -7,22 +7,22 @@ class RepliesController < ApplicationController
 	before_action :correct_user?
 	before_action :render_layout_if_html
 
-	def index
-		## looking at replies for the correct user?
-		if correct_user?
-			@replies = @poll.replies
-		else
-			redirect_to user_polls_path(@current_user.id), :notice => "You are not authorized to view this user's page"
-		end	
-	end
+	# def index
+	# 	## looking at replies for the correct user?
+	# 	if correct_user?
+	# 		@replies = @poll.replies
+	# 	else
+	# 		redirect_to user_polls_path(@current_user.id), :notice => "You are not authorized to view this user's page"
+	# 	end	
+	# end
 
-	def show
-		if correct_user?
-			@reply = find_user_poll_reply
-		else
-			redirect_to user_polls_path(@current_user.id), :notice => "You are not authorized to view this user's poll results"
-		end
-	end
+	# def show
+	# 	if correct_user?
+	# 		@reply = find_user_poll_reply
+	# 	else
+	# 		redirect_to user_polls_path(@current_user.id), :notice => "You are not authorized to view this user's poll results"
+	# 	end
+	# end
 
 	# def search
 	# 	find_user

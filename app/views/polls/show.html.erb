@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="col-md-offset-1 col-md-6">
 		<% flash.each do |k,v| %>
-			<h2 id="<%= k %>"><%= v %></h2>
+			<h4 id="<%= k %>"><%= v %></h4>
 		<% end %>
 
 		<h2><%= @poll.topic.titleize  %></h2>
@@ -20,18 +20,19 @@
 		<%= render partial: "poll_results", locals: {user: @user, poll: @poll, results: @results, percent_results: @percent_results}  %>		
 
 		<% end %>
+		<%= link_to "Edit Poll", edit_user_poll_path(@user.id, @poll.id), class: "btn btn-info btn-sm" %>
+		<%= link_to "Delete Poll", user_poll_path(@user.id, @poll.id), method: :delete, class: "btn btn-danger btn-sm" %>
 	</div>
 <!-- 		<div class="no-data">No poll data currently available</div>
 		<canvas id="myChart" width="800px" height="400"></canvas> -->
 	</div>
 
 	<div class="col-md-4">
-		<h3><%= link_to "Your Polls", user_polls_path(@user.id)  %></h3>
-		<% for poll in @user.polls do  %>
-			<%= render partial: "polls/poll_preview", locals: {poll: poll, user: @user} %>
+
+		<h3><%= link_to "Full Replies", user_polls_path(@user.id)  %></h3>
+		<% for reply in @poll.replies do  %>
+			<%= render partial: "replies/reply_preview", locals: {poll: @poll, user: @user, reply: reply} %>
 		<% end %>
-		<%= link_to "Edit Poll", edit_user_poll_path(@user.id, poll.id), class: "btn btn-info btn-sm" %>
-		<%= link_to "Delete Poll", user_poll_path(@user.id, poll.id), method: :delete, class: "btn btn-danger btn-sm" %>
 	</div>
 </div>
 

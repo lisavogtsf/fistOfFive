@@ -17,9 +17,11 @@ class ReceiveMessagesController < ApplicationController
 		## assign info on user who sends it in
 		## not now
 
+
 		## and info on poll -- what poll is open?
 		## for testing
-		@poll = Poll.find_by_id(4)
+
+		@poll = Poll.find_by_id(10)
 
 		@reply = Reply.new
 		@reply.response = message_body
