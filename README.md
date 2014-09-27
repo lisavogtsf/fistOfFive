@@ -20,7 +20,7 @@ While teaching a difficult lesson, teachers can use the Fist of Five website to 
 
 # Motivation
 
-Fist of Five-SMS fills a gap in exiting student feedback systems, being quick, confidential and effective. An instructor creates a poll, sends it to students on their mobile phones, they reply by SMS, and then instructor and class can see the tally. 
+Fist of Five-SMS fills a gap in existing student feedback systems, being quick, confidential and effective. An instructor creates a poll, sends it to students on their mobile phones, they reply by SMS, and then instructor and class can see the tally. 
 
 To teach effectively, instructors need to know what students do and don't understand. To learn effectively, students need to feel comfortable giving feedback about a course. 
 
