@@ -37,6 +37,8 @@ class UsersController < ApplicationController
 				auth_user = User.authenticate(@user.email, @user.password)
 				if auth_user
 					session[:user_id] = @user.id
+					# alert admin about new signup
+					sms_alert_new_user
 					redirect_to user_path(@user.id), :notice => "Signed up!"
 				end
 			else # user not saved successfully?
@@ -88,6 +90,25 @@ class UsersController < ApplicationController
 			@current_user ||= User.find_by(id: session[:user_id])
 			## returns result of this comparison
 			@user == @current_user
+		end
+
+		def sms_alert_new_user
+			formatted_num = [ENV['ADMIN_NUMBER']]
+			user_email = @user.email
+			message_content = "New user created on Fist of Five website: "
+			message_site = " http://fistof5.herokuapp.com"
+
+			twilio_sid = ENV['TWILIO_ACCOUNT_SID']
+			twilio_token = ENV['TWILIO_AUTH_TOKEN']
+			twilio_phone_number = ENV['TWILIO_NUMBER']
+
+			@twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+			@twilio_client.account.sms.messages.create(
+			:from => "+1#{twilio_phone_number}",
+			:to => "+1#{formatted_num}",
+			:body => message_content + user_email + message_site
+			)
 		end
 
 end

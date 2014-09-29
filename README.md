@@ -39,7 +39,7 @@ My wireframes remained fairly free-form, although I knew I would use a Bootswatc
 
 # Entity Relationship Diagram
 The potential complexity of the database was giving me nightmares, with many to many relationships between instructors, classes and students. I would use an assignments join table for instructors and an enrollments join table for students, but I never quite got to this level of complexity.
-![Fo5many](fo5ERDmany.JPG "Fo5 Many many to many")
+![Fo5many](Fo5ERDmany.JPG "Fo5 Many many to many")
 
 I went with a revised version, although I never quite got to courses, trying to simplify to having stand-alone students with many replies.
 ![Fo5moreReasonable](Fo5ERDstillmany.png "Fo5 still many to many")
