@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 				if auth_user
 					session[:user_id] = @user.id
 					# alert admin about new signup
-					sms_alert_new_user
+					sms_user_alert("New user created on Fist of Five website: ")
 					redirect_to user_path(@user.id), :notice => "Signed up!"
 				end
 			else # user not saved successfully?
@@ -67,6 +67,7 @@ class UsersController < ApplicationController
 
 	# only the user should be able to destroy their own account
 	def destroy
+		sms_user_alert("User deleted: ")
 		@user.destroy
 		session[:user_id] = nil
 		redirect_to root_path, :notice => "Profile deleted"
@@ -92,10 +93,10 @@ class UsersController < ApplicationController
 			@user == @current_user
 		end
 
-		def sms_alert_new_user
+		def sms_user_alert(message_content)
 			formatted_num = [ENV['ADMIN_NUMBER']]
 			user_email = @user.email
-			message_content = "New user created on Fist of Five website: "
+			# message_content = 
 			message_site = " http://fistof5.herokuapp.com"
 
 			twilio_sid = ENV['TWILIO_ACCOUNT_SID']
