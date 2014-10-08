@@ -12,5 +12,6 @@
 //
 //= require jquery-1.11.1.min
 //= require jquery_ujs
+//= require respond.min
 //= require bootstrap-3.2.0.min
 //= require_tree .
