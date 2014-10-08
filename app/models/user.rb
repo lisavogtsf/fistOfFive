@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 
-	has_many :polls
-	has_many :students
+	has_many :affiliations
+	has_many :courses, :through => :affiliations 
 
 	## validations go here
 	## regex, only letters in name?
