@@ -10,6 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require bootstrap-3.2.0.min
  *= require_tree .
  *= require_self
  */
@@ -52,44 +53,3 @@ small {
 	max-height: 200px;
 }
 
-/* Navbar options from surgeprotector
-4: .navbar.navbar-default.navbar-fixed-top {
-	25    -webkit-box-sizing: border-box;
-	26    -moz-box-sizing: border-box;
-	..
-	43  }
-	44  
-	45: .navbar {
-	46    font-size: 20px;
-	47    background-color: black;
-	..
-	51  }
-	52  
-	53: .navbar-toggle.collapsed{
-	54    background-color: black;
-	55    border-color: #72c9b3;
-	56  }
-	57  
-	58: .navbar-toggle::after {
-	59    background-color: black;
-	60    border-color: #72c9b3;
-	61  }
-	62  
-	63: .navbar-toggle.collapsed:hover {
-	64    background-color: #474747;
-	65    border-color: #72c9b3;
-	66  }
-	67  
-	68: .navbar-collapse.collapse.in {
-	69    background-color: black;
-	70  }
-	71  
-	72: .navbar-toggle:focus{
-	73    background-color: #474747 !important;
-	74    border-color: #72c9b3  !important;
-	..
-	86  }
-	87  
-	88: .nav.navbar-nav.navbar-right{
-	89    margin-right: 20px;
-	90  }*/
