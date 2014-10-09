@@ -42,12 +42,16 @@ class UsersController < ApplicationController
 					redirect_to user_path(@user.id), :notice => "Signed up!"
 				end
 			else # user not saved successfully?
+						binding.pry
 				if User.find_by_email(@user.email)
 					redirect_to signup_path, :notice => 'An account with that email already exists'
 				elsif @user.password && @user.password.length < 4
 					redirect_to signup_path, :notice => "Password must be at least four characters"
 				elsif @user.password != @user.password_confirmation
 					redirect_to signup_path, :notice => "Password must match password confirmation"
+				elsif @user.sms_phone_number == ""
+					redirect_to signup_path, :notice => "Please enter a phone number to receive SMS text messages"
+					
 				end
 			end	
 		else
@@ -83,7 +87,7 @@ class UsersController < ApplicationController
 		end
 
 		def user_params
-			params.require(:user).permit(:first_name, :last_name, :type, :email, :password, :password_confirmation)
+			params.require(:user).permit(:first_name, :last_name, :sms_phone_number, :email, :password, :password_confirmation)
 		end
 
 		def correct_user?

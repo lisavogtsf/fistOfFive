@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 	## validations go here
 	## regex, only letters in name?
 	## regex on email?
+	validates :sms_phone_number, presence: true
 	validates :email, presence: true, uniqueness: {case_sensitive: false}
 	validates :password, presence: true, length: {minimum: 3}, on: :create
 
