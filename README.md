@@ -1,4 +1,4 @@
-# Fist of Five - an SMS-based classroom feedback system
+# Fist of Five - an SMS-based feedback system
 
 An app that allows a user to elicit and receive feedback by SMS and visualize the results
 
