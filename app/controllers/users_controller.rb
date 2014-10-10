@@ -10,6 +10,11 @@ class UsersController < ApplicationController
 		@users = User.all
 	end
 
+	def home
+		@users = User.all
+		@courses = Course.all
+	end
+
 	def show
 		## validate that this is the correct user
 		if correct_user?
@@ -61,6 +66,7 @@ class UsersController < ApplicationController
 				end
 			end	
 		else
+			#someone is already logged in and trying to signup
 			session[:user_id] = nil
 			redirect_to login_path, :notice => "Please log in again"
 		end
@@ -118,7 +124,7 @@ class UsersController < ApplicationController
 			@twilio_client.account.sms.messages.create(
 			:from => "+1#{twilio_phone_number}",
 			:to => "+1#{formatted_num}",
-			:body => message_content + user_email + message_site
+			:body => message_content + @user_email + message_site
 			)
 		end
 
