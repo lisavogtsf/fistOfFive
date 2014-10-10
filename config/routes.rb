@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :students do
   end
 
+  get 'home' => 'users#home'
 
   post 'send_sms' => 'sendtexts#send_text_message'
   # get 'send_sms' => 'sendtexts#send_text_message'
