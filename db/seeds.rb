@@ -6,37 +6,21 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+taco = Student.new
+taco.first_name = "Taco"
+taco.sms_phone_number = "4158675309"
+taco.email = "taco@generalasssemb.ly"
+taco.save
 
-## sample users for fistOfFive
-# turing = User.create(first_name: 'Alan', last_name: 'Turing', email: 'alan@alan.com', password: '4321', password_confirmation: '4321', sms_phone_number: '4154448888')
+taco = Student.new
+taco.first_name = "Nacho"
+taco.sms_phone_number = "4158675310"
+taco.email = "nacho@generalasssemb.ly"
+taco.save
 
-# nacho = User.create(first_name: 'Ignacio', last_name: 'Iglesias', email: 'nacho@nacho.com', password: '4321', password_confirmation: '4321', sms_phone_number: '4158888888')
-
-
-# uxdi = Course.create(title: 'UXDI', desc: 'User experience design immersive', schedule: 'SF-July')
-
-
-## for associating nicknames in console
-# grace = User.find_by_email('grace@grace.com')
-# nacho = User.find_by_email('nacho@nacho.com') 
-# turing = User.find_by_email('alan@alan.com')
-
-# wdi = Course.find_by_title('WDI')
-# uxdi = Course.find_by_title('UXDI')
-
-# four = Poll.find(4)
-# ten = Poll.find(10)
-
-
-## making associations etc
-# nacho.courses << uxdi
-# turing.courses << uxdi 
-
-# Poll.create(topic: 'AJAX', user_id: 6, course_id: 1, is_open: false)
-# grace.polls << Poll.find_by_title('AJAX')
-# Poll.create(topic: 'Bootstrap', user_id: 29, course_id: 1, is_open: false)
-# Poll.create(topic: 'User Experience', user_id: 28, course_id: 2, is_open: false)
-# Poll.create(topic: 'Design concepts', user_id: 29, course_id: 2, is_open: false)
-
-cool = Reply.create(poll_id: 4, user_id: 28, response: "4 I'm cool with it", from_number: 4154448888)
-cool.update(poll_id: 16)
+taco = Student.new
+taco.first_name = "Han"
+taco.last_name = "Solo"
+taco.sms_phone_number = "4158675311"
+taco.email = "han@generalasssemb.ly"
+taco.save

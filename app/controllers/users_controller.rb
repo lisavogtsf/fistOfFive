@@ -10,11 +10,6 @@ class UsersController < ApplicationController
 		@users = User.all
 	end
 
-	def home
-		@users = User.all
-		@courses = Course.all
-	end
-
 	def show
 		## validate that this is the correct user
 		if correct_user?
@@ -40,9 +35,6 @@ class UsersController < ApplicationController
 			@user = User.new(user_params)
 			if @user.save # user saved successfully
 				auth_user = User.authenticate(@user.email, @user.password)
-				# reformat sms number to be seven-digit string
-				@user.sms_phone_number = @user.sms_phone_number.gsub(/\D/, '')
-				@user.save
 				if auth_user
 					session[:user_id] = @user.id
 					# alert admin about new signup
@@ -56,17 +48,9 @@ class UsersController < ApplicationController
 					redirect_to signup_path, :notice => "Password must be at least four characters"
 				elsif @user.password != @user.password_confirmation
 					redirect_to signup_path, :notice => "Password must match password confirmation"
-				# add validation for email format
-				elsif @user.sms_phone_number == ""
-					redirect_to signup_path, :notice => "Please enter a phone number to receive SMS text messages"
-				# add validation for seven-digit number
-				else
-					flash[:error] = @user.errors.full_messages.to_sentence
-					
 				end
 			end	
 		else
-			#someone is already logged in and trying to signup
 			session[:user_id] = nil
 			redirect_to login_path, :notice => "Please log in again"
 		end
@@ -99,7 +83,7 @@ class UsersController < ApplicationController
 		end
 
 		def user_params
-			params.require(:user).permit(:first_name, :last_name, :sms_phone_number, :email, :password, :password_confirmation)
+			params.require(:user).permit(:first_name, :last_name, :type, :email, :password, :password_confirmation)
 		end
 
 		def correct_user?
@@ -124,7 +108,7 @@ class UsersController < ApplicationController
 			@twilio_client.account.sms.messages.create(
 			:from => "+1#{twilio_phone_number}",
 			:to => "+1#{formatted_num}",
-			:body => message_content + @user_email + message_site
+			:body => message_content + user_email + message_site
 			)
 		end
 

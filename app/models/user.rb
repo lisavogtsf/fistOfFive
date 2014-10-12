@@ -2,18 +2,12 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 
-	has_many :affiliations
-	has_many :courses, :through => :affiliations 
-	
 	has_many :polls
-	has_many :replies
+	has_many :students
 
 	## validations go here
-	# name validations still need to be handled in users_controller to avoid app_killing errors
-	#validates :first_name, presence: true
-	#validates :last_name, presence: true
-	## regex on email, sms_phone_number format
-	validates :sms_phone_number, presence: true
+	## regex, only letters in name?
+	## regex on email?
 	validates :email, presence: true, uniqueness: {case_sensitive: false}
 	validates :password, presence: true, length: {minimum: 3}, on: :create
 

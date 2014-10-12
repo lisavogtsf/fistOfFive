@@ -16,6 +16,7 @@ class StudentsController < ApplicationController
 		if student.save
 			student.sms_phone_number = student.sms_phone_number.gsub(/\D/, '')
 			student.save
+			binding.pry
 			redirect_to students_path
 		else
 			flash[:error] = student.errors.full_messages.to_sentence
