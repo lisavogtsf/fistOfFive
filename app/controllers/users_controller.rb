@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 		## validate that this is the correct user
 		if correct_user?
 			@polls = @user.polls
+			@courses = @user.courses
 			## access via @poll.replies
 		else
 			redirect_to user_path(@current_user.id), :notice => "You are not authorized to view this user's page"

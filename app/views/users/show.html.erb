@@ -3,10 +3,15 @@
 <%= render partial: "user_navbar", locals: {user: @user, page_title: "User Home"} %>
 
 <div class="row">
-	<div class="" id="user_courses">
-		<!-- courses preview partial, only courses this user is in -->
-		<%= render partial: "course_preview", locals{ }  %>
+	<div class="col-md-offset-2 col-md-4" id="user_courses">
+		<% flash.each do |k,v| %>
+			<h4 id="<%= k %>"><%= v %></h4>
+		<% end %>
 
+		<!-- courses preview partial, only courses this user is in -->
+		<%=for course in @courses do  %>
+			<%= render partial: "courses/course_preview", locals{user: @user }  %>
+		<% end %>
 	</div>
 	<div class="" id="all_courses">
 		<!-- courses preview partial, all courses or non-involved, mark ones they're in -->
