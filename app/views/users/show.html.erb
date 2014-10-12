@@ -1,31 +1,16 @@
-<!-- show.html.erb -->
+<!-- home.html.erb -->
 
-<%= render partial: "user_navbar", locals: {user: @user, page_title: "User Details"} %>
-
-
+<%= render partial: "user_navbar", locals: {user: @user, page_title: "User Home"} %>
 
 <div class="row">
-	<div class="col-md-offset-1 col-md-6">
-		<!-- display flash messages -->
-		<% flash.each do |k,v| %>
-			<h2 id="<%= k %>"><%= v %></h2>
-		<% end %>
-		<h2><%= link_to "Start a new poll", new_user_poll_path(@user.id)  %></h2>
-		<h3>Account information</h3>
-		<h4>First name: <%= @user.first_name  %></h4>
-		<h4>Last name: <%= @user.last_name  %></h4>
-		<h4>Email: <%= @user.email  %></h4>
-		<h4>Password: *******</h4>
-		<%= link_to "Edit Account", edit_user_path(@user.id), class: "btn btn-info" %>
-		<%= link_to "Delete Account", user_path(@user.id), method: :delete, class: "btn btn-danger" %>
-	</div>
-	<!-- render partial with all polls data?? in later column so it will collapse-->
-	<div class="col-md-4">
-<!-- 		<h3><%#= link_to "View Students", students_path(@user.id)  %></h3> -->
-		<h3><%= link_to "Your Polls", user_polls_path(@user.id)  %></h3>
-		<% for poll in @polls do  %>
-			<%= render partial: "polls/poll_preview", locals: {poll: poll, user: @user} %>
-		<% end %>
-	</div>
+	<div class="" id="user_courses">
+		<!-- courses preview partial, only courses this user is in -->
+		<%= render partial: "course_preview", locals{ }  %>
 
-</div><!-- closes row -->
+	</div>
+	<div class="" id="all_courses">
+		<!-- courses preview partial, all courses or non-involved, mark ones they're in -->
+	</div>
+	
+
+</div>
