@@ -1,16 +1,28 @@
 Rails.application.routes.draw do
 
-  get 'courses/_course_form.html.erb'
-
   root to: 'sites#index'
 
-  resources :users do
-  	resources :polls do 
-        resources :replies
+  get 'home' => 'users#home'
+
+  ## old setup
+  # resources :users do
+  # 	resources :polls do 
+  #       resources :replies
+  #     end
+  # end
+  # resources :students do
+  # end
+
+
+  resources :courses do 
+    resources :polls do
+      resources :replies do
       end
+    end
   end
 
-  resources :students do
+  resources :users do 
+    # what other relationships for routing?
   end
 
 
