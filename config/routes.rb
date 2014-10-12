@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   root to: 'sites#index'
 
-  get 'home' => 'users#home'
-
   ## old setup
   # resources :users do
   # 	resources :polls do 
@@ -13,16 +11,33 @@ Rails.application.routes.draw do
   # resources :students do
   # end
 
-
-  resources :courses do 
-    resources :polls do
-      resources :replies do
+  ## main routing
+  resources :users do 
+    resources :courses do 
+      resources :polls do 
+        resources :replies do
+        end
       end
     end
   end
 
+  ## for showing courses to the public
+  ## to see courses the user isn't necessarily in
+  resources :courses do 
+    resources :polls do
+    end
+  end
+
+  ## for creating new polls, only links user and polls they created
   resources :users do 
-    # what other relationships for routing?
+    resources :polls do 
+    end
+  end
+
+  ## for showing all replies by a specific user
+  resources :users do 
+    resources :replies do 
+    end 
   end
 
 
