@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'courses/_course_form.html.erb'
+
   root to: 'sites#index'
 
   resources :users do
