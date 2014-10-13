@@ -20,7 +20,7 @@
 		<%#= link_to "Your Courses", user_courses_path(@user.id), class: "h1" %>
 		<h3>
 		Your Current Courses
-		<% for course in @user.courses do  %>
+		<% for course in @user.courses.order(:id) do  %>
 			<%= render partial: "courses/course_preview", locals: {course: course, user: @user }  %>
 		<% end %>
 		</h3>

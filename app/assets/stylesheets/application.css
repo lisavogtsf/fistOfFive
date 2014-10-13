@@ -52,4 +52,6 @@ small {
 .splash {
 	max-height: 200px;
 }
-
+.sidebar-spacer {
+	height: 20px;
+}

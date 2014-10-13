@@ -47,7 +47,12 @@
 
         <% end %>
 
-        <li><%= link_to "Logout", logout_path, method: :delete  %></li>
+        <% if @current_user %>
+          <li><%= link_to "Logout", logout_path, method: :delete  %></li>
+        <% else %>
+          <li><%= link_to "Log in", login_path  %></li>
+          <li><%= link_to "Sign up", signup_path  %></li>
+        <% end %>
         <li><a href="#"></a></li>
       </ul>
   </div>
