@@ -11,7 +11,11 @@
 				<h2 id="<%= k %>"><%= v %></h2>
 			<% end %>
 			<%= render partial: "user_form", locals: {user: @user, form_title: "Sign Up", button_label: "Sign Up"}   %>
-		</div><!-- closes column -->
+			<div class="small-spacer"></div>
+			<div class="form-group">
+			<%= button_to "Return to home page", root_path, method: :get, class: "form-control" %>
+			</div>	
+		</div><!-- closes jumbotron -->
 	</div>
 	
 </div>
