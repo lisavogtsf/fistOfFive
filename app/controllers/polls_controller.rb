@@ -21,6 +21,7 @@ class PollsController < ApplicationController
 	def show
 		if correct_user?
 			@poll = find_user_poll
+			@course = Course.find_by_id(@poll.course_id)
 			@replies = @poll.replies
 
 			scale = [0, 1, 2, 3, 4, 5]
@@ -60,6 +61,7 @@ class PollsController < ApplicationController
 	def new
 		if correct_user?
 			@poll = @user.polls.new
+			binding.pry
 			# render new_user_poll_path(@user.id)
 		else
 			redirect_to user_path(@current_user.id), :notice => "You are not authorized to create a poll in someone else's account"
@@ -76,6 +78,10 @@ class PollsController < ApplicationController
 			flash[:error] = poll.errors.full_messages.to_sentence
 			redirect_to user_path @user.id
 		end
+	end
+
+	def edit
+		# has find_user and find_poll so has @user and @poll
 	end
 
 	def update
@@ -116,7 +122,7 @@ private
 	end
 
 	def poll_params
-		params.require(:poll). permit(:topic, :is_open, :user_id, :time_sent)
+		params.require(:poll). permit(:id, :topic, :is_open, :user_id, :time_sent)
 	end
 
 end

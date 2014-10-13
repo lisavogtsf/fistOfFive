@@ -5,13 +5,11 @@
 	<fieldset>
 		<legend><%= form_title  %></legend>
 		<div class="form-group">
-			<%= f.text_field :topic, class: "form-control", placeholder: "Poll topic", autofocus: true  %>
-		</div><!-- closes form-group -->
-		<div class="form-group">
-			<%= f.radio_button :is_open, true, :checked => true %>Poll Open
-			<%= f.radio_button :is_open, false %>Poll Closed
+			<%#= f.collection_select :course, @poll.id, Course.all, :id, {:prompt => 'Please select which course this poll is for'}  %>
 		</div>
-
+		<div class="form-group">
+			<%= f.text_field :topic, class: "form-control", placeholder: "Poll topic", autofocus: true  %>
+		</div>
 		<div class="form-group">
 			<%= f.submit button_label, class: "form-control"  %>
 		</div>		
