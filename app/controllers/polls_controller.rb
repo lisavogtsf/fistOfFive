@@ -70,17 +70,18 @@ class PollsController < ApplicationController
 	def create
 		poll = Poll.new(poll_params)
 		poll.user_id = @user.id
+		## need to include timezone info from course to correct timestamp
 		if poll.save && @user
 			poll.is_open = false
-			binding.pry
 			if poll.course_id
 				@user.polls << poll 
 				redirect_to user_poll_path(@user.id, poll.id), :notice => "Poll created"
 			else 
-				# if no course was selected
-				poll.course_id = 1
-				@user.polls << poll 
-				redirect_to user_poll_path(@user.id, poll.id), :notice => "Poll created for default course"
+				redirect_to user_poll_new, :alert => "please select a course"
+				## if no course was selected--would prefer better error handling here
+				# poll.course_id = 1
+				# @user.polls << poll 
+				# redirect_to user_poll_path(@user.id, poll.id), :notice => "Poll created for default course"
 			end
 		else
 			flash[:error] = poll.errors.full_messages.to_sentence
@@ -94,7 +95,11 @@ class PollsController < ApplicationController
 
 	def update
 		@poll.update_attributes(poll_params)
-		poll.user_id = @user.id
+		## may not need this, added user_id as hidden input field
+		## @user.id isn't available during edit? switch to user_id
+		#poll.user_id = @user.id
+		#poll.user_id = user_id
+		binding.pry
 		redirect_to user_poll_path @user.id, @poll.id, :notice => "Poll updated"
 		# if @poll.update_attributes(poll_params)
 		# 	redirect_to user_polls_path(@user)
@@ -105,11 +110,11 @@ class PollsController < ApplicationController
 
 	def destroy
 		@poll.destroy
-		redirect_to user_polls_path @user.id
+		redirect_to user_path @user.id
 	end
 
 private
-	## not working well, always redirects to users?
+	## 
 	def find_user
 		user_id = params[:user_id]
 		@user = User.find_by_id(user_id)
