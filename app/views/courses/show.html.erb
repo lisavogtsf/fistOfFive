@@ -28,9 +28,13 @@
 		<div>
 			<h4>Polls for this course</h4>
 			<% for poll in @polls.order(:id) do  %>
-				<% @user ? @user : @user = User.find_by_id(poll.user_id) %>
-					<h5><%= render partial: "polls/poll_preview", locals: {user: @user, poll: poll}  %></h5>
+				<% if @user %>
+					<h5><%= render partial: "polls/poll_preview", locals: {user: @user, poll: poll, course: @course}  %></h5>
+				<% else  %>
+					<% @user = User.find_by_id(poll.user_id) %>
+					<h5><%= render partial: "polls/poll_preview", locals: {user: @user, poll: poll, course: @course}  %></h5>
 				<% end %>
+			<% end %>
 		</div>
 	</div>
 </div>

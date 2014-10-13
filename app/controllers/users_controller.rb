@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 	before_action :find_user, :except => [:index, :new, :create]
-	before_action :is_authenticated?, :except => [:new, :create]
+	before_action :is_authenticated?, :except => [:show, :new, :create]
 	before_action :correct_user?, :except =>[:index, :new, :create]
 
 
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		## validate that this is the correct user
+		## validate that this is the correct user to see this User Home page
 		if correct_user?
 			@polls = @user.polls
 			@courses = @user.courses

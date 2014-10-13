@@ -13,8 +13,9 @@ class CoursesController < ApplicationController
 
   def show
   	# does not require login
-	find_user # sets @user if possible
+      find_user
   	@polls = @course.polls
+      binding.pry
   end
 
   def new
