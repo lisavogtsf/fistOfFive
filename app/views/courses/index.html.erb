@@ -1,1 +1,8 @@
-<!-- index.html.erb -->
+<!-- Courses index.html.erb -->
+<!-- Shows all courses OR all user courses -->
+
+<%= render partial: "users/user_navbar", locals: {user: @user, page_title: "All Courses"} %>
+
+<% for course in @courses %>
+	<%= render partial: "course_preview", locals: {course: course, user: @user }  %>
+<% end %>

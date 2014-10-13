@@ -1,6 +1,5 @@
 class PollsController < ApplicationController
 
-	## unclear on use of below
 	before_action :is_authenticated?
 	before_action :find_user
 	before_action :find_user_poll
@@ -116,7 +115,6 @@ private
 		# redirect_to users_path unless @user
 	end
 
-	## Don't really understand this
 	def find_user_poll
 		id = params[:id]
 		@poll = Poll.find_by_id(id)
