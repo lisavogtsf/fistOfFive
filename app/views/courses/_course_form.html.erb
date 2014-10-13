@@ -1,3 +1,17 @@
 <!-- course_form -->
 
 <!-- Many fields for entering course information, including opt-out? -->
+
+<div class="row course-form">
+	<%= form_for @course, html: {class: "form-horizontal"} do |f| %>
+	<fieldset><legend><%= form_title  %></legend>
+		<div class="form-group">
+			<%= f.text_field :title, class: "form-control", placeholder: "Course Title", autofocus: true  %>				
+		</div>	<!-- closes form-group -->
+		<div class="form-group">
+			<%= f.text_field :desc, class: "form-control", placeholder: "Course Description"  %>				
+		</div>	<!-- closes form-group -->
+
+	</fieldset>
+	<% end %>
+</div>
