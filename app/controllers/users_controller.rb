@@ -105,10 +105,10 @@ class UsersController < ApplicationController
 			@user == @current_user
 		end
 
-		def sms_user_alert(message_content)
+		def sms_user_alert (message_content)
 			formatted_num = [ENV['ADMIN_NUMBER']]
 			user_email = @user.email
-			# message_content = 
+			# message_content = "New user created or deleted"
 			message_site = " http://fistof5.herokuapp.com"
 
 			twilio_sid = ENV['TWILIO_ACCOUNT_SID']
@@ -120,7 +120,7 @@ class UsersController < ApplicationController
 			@twilio_client.account.sms.messages.create(
 			:from => "+1#{twilio_phone_number}",
 			:to => "+1#{formatted_num}",
-			:body => message_content + @user_email + message_site
+			:body => message_content + user_email + message_site
 			)
 		end
 
