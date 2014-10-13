@@ -24,7 +24,7 @@
 		<% else %>
 			<h4>To enroll in this course,<br> <%= link_to "Sign up for Fist of 5", signup_path  %></h4>
 		<% end %>
-		<div class="sidebar-spacer"></div>
+		<div class="small-spacer"></div>
 		<div>
 			<h4>Polls for this course</h4>
 			<% for poll in @polls.order(:id) do  %>

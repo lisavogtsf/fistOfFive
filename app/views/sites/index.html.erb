@@ -13,10 +13,13 @@
 			<% flash.each do |k,v| %>
 				<h2 id="<%= k %>"><%= v %></h2>
 			<% end %>
-			
-			<%= link_to "Login", login_path, method: :get, class: "btn btn-danger btn-lg"  %>
+			<div class="small-spacer"></div>
+			<%= link_to "Log in", login_path, method: :get, class: "btn btn-danger btn-lg"  %>
 			<%= link_to "Sign up", signup_path, method: :get, class: "btn btn-warning btn-lg"  %>
 			<br>
+			<%= link_to "Browse Courses and Poll Results", courses_path, method: :get, class: "btn btn-link btn-lg"  %>
+			<div class="small-spacer"></div>
+
 			</div><!-- closes jumbotron -->
 			<p>An app that allows a user to request and receive feedback by SMS and visualize the results. <a href="https://github.com/lisavogtsf/fistOfFive">Learn more on GitHub.</a></p>
 		
