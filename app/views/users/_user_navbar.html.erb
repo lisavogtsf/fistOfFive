@@ -16,14 +16,15 @@
   <div class="navbar-collapse collapse navbar-inverse-collapse">
 
       <ul class="nav navbar-nav navbar-right">
-      <!-- control what navigation is seen, View courses etc -->
-        <% if @reply && @reply.id %>
+      <!-- control what navigation is seen, View courses etc, start without needing user-->
+      <!-- Leaving out replies -->
+        <!-- <#% if @reply && @reply.id %> -->
           <!-- <li>REPLY NAVBAR</li> -->
-          <li><%= link_to "View All Results", user_poll_replies_path(@user.id, @poll.id)  %></li>
+<!--           <li><%#= link_to "View All Results", user_poll_replies_path(@user.id, @poll.id)  %></li> -->
 
-        <% elsif @poll && @poll.id %>
+        <% if @poll && @poll.course_id %>
           <!-- <li>POLL NAVBAR</li> -->
-          <li><%= link_to "View All Polls", user_polls_path(@user.id)  %></li>
+          <li><%= link_to "View All Polls", course_polls_path(@poll.course_id)  %></li>
 
         <% elsif @course && @course.id %>
           <li><%= link_to "View All Courses", courses_path %></li>

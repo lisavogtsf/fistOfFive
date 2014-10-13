@@ -15,7 +15,6 @@ class CoursesController < ApplicationController
   	# does not require login
       find_user
   	@polls = @course.polls
-      binding.pry
   end
 
   def new

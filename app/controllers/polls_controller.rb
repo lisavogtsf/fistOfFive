@@ -1,28 +1,27 @@
 class PollsController < ApplicationController
 
-	before_action :is_authenticated?, except: [:show]
-	before_action :find_user
-	before_action :find_user_poll
-	before_action :correct_user?
+	before_action :is_authenticated?, except: [:index, :show]
+	before_action :correct_user? #just makes @correct_user true or false
+	before_action :find_poll
+	before_action :find_poll_owner, except: [:index, :new]
 	## how do I want to do permissions here?
 
-	# automatically supplies @user and @poll to all actions
+	# automatically supplies @poll and @poll_owner to all actions
 
 	def index
-		if correct_user?
-			@polls = @user.polls
-		else
-			## do I want users to see other users' polls? No
-			redirect_to user_polls_path(@current_user.id), :notice => "You are not authorized to view this user's polls"
-		end
+		# want to show all polls to everyone, limit what they can do
+		@polls = Poll.all
 	end
 
 	def show
+		binding.pry
 		#available to all logged in and public
-		@poll = find_user_poll
+		@correct_user
 		@course = Course.find_by_id(@poll.course_id)
 		@replies = @poll.replies
+		@user = @poll_owner
 
+		## begins tabulation for chart
 		scale = [0, 1, 2, 3, 4, 5]
 		scale_counter = [] # end [3, 5, 19, 4, 5, 4]
 		
@@ -55,16 +54,8 @@ class PollsController < ApplicationController
 	end
 
 	def new
-		if correct_user?
-			@poll = @user.polls.new
-			if @poll.save
-				redirect_to user_poll_path(@poll.id, @user.id), :notice => "Created new poll"
-			else
-				## redirects to user_path automatically
-			end
-		else
-			redirect_to user_path(@current_user.id), :notice => "You are not authorized to create a poll in someone else's account"
-		end
+		# only logged in users should be able to see this
+		@poll = @user.polls.new
 	end
 
 	def create
@@ -91,6 +82,13 @@ class PollsController < ApplicationController
 
 	def edit
 		# has find_user and find_poll so has @user and @poll
+		# already checked that user is logged in, now check if correct user
+		if @correct_user
+			render edit_user_poll_path(@poll_owner.id)
+		else
+			redirect_to user_poll_path(@poll_owner.id), :notice => "You are not allowed to edit this poll"
+		end
+		
 	end
 
 	def update
@@ -110,23 +108,23 @@ class PollsController < ApplicationController
 
 private
 	## 
-	def find_user
+	def find_poll_owner
 		user_id = params[:user_id]
-		@user = User.find_by_id(user_id)
+		@poll_owner = User.find_by_id(user_id)
 		# redirect_to users_path unless @user
 	end
 
-	def find_user_poll
+	def find_poll
 		id = params[:id]
 		@poll = Poll.find_by_id(id)
 		# redirect_to user_polls_path(@user.id) unless @poll
 	end
 
-	def correct_user?
-		@user = find_user
+	def correct_user? # is the current user the owner of this poll? gives @correct_user true/false
+		@poll_owner = find_poll_owner
 		@current_user ||= User.find_by(id: session[:user_id])
 		## returns result of this comparison
-		@user == @current_user
+		@correct_user = (@poll_owner == @current_user)
 	end
 
 	def poll_params

@@ -13,8 +13,9 @@
 
 		<h2><%= @poll.topic.titleize  %></h2>
 
-<%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id  %>
-
+<% if @correct_user %>
+	<%= button_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", user: @user, id: @poll.id  %>
+<% end %>
 <!-- <button class="btn btn-default" id="send-SMS"><%#= link_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", method: :post, user: @user, id: @poll.id %></button> -->
 
 		<% if @poll.replies.count > 0 %>
@@ -24,8 +25,10 @@
 
 		<% end %>
 
-		<%= link_to "Edit Poll", edit_user_poll_path(@user.id, @poll.id), class: "btn btn-info btn-md" %>
-		<%= link_to "Delete Poll", user_poll_path(@user.id, @poll.id), method: :delete, :data => {:confirm => "Are you sure?"}, name: "delete", class: "btn btn-danger btn-md" %>
+		<% if @correct_user %>
+			<%= link_to "Edit Poll", edit_user_poll_path(@user.id, @poll.id), class: "btn btn-info btn-md" %>
+			<%= link_to "Delete Poll", user_poll_path(@user.id, @poll.id), method: :delete, :data => {:confirm => "Are you sure?"}, name: "delete", class: "btn btn-danger btn-md" %>
+		<% end %>
 	
 <!-- 		<div class="no-data">No poll data currently available</div>
 		<canvas id="myChart" width="800px" height="400"></canvas> -->
