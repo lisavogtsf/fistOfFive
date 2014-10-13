@@ -1,3 +1,18 @@
+<script>
+	$('button[name="edit"]').on('click', function(e){
+		console.log('clicked edit')
+		// var $form=$(this).closest('form');
+		// e.preventDefault();
+		// $('#confirm').modal({backdrop: 'static', keyboard:false })
+		// 	.one('click', '#delete', function(){
+		// 		$form.trigger('submit'); // submit the form
+		// 	});
+	});
+
+</script>
+
+
+
 <!-- polls/show.html.erb  polls/:id  polls#show  user_poll_path-->
 <!-- include navbar -->
 <!-- details of one poll, make new, and results -->
@@ -24,7 +39,16 @@
 		<% end %>
 
 		<%= link_to "Edit Poll", edit_user_poll_path(@user.id, @poll.id), class: "btn btn-info btn-md" %>
-		<%= link_to "Delete Poll", user_poll_path(@user.id, @poll.id), method: :delete, class: "btn btn-danger btn-md" %>
+		<%= link_to "Delete Poll", user_poll_path(@user.id, @poll.id), method: :delete, name: "delete", class: "btn btn-danger btn-md" %>
+		<div id="confirm" class="modal hide fade">
+			<div class="modal-body">
+				Are you sure?
+			</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn btn-danger" id="Delete">Delete</button>
+				<button type="button" data-dismiss="modal" class="btn">Cancel</button>
+			</div>
+		</div>
 	
 <!-- 		<div class="no-data">No poll data currently available</div>
 		<canvas id="myChart" width="800px" height="400"></canvas> -->

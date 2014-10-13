@@ -61,7 +61,6 @@ class PollsController < ApplicationController
 	def new
 		if correct_user?
 			@poll = @user.polls.new
-			binding.pry
 			# render new_user_poll_path(@user.id)
 		else
 			redirect_to user_path(@current_user.id), :notice => "You are not authorized to create a poll in someone else's account"
@@ -72,8 +71,15 @@ class PollsController < ApplicationController
 		poll = Poll.new(poll_params)
 		if poll.save && @user
 			poll.is_open = false
-			@user.polls << poll 
-			redirect_to user_poll_path(@user.id, poll.id), :notice => "Poll created"
+			if poll.course_id
+				@user.polls << poll 
+				redirect_to user_poll_path(@user.id, poll.id), :notice => "Poll created"
+			else 
+				# if no course was selected
+				poll.course_id = 1
+				@user.polls << poll 
+				redirect_to user_poll_path(@user.id, poll.id), :notice => "Poll created for default course"
+			end
 		else
 			flash[:error] = poll.errors.full_messages.to_sentence
 			redirect_to user_path @user.id
