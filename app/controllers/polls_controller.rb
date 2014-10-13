@@ -69,8 +69,10 @@ class PollsController < ApplicationController
 
 	def create
 		poll = Poll.new(poll_params)
+		poll.user_id = @user.id
 		if poll.save && @user
 			poll.is_open = false
+			binding.pry
 			if poll.course_id
 				@user.polls << poll 
 				redirect_to user_poll_path(@user.id, poll.id), :notice => "Poll created"
@@ -92,6 +94,7 @@ class PollsController < ApplicationController
 
 	def update
 		@poll.update_attributes(poll_params)
+		poll.user_id = @user.id
 		redirect_to user_poll_path @user.id, @poll.id, :notice => "Poll updated"
 		# if @poll.update_attributes(poll_params)
 		# 	redirect_to user_polls_path(@user)
@@ -128,7 +131,7 @@ private
 	end
 
 	def poll_params
-		params.require(:poll). permit(:id, :topic, :is_open, :user_id, :time_sent)
+		params.require(:poll). permit(:id, :topic, :user_id, :course_id, :is_open, :time_sent)
 	end
 
 end
