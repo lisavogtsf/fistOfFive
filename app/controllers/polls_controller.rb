@@ -60,9 +60,13 @@ class PollsController < ApplicationController
 	def new
 		if correct_user?
 			@poll = @user.polls.new
-			# render new_user_poll_path(@user.id)
+			if @poll.save
+				redirect_to user_poll_path(@poll.id, @user.id), :notice => "Created new poll"
+			else
+				## redirects to user_path automatically
+			end
 		else
-			redirect_to user_poll_path(@current_user.id), :notice => "You are not authorized to create a poll in someone else's account"
+			redirect_to user_path(@current_user.id), :notice => "You are not authorized to create a poll in someone else's account"
 		end
 	end
 
