@@ -18,43 +18,40 @@ class PollsController < ApplicationController
 	end
 
 	def show
-		if correct_user?
-			@poll = find_user_poll
-			@course = Course.find_by_id(@poll.course_id)
-			@replies = @poll.replies
+		#available to all logged in and public
+		@poll = find_user_poll
+		@course = Course.find_by_id(@poll.course_id)
+		@replies = @poll.replies
 
-			scale = [0, 1, 2, 3, 4, 5]
-			scale_counter = [] # end [3, 5, 19, 4, 5, 4]
-			
-			for scale_num in scale 
-				# for each number in the scale, zero out, then go through replies adding
+		scale = [0, 1, 2, 3, 4, 5]
+		scale_counter = [] # end [3, 5, 19, 4, 5, 4]
+		
+		for scale_num in scale 
+			# for each number in the scale, zero out, then go through replies adding
 
-				scale_counter[scale_num] = 0
-				for reply in @replies
-					num_reply = reply.response[0].to_i
-					
-					if num_reply == scale_num
-						scale_counter[scale_num] += 1
-					end
-				end 
-			end
-			@results = scale_counter
-
-			# #percentage results
-			# @percent_results = @results
-			# # get sum of array known to have +0 items
-			# total = @percent_results.inject(:+)
-			# i = 0
-			# while i < @results.length do
-			# 	@percent_results[i] = (@results[i]/total)*100
-			# 	i += 1
-
-			# end
-			# @percent_results
-			
-		else
-			redirect_to user_polls_path(@current_user.id), :notice => "You are not authorized to view this user's page"
+			scale_counter[scale_num] = 0
+			for reply in @replies
+				num_reply = reply.response[0].to_i
+				
+				if num_reply == scale_num
+					scale_counter[scale_num] += 1
+				end
+			end 
 		end
+		@results = scale_counter
+
+		# #percentage results
+		# @percent_results = @results
+		# # get sum of array known to have +0 items
+		# total = @percent_results.inject(:+)
+		# i = 0
+		# while i < @results.length do
+		# 	@percent_results[i] = (@results[i]/total)*100
+		# 	i += 1
+
+		# end
+		# @percent_results
+
 	end
 
 	def new

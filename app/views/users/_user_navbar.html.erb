@@ -11,45 +11,32 @@
                <% if page_title %>
                   <a class="navbar-brand"><%= page_title %></a>
                 <% end %>
-<!-- 		<a class="navbar-brand" href="#">Fo5</a> -->	
+
 </div>
   <div class="navbar-collapse collapse navbar-inverse-collapse">
-<!--     <form class="navbar-form navbar-left">
-      <input type="text" class="form-control col-lg-8" placeholder="Search">
-    </form> -->
 
       <ul class="nav navbar-nav navbar-right">
+      <!-- control what navigation is seen, View courses etc -->
         <% if @reply && @reply.id %>
           <!-- <li>REPLY NAVBAR</li> -->
-          <li><%= link_to "View All Polls", user_polls_path(@user.id)  %></li>
           <li><%= link_to "View All Results", user_poll_replies_path(@user.id, @poll.id)  %></li>
-          <li><%= link_to @user.first_name ||  @user.email , user_path(@user.id)  %></li>
 
         <% elsif @poll && @poll.id %>
           <!-- <li>POLL NAVBAR</li> -->
           <li><%= link_to "View All Polls", user_polls_path(@user.id)  %></li>
-              <li><%= link_to @user.first_name ||  @user.email , user_path(@user.id)  %></li>
+
+        <% elsif @course && @course.id %>
+          <li><%= link_to "View All Courses", courses_path %></li>
 
         <% elsif @user && @user.id %>
          <!--  <li>USER NAVBAR</li> -->
             <li><%= link_to "View All Users", users_path %></li>
-      	<li class="active"><%= link_to @user.first_name ||  @user.email , user_path(@user.id)  %></li>
-
-        <% elsif @courses %>
-        <!-- <li>logged in courses NAVBAR</li> -->
-          <li><%= link_to "View All Courses", courses_path %></li>
-
-        <% elsif @current_user %>
-          <% @user = @current_user %>
-            <li class="active"><%= link_to @user.first_name ||  @user.email , user_path(@user.id)  %></li>
-        <% else %>
-         <!--  no logged-in user, can see courses and polls -->
-          <li><%= link_to "View All Courses", courses_path %></li>
-
         <% end %>
-
-        <!-- logout/login/signup behavior -->
+          
+        <!-- Behavoir of user shortcut, login, logout, signup -->
         <% if @current_user %>
+          <% @user = @current_user %>
+          <li class="active"><%= link_to @user.first_name ||  @user.email , user_path(@user.id)  %></li>
           <li><%= link_to "Logout", logout_path, method: :delete  %></li>
         <% else %>
           <li><%= link_to "Log in", login_path  %></li>
