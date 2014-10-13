@@ -23,8 +23,9 @@ class CoursesController < ApplicationController
   end
 
   def new
-  	# if logged in
-  	#@course =?
+  	# if logged in/authenticated
+  	@course = Course.new
+  	find_user
   end
 
   def edit
@@ -33,7 +34,16 @@ class CoursesController < ApplicationController
   end
 
   def create
-
+  	# checked for logged in/is authenticated above
+  	course = Course.new(course_params)
+  	if course.save
+  		binding.pry
+  		redirect_to course_path(course.id), :notice => "Course created"
+  	else
+  		flash[:error] = course.errors.full_messages.to_sentence
+   		binding.pry
+  		redirect_to new_course_path
+  	end
   end
 
   def update

@@ -1,9 +1,24 @@
-<!-- Courses index.html.erb -->
+<!--Courses index.html.erb -->
 <!-- Shows all courses OR all user courses -->
 <% @page_title = "All Courses" %>
 
 <%= render partial: "users/user_navbar", locals: {user: @user, page_title: "All Courses"} %>
 
-<% for course in @courses %>
-	<%= render partial: "course_preview", locals: {course: course, user: @user }  %>
-<% end %>
+<div class="row <%=@page_title.delete(' ')  %>">
+	<!-- display flash messages -->
+	<% flash.each do |k,v| %>
+		<h2 id="<%= k %>"><%= v %></h2>
+	<% end %>
+	<div class="col-md-offset-1 col-md-4">
+		<% for course in @courses %>
+			<h3><%= render partial: "course_preview", locals: {course: course, user: @user }  %></h3>
+		<% end %>
+	</div>
+	<div class="col-md-offset-1 col-md-4">
+		<% if @user %>
+		<%= link_to "Create a new course", new_course_path, class: "h4"  %>
+		<% else %>
+			<!-- public view of all courses -->
+		<% end %>
+	</div>
+</div> <!-- closes row

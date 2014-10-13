@@ -11,7 +11,15 @@
 		<div class="form-group">
 			<%= f.text_field :desc, class: "form-control", placeholder: "Course Description"  %>				
 		</div>	<!-- closes form-group -->
-
+		<div class="form-group">
+			<%= f.text_field :schedule, class: "form-control", placeholder: "Course Semester/Schedule"  %>				
+		</div>	<!-- closes form-group -->
+		<div class="form-group">
+			<%= f.text_field :course_time_zone, class: "form-control", placeholder: "Course Time Zone"  %>				
+		</div>	<!-- closes form-group -->
+		<div class="form-group">
+			<%= f.submit button_label, class: "form-control"  %>
+		</div>
 	</fieldset>
 	<% end %>
 </div>
