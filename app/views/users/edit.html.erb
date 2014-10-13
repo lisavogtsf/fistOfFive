@@ -7,6 +7,6 @@
 	<% flash.each do |k,v| %>
 		<h2 id="<%= k %>"><%= v %></h2>
 	<% end %>
-		<%= render partial: "new_user_form", locals: {user: @user, form_title: "Edit User Information", button_label: "Save Changes"}   %>
+		<%= render partial: "user_form", locals: {user: @user, form_title: "Edit User Information", button_label: "Save Changes"}   %>
 	</div>
 </div>
