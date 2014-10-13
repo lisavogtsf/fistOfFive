@@ -7,19 +7,14 @@ class CoursesController < ApplicationController
   def index
   	# does not require login
   	@courses = Course.all
-  	if is_authenticated?
-  		# logged in user, can indicate their stuff
-  		find_user # sets @user
-  	end
+  	find_user # if logged in, will pass @user to template
   	render "index"
   end
 
   def show
   	# does not require login
-  	if is_authenticated?
-  		find_user # sets @user
-  		find_user_course # sets @course
-  	end
+	find_user # sets @user if possible
+  	@polls = @course.polls
   end
 
   def new
@@ -37,11 +32,9 @@ class CoursesController < ApplicationController
   	# checked for logged in/is authenticated above
   	course = Course.new(course_params)
   	if course.save
-  		binding.pry
   		redirect_to course_path(course.id), :notice => "Course created"
   	else
   		flash[:error] = course.errors.full_messages.to_sentence
-   		binding.pry
   		redirect_to new_course_path
   	end
   end

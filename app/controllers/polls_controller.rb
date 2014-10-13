@@ -62,7 +62,7 @@ class PollsController < ApplicationController
 			@poll = @user.polls.new
 			# render new_user_poll_path(@user.id)
 		else
-			redirect_to user_path(@current_user.id), :notice => "You are not authorized to create a poll in someone else's account"
+			redirect_to user_poll_path(@current_user.id), :notice => "You are not authorized to create a poll in someone else's account"
 		end
 	end
 
