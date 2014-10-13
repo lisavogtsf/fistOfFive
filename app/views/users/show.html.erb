@@ -9,8 +9,8 @@
 		<% end %>
 
 		<!-- courses preview partial, only courses this user is in -->
-		<%=for course in @courses do  %>
-			<%= render partial: "courses/course_preview", locals{user: @user }  %>
+		<% for course in @user.courses do  %>
+			<%= render partial: "courses/course_preview", locals: {course: course, user: @user }  %>
 		<% end %>
 	</div>
 	<div class="" id="all_courses">
