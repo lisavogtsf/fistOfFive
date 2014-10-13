@@ -11,30 +11,32 @@ class ReceiveMessagesController < ApplicationController
 		# mapped this action to http://localhost:3000/sms
 		# POST 'sms' in the routes.rb file
 
+		## assign info on user who sends it in
 		message_body = params["Body"]
+		## accept body of texted reply
 		from_number = params["From"]
 		
-		## assign info on user who sends it in
-		## not now
+		## determine the most recently sent poll
+		## if successful proceed
+		@poll = Poll.order(:time_sent).last
+		if @poll 
+			## and info on poll -- what poll is open?
+			## for testing
+			#@poll = Poll.find_by_id(17)
 
+			@reply = Reply.new
+			@reply.response = message_body
+			@reply.from_number = from_number
+			@reply.poll_id = @poll.id
+			@reply.user_id = @poll.user_id		
+			@poll.replies << @reply
 
-		## and info on poll -- what poll is open?
-		## for testing
-
-		@poll = Poll.find_by_id(17)
-
-		@reply = Reply.new
-		@reply.response = message_body
-		@reply.from_number = from_number
-		@reply.poll_id = @poll.id
-		@reply.user_id = @poll.user_id		
-		@poll.replies << @reply
-
-		@reply.save
-		
-		render :nothing => true, :status => 200, :content_type => 'text/html'
-		## want redirect?
-		# redirect_to user_poll_replies_path
+			@reply.save
+				
+			render :nothing => true, :status => 200, :content_type => 'text/html'
+		## if a poll wasn't found, then they're not replying about anything
+		## just ignore for now, Twilio will log it?
+		end
 	end
 
 	private

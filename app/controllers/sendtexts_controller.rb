@@ -37,6 +37,7 @@ class SendtextsController < ApplicationController
 		## mark poll as sent and open
 		@poll.time_sent = Time.now
 		@poll.is_open = true
+		@poll.save
 
 		# redirect_to user_poll_path(@user.id, @poll.id)
 		redirect_to user_poll_path(@poll.user_id, @poll.id), :notice => "poll sent, wait for replies then refresh your page"
