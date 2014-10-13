@@ -3,12 +3,20 @@
 <%= render partial: "user_navbar", locals: {user: @user, page_title: "User Home"} %>
 
 <div class="row">
-	<% flash.each do |k,v| %>
-		<h4 id="<%= k %>"><%= v %></h4>
-	<% end %>
-	<div class="col-md-offset-2 col-md-6 col-sm-offset-1 col-xs-offset-1" id="user_courses">
+	<div class="col-md-offset-1">
+		<% flash.each do |k,v| %>
+			<h4 id="<%= k %>"><%= v %></h4>
+		<% end %>
+		<h1>Welcome to Fist of Five</h1>
+		<h3>View/Edit Account Details</h3>
+		<%= link_to "Start a new poll", new_user_poll_path(@user.id), class: "h3"  %>
+		<h3>Join a new course</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-offset-1 col-md-6 col-sm-offset-1 col-xs-offset-1" id="user_courses">
 		<!-- courses preview partial, only courses this user is in -->
-		<h1>Your Courses</h1>
+		<%= link_to "Your Courses", user_courses_path(@user.id), class: "h1" %>
 		<h3>
 		<% for course in @user.courses do  %>
 			<%= render partial: "courses/course_preview", locals: {course: course, user: @user }  %>
