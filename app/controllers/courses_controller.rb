@@ -1,20 +1,35 @@
 class CoursesController < ApplicationController
 
 	# this controller has mostly public views
+	before_action :is_authenticated?, except: [:index, :show]
+	before_action :find_course, except: [:index]
 
   def index
+  	# does not require login
   	@courses = Course.all
+  	if is_authenticated?
+  		# logged in user, can indicate their stuff
+  		find_user # sets @user
+  	end
+  	render "index"
   end
 
   def show
+  	# does not require login
+  	if is_authenticated?
+  		find_user # sets @user
+  		find_user_course # sets @course
+  	end
   end
 
   def new
   	# if logged in
+  	#@course =?
   end
 
   def edit
   	# if this user created it
+  	#@course =?
   end
 
   def create
@@ -35,7 +50,7 @@ private
 		@user = User.find_by_id(user_id)
 	end
 
-	def find_user_course
+	def find_course
 		id = params[:id]
 		@course = Course.find_by_id(id)
 	end
