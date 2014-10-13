@@ -19,6 +19,7 @@ class ReceiveMessagesController < ApplicationController
 		## determine the most recently sent poll
 		## if successful proceed
 		@poll = Poll.order(:time_sent).last
+		binding.pry
 		if @poll 
 			## and info on poll -- what poll is open?
 			## for testing

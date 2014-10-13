@@ -2,15 +2,6 @@ Rails.application.routes.draw do
 
   root to: 'sites#index'
 
-  ## old setup
-  # resources :users do
-  # 	resources :polls do 
-  #       resources :replies
-  #     end
-  # end
-  # resources :students do
-  # end
-
   ## main routing
   resources :users do 
     resources :courses do 
@@ -45,7 +36,7 @@ Rails.application.routes.draw do
   # get 'send_sms' => 'sendtexts#send_text_message'
   post 'sms' => 'receive_messages#index'
   # ## testing
-  # get 'sms' => 'receive_messages#index'
+  get 'sms' => 'receive_messages#index'
 
   # post '/search', to: 'replies#search'
 
