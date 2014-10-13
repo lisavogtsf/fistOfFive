@@ -1,6 +1,6 @@
 class PollsController < ApplicationController
 
-	before_action :is_authenticated?
+	before_action :is_authenticated?, except: [:show]
 	before_action :find_user
 	before_action :find_user_poll
 	before_action :correct_user?

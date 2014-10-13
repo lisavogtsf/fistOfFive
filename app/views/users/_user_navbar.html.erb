@@ -35,10 +35,9 @@
             <li><%= link_to "View All Users", users_path %></li>
       	<li class="active"><%= link_to @user.first_name ||  @user.email , user_path(@user.id)  %></li>
 
-        <% elsif @courses && @user.id %>
+        <% elsif @courses %>
         <!-- <li>logged in courses NAVBAR</li> -->
           <li><%= link_to "View All Courses", courses_path %></li>
-          <li class="active"><%= link_to @user.first_name ||  @user.email , user_path(@user.id)  %></li>
 
         <% elsif @current_user %>
           <% @user = @current_user %>
