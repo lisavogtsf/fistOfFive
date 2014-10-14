@@ -20,7 +20,7 @@
 				<%= link_to "Start a new poll", new_user_poll_path(@user.id), class: "btn btn-md btn-primary"  %><br><br>
 				<%= link_to "Leave course", leave_course_path, method: :post, class: "btn btn-md btn-warning" %>
 			<% else %> <!-- user is not part of the course -->
-				<%= link_to "Join course", join_course_path, method: :post, class: "btn btn-md btn-primary" %>
+				<%= link_to "Join course", join_course_path(@course.id), method: :post, class: "btn btn-md btn-primary" %>
 			<% end %>
 		<% else %>
 			<h4>To participate,<br> <%= link_to "Sign up for Fist of 5", signup_path  %></h4>

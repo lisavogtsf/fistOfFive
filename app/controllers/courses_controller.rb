@@ -23,10 +23,11 @@ class CoursesController < ApplicationController
 	def join_course
 		# comes from courses/:id page
 		binding.pry
-		@course = @user
-		#@course = Course.find_by_id(:id)
-		# use affiliations
-		# add this course to @user.courses use
+		@course = Course.find_by_id(params[:format])
+		@current_user
+		@current_user.courses << @course
+
+		binding.pry
 		redirect_to user_path(@current_user.id)
 	end
 
@@ -80,7 +81,7 @@ private
 	end
 
 	def is_logged_in?
-			@current_user ||= User.find_by(id: session[:user_id])
+		@current_user ||= User.find_by(id: session[:user_id])
 	end
 
 	def correct_user?
