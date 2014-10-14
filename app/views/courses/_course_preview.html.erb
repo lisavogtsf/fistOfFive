@@ -1,5 +1,5 @@
 <!-- _course_preview.html.erb -->
 <!-- just shows course title and has a link to that course's detail page -->
 <div class="row">
-	<p><%= course.id %> <%= link_to course.title.titleize, course_path(course.id) %>: <%= link_to course.desc.titleize, course_path(course.id)   %></p>
+	<p><%= course.id %> <%= link_to course.title.titleize, course_path(course.id) %>: <%=  course.desc.titleize  %></p>
 </div>

@@ -54,12 +54,13 @@ class PollsController < ApplicationController
 
 	def new
 		# only logged in users should be able to see this
-		@poll = @user.polls.new
+		@poll = Poll.new
 	end
 
 	def create
 		poll = Poll.new(poll_params)
-		poll.user_id = @user.id
+				binding.pry
+		# poll.user_id = @user.id #sending this over as @poll.user_id
 		## need to include timezone info from course to correct timestamp
 		if poll.save && @user
 			poll.is_open = false
@@ -75,7 +76,7 @@ class PollsController < ApplicationController
 			end
 		else
 			flash[:error] = poll.errors.full_messages.to_sentence
-			redirect_to user_path @user.id
+			redirect_to user_path @current_user.id
 		end
 	end
 
