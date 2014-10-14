@@ -17,7 +17,6 @@
 		<%= link_to "View All Polls", course_polls_path(@user.courses.first.id), class: "h4" %><br>
 		<% end %>
 		<%= link_to "Start a new poll", new_user_poll_path(@user.id), class: "h4"  %><br>
-		<div class="small-spacer"></div>
 	</div>
 </div>
 <div class="row">
@@ -44,6 +43,7 @@
 		<% end %>
 	</div>
 	<div class="col-md-5">
+		<div class="small-spacer"></div>
 		<% if @user.polls.count > 1 %>
 			<div>
 				<h4>Polls You Authored</h4>

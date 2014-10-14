@@ -26,7 +26,6 @@ class CoursesController < ApplicationController
 		@current_user
 		@current_user.courses << @course
 
-		binding.pry
 		redirect_to user_path(@current_user.id)
 	end
 
@@ -34,10 +33,8 @@ class CoursesController < ApplicationController
 		# comes from courses/:id page
 		@course = Course.find_by_id(params[:format])
 		@current_user
-		binding.pry
 		# remove course from user courses
 		@current_user.courses.delete(@course.id)
-		binding.pry
 
 		redirect_to user_path(@current_user.id)
 	end
