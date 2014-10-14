@@ -14,7 +14,6 @@ class PollsController < ApplicationController
 	end
 
 	def show
-		binding.pry
 		#available to all logged in and public
 		@correct_user
 		@course = Course.find_by_id(@poll.course_id)
