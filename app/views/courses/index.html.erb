@@ -15,10 +15,12 @@
 		<% end %>
 	</div>
 	<div class="col-md-offset-1 col-md-4">
+		<div class="small-spacer"></div>
 		<% if @user %>
+
 			<%= link_to "Create a new course", new_course_path, class: "h4"  %>
 		<% else %>
-			<!-- what should the public see here? -->
+			<h4>To participate,<br> <%= link_to "Sign up for Fist of 5", signup_path  %></h4>
 		<% end %>
 	</div>
 </div> <!-- closes row

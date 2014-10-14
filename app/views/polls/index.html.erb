@@ -17,7 +17,6 @@
 				<li><%= render partial: "poll_preview", locals: {user: User.find_by_id(poll.user_id), poll: poll}  %></li>
 				<% if @current_user %>
 				<li class="indent">
-					
 					<%= link_to "Edit Poll", edit_user_poll_path(@user.id, poll.id), name: "edit", class: "btn btn-info btn-xs" %></li>
 					<%= link_to "Delete Poll", user_poll_path(@user.id, poll.id), method: :delete, :data => {:confirm => "Are you sure?"}, name: "delete", class: "btn btn-danger btn-xs" %>
 					

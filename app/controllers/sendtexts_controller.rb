@@ -11,6 +11,9 @@ class SendtextsController < ApplicationController
 
 		@poll = Poll.find_by_id(params[:id])
 		@user = User.find_by_id(@poll.user_id)
+		@course = Course.find_by_id(@poll.course_id)
+		## gather recipients using @course.users but only if they are opt-in
+
 		message_content = @poll.topic
 		message_template = "Reply with feedback on: \""
 		message_scale = "\" (scale of 0-5, with optional question/comment)."

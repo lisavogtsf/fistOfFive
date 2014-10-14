@@ -30,25 +30,29 @@
 			<%= render partial: "courses/course_preview", locals: {course: course, user: @user }  %>
 		<% end %>
 		</h4>
-		<h3>Polls for Your Courses</h3>
-		<h4>
-		<% for course in @user.courses do %>
-			<% for poll in course.polls.order(:id) do  %>
-				<%= render partial: "polls/poll_preview", locals: {poll: poll, user: @user }  %>
+		<%= link_to "view/add courses", courses_path, class: "btn btn-primary btn-xs"  %>
+		<% if @user.courses.count > 1 %>
+			<h3>Polls for Your Courses</h3>
+			<h4>
+			<% for course in @user.courses do %>
+				<% for poll in course.polls.order(:id) do  %>
+					<%= render partial: "polls/poll_preview", locals: {poll: poll, user: @user }  %>
+				<% end %>
 			<% end %>
+			</h4>
 		<% end %>
-		</h4>
-		
 	</div>
 	<div class="col-md-3">
-		<div>
-			<h4>Polls You Created</h4>
-			<h5>
-			<% for poll in @user.polls.order(:id) do  %>
-				<%= render partial: "polls/poll_preview", locals: {poll: poll, user: @user }  %>
-			<% end %>
-			</h5>
-		</div>
+		<% if @user.polls.count > 1 %>
+			<div>
+				<h4>Polls You Authored</h4>
+				<h5>
+				<% for poll in @user.polls.order(:id) do  %>
+					<%= render partial: "polls/poll_preview", locals: {poll: poll, user: @user }  %>
+				<% end %>
+				</h5>
+			</div>
+		<% end %>
 	</div>
 	
 
