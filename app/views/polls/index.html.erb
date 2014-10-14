@@ -12,7 +12,7 @@
 		<% if @current_user %>
 			<h2><%= link_to "Start a new poll", new_user_poll_path(@user.id)  %></h2>
 		<% end %>
-		<% for poll in @polls do  %>
+		<% for poll in @polls.order(:id) do  %>
 			<ul><h4>
 				<li><%= render partial: "poll_preview", locals: {user: User.find_by_id(poll.user_id), poll: poll}  %></li>
 				<% if @current_user %>
