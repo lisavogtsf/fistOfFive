@@ -5,5 +5,6 @@ class Poll < ActiveRecord::Base
 	has_many :replies, dependent: :destroy
 
 	validates :topic, :presence => true
+	validates :course, :presence => true
 
 end
