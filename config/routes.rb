@@ -31,8 +31,8 @@ Rails.application.routes.draw do
     end 
   end
 
-  post '/join_course' => 'users#join_course'
-  post '/leave_course' => 'users#leave_course'
+  post '/join_course' => 'courses#join_course'
+  post '/leave_course' => 'courses#leave_course'
 
   post 'send_sms' => 'sendtexts#send_text_message'
   # get 'send_sms' => 'sendtexts#send_text_message'

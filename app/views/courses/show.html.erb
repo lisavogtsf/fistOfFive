@@ -17,9 +17,9 @@
 		<% if @current_user %>
 			<div class="small-spacer"></div>
 			<% if @user_affiliated %> <!-- user is already part of the course -->
-				<%= link_to "Leave course", leave_course_path(@current_user.id, @course.id), class: "btn btn-md btn-warning" %>
+				<%= link_to "Leave course", leave_course_path, method: :post, class: "btn btn-md btn-warning" %>
 			<% else %> <!-- user is not part of the course -->
-				<%= link_to "Join course", join_course_path(@current_user.id, @course.id), class: "btn btn-md btn-primary" %>
+				<%= link_to "Join course", join_course_path, method: :post, class: "btn btn-md btn-primary" %>
 			<% end %>
 		<% else %>
 			<h4>To participate,<br> <%= link_to "Sign up for Fist of 5", signup_path  %></h4>

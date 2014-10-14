@@ -15,10 +15,27 @@ class CoursesController < ApplicationController
 
 	def show
 		current_user_affiliated? # @user_affiliated passed in
-		binding.pry
 		# does not require login, @course available
 			@current_user
 		@polls = @course.polls
+	end
+
+	def join_course
+		# comes from courses/:id page
+		binding.pry
+		@course = @user
+		#@course = Course.find_by_id(:id)
+		# use affiliations
+		# add this course to @user.courses use
+		redirect_to user_path(@current_user.id)
+	end
+
+	def leave_course
+		# comes from courses/:id page
+		@course = Course.find_by_id(:id)
+		bindin.pry
+
+		redirect_to user_path(@current_user.id)
 	end
 
 	def new
@@ -76,7 +93,6 @@ private
 	def current_user_affiliated?
 		@course = find_course
 		if (@course.users.find_by_id(@current_user.id))
-			binding.pry
 			@user_affiliated = true
 		else
 			@user_affiliated = false

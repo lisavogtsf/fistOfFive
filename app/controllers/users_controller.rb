@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-	before_action :find_user, :except => [:index, :new, :create]
+	before_action :find_user, :except => [:index, :new, :create, :join_course, :leave_course]
 	before_action :is_authenticated?, :except => [:new, :create]
-	before_action :correct_user?, :except =>[:index, :new, :create]
+	before_action :correct_user?, :except =>[:index, :new, :create,  :join_course, :leave_course]
 
 
 	def index
@@ -23,17 +23,23 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def join_course
-		bindin.pry
-		# use affiliations
-		# add this course to @user.courses use
-		redirect_to user_path(@current_user.id)
-	end
+	# def join_course
+	# 	# comes from courses/:id page
+	# 	binding.pry
+	# 	@course = @user
+	# 	#@course = Course.find_by_id(:id)
+	# 	# use affiliations
+	# 	# add this course to @user.courses use
+	# 	redirect_to user_path(@current_user.id)
+	# end
 
-	def leave_course
-		bindin.pry
-		redirect_to user_path(@current_user.id)
-	end
+	# def leave_course
+	# 	# comes from courses/:id page
+	# 	@course = Course.find_by_id(:id)
+	# 	bindin.pry
+
+	# 	redirect_to user_path(@current_user.id)
+	# end
 
 	def new
 		## this is the signup route, don't need current user check
@@ -119,6 +125,15 @@ class UsersController < ApplicationController
 			@current_user ||= User.find_by(id: session[:user_id])
 			## returns result of this comparison
 			@user == @current_user
+		end
+
+		def current_user_affiliated?
+			@course = find_course
+			if (@course.users.find_by_id(@current_user.id))
+				@user_affiliated = true
+			else
+				@user_affiliated = false
+			end
 		end
 
 		def sms_user_alert (message_content)
