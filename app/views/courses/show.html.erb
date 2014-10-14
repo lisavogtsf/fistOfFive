@@ -8,8 +8,8 @@
 		<%#= render partial: "course_details", locals: {course: @course}  %>
 	<div class="col-md-offset-1 col-md-5">
 		<h2><%= @course.title.titleize  %></h2><br>
-		<h4><%=  @course.desc %> </h4>
-		<h4><%= @course.schedule  %></h4>
+		<h4>Details: <%=  @course.desc %> </h4>
+		<h4>Schedule: <%= @course.schedule  %></h4>
 		<h4>Timezone: <%= @course.course_time_zone  %></h4>
 	</div>
 	<div class="col-md-offset-1 col-md-4">

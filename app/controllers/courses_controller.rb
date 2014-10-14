@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
 	# this controller has mostly public views
 	before_action :is_authenticated?, except: [:index, :show]
 	before_action :find_course, except: [:index]
+    # routes have @course available
 
   def index
   	# does not require login
