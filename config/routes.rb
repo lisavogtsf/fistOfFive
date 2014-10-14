@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     end 
   end
 
+  post '/join_course' => 'affiliations#join_course'
+  post '/leave_course' => 'affiliations#leave_course'
 
   post 'send_sms' => 'sendtexts#send_text_message'
   # get 'send_sms' => 'sendtexts#send_text_message'

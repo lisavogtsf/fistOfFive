@@ -2,8 +2,6 @@
 <% @page_title = "Course Details" %>
 
 <%= render partial: "users/user_navbar", locals: {user: @user, page_title: "Course Details"} %>
-
-
 <div class="row">
 		<%#= render partial: "course_details", locals: {course: @course}  %>
 	<div class="col-md-offset-1 col-md-5">
@@ -16,13 +14,15 @@
 		<!-- show users involved with the course? -->
 		<!-- whether current user is enrolled -->
 		<!-- users preview partial -->
-		<% if @user %>
-
-			<!-- option to edit? join? shows if you have joined? -->
-			<!-- create a new poll if joined -->
-
+		<% if @current_user %>
+			<% if  %> <!-- user is already part of the course -->
+				<div class="small-spacer"></div>
+				<%= link_to "Leave course", leave_course_path, class: "btn btn-md btn-info" %>
+			<% else %> <!-- user is not part of the course -->
+				<%= link_to "Join course", join_course_path, class: "btn btn-md btn-info" %>
+			<% end %>
 		<% else %>
-			<h4>To enroll in this course,<br> <%= link_to "Sign up for Fist of 5", signup_path  %></h4>
+			<h4>To participate,<br> <%= link_to "Sign up for Fist of 5", signup_path  %></h4>
 		<% end %>
 		<div class="small-spacer"></div>
 		<div>

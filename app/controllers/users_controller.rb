@@ -23,6 +23,16 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def join_course
+		# add this course to @user.courses
+
+		@user.courses << @course
+	end
+
+	def leave_course
+
+	end
+
 	def new
 		## this is the signup route, don't need current user check
 		## if user is logged in, don't want them to sign up
