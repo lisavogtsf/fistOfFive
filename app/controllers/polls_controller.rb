@@ -104,8 +104,9 @@ class PollsController < ApplicationController
 	end
 
 	def destroy
+		binding.pry
 		@poll.destroy
-		redirect_to user_path @user.id
+		redirect_to user_path @current_user.id, :notice => "Poll deleted"
 	end
 
 private
