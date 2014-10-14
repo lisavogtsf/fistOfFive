@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 	before_action :find_user, :except => [:index, :new, :create]
-	before_action :is_authenticated?, :except => [:show, :new, :create]
+	before_action :is_authenticated?, :except => [:new, :create]
 	before_action :correct_user?, :except =>[:index, :new, :create]
 
 
@@ -17,6 +17,8 @@ class UsersController < ApplicationController
 			@courses = @user.courses
 			## access via @poll.replies
 		else
+			## blocking too easily again 
+			binding.pry
 			redirect_to user_path(@current_user.id), :notice => "You are not authorized to view this user's page"
 		end
 	end

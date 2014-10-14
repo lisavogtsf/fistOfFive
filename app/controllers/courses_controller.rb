@@ -2,34 +2,34 @@ class CoursesController < ApplicationController
 
 	# this controller has mostly public views
 	before_action :is_authenticated?, except: [:index, :show]
-      before_action :is_logged_in? # provides @current_user with value or false
+      before_action :is_logged_in? 
 	before_action :find_course, except: [:index]
     # routes have @course available
 
   def index
   	# does not require login
   	@courses = Course.all
-  	#@current_user
+  	@current_user
   	render "index"
   end
 
   def show
     binding.pry
   	# does not require login, @course available
-      #@current_user
+      @current_user
   	@polls = @course.polls
   end
 
   def new
   	# if logged in/authenticated
   	@course = Course.new
-      #@current_user
+      @current_user
   end
 
-  def edit
-  	# if this user created it
-  	#@course =?
-  end
+  # def edit
+  # 	# if this user created it
+  # 	#@course =?
+  # end
 
   def create
   	# checked for logged in/is authenticated above
@@ -42,12 +42,12 @@ class CoursesController < ApplicationController
   	end
   end
 
-  def update
-  end
+  # def update
+  # end
 
-  def destroy
-  	# if this user created it
-  end
+  # def destroy
+  # 	# if this user created it
+  # end
 
 private
 	## in this case it finds the course's user_id which does not exist
