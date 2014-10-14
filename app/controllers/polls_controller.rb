@@ -61,7 +61,7 @@ class PollsController < ApplicationController
 		poll = Poll.new(poll_params)
 		# poll.user_id = @user.id #sending this over as @poll.user_id
 		## need to include timezone info from course to correct timestamp
-		if poll.save && @user
+		if poll.save 
 			poll.is_open = false
 			if poll.course_id
 				@user.polls << poll 
