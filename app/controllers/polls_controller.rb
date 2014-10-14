@@ -10,12 +10,10 @@ class PollsController < ApplicationController
 
 	def index
 		# want to show all polls to everyone, limit what they can do
-		binding.pry
 		@polls = Poll.all
 	end
 
 	def show
-		binding.pry
 		#available to all logged in and public
 		@correct_user
 		@course = Course.find_by_id(@poll.course_id)
@@ -61,7 +59,6 @@ class PollsController < ApplicationController
 
 	def create
 		poll = Poll.new(poll_params)
-				binding.pry
 		# poll.user_id = @user.id #sending this over as @poll.user_id
 		## need to include timezone info from course to correct timestamp
 		if poll.save && @user
