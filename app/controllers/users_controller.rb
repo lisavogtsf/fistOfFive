@@ -17,29 +17,9 @@ class UsersController < ApplicationController
 			@courses = @user.courses
 			## access via @poll.replies
 		else
-			## blocking too easily again 
-			binding.pry
 			redirect_to user_path(@current_user.id), :notice => "You are not authorized to view this user's page"
 		end
 	end
-
-	# def join_course
-	# 	# comes from courses/:id page
-	# 	binding.pry
-	# 	@course = @user
-	# 	#@course = Course.find_by_id(:id)
-	# 	# use affiliations
-	# 	# add this course to @user.courses use
-	# 	redirect_to user_path(@current_user.id)
-	# end
-
-	# def leave_course
-	# 	# comes from courses/:id page
-	# 	@course = Course.find_by_id(:id)
-	# 	bindin.pry
-
-	# 	redirect_to user_path(@current_user.id)
-	# end
 
 	def new
 		## this is the signup route, don't need current user check
@@ -52,7 +32,6 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		if session[:user_id] == nil
 			@user = User.new(user_params)
 			if @user.save # user saved successfully
@@ -94,7 +73,6 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		binding.pry
 		@user.update_attributes(user_params)
 		redirect_to user_path, :notice => "Profile updated"
 	end
