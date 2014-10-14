@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 	end
 
 	def create
+		binding.pry
 		if session[:user_id] == nil
 			@user = User.new(user_params)
 			if @user.save # user saved successfully
@@ -75,6 +76,7 @@ class UsersController < ApplicationController
 	end
 
 	def update
+		binding.pry
 		@user.update_attributes(user_params)
 		redirect_to user_path, :notice => "Profile updated"
 	end
@@ -97,7 +99,7 @@ class UsersController < ApplicationController
 		end
 
 		def user_params
-			params.require(:user).permit(:first_name, :last_name, :sms_phone_number, :email, :password, :password_confirmation)
+			params.require(:user).permit(:first_name, :last_name, :sms_phone_number, :email, :password, :password_confirmation, :opt_out)
 		end
 
 		def correct_user?

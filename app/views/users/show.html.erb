@@ -13,7 +13,9 @@
 		<div class="small-spacer"></div>
 		<%= link_to "Account Details", edit_user_path(@user.id), class: "h4"  %><br>
 		<%= link_to "View All Courses", courses_path, class: "h4" %><br>
+		<% if @user.courses.count > 0%>
 		<%= link_to "View All Polls", course_polls_path(@user.courses.first.id), class: "h4" %><br>
+		<% end %>
 		<%= link_to "Start a new poll", new_user_poll_path(@user.id), class: "h4"  %><br>
 	</div>
 </div>
