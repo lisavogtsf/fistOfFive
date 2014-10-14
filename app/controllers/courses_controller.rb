@@ -2,26 +2,28 @@ class CoursesController < ApplicationController
 
 	# this controller has mostly public views
 	before_action :is_authenticated?, except: [:index, :show]
+      before_action :is_logged_in? # provides @current_user with value or false
 	before_action :find_course, except: [:index]
     # routes have @course available
 
   def index
   	# does not require login
   	@courses = Course.all
-  	find_user # if logged in, will pass @user to template
+  	#@current_user
   	render "index"
   end
 
   def show
-  	# does not require login
-      find_user
+    binding.pry
+  	# does not require login, @course available
+      #@current_user
   	@polls = @course.polls
   end
 
   def new
   	# if logged in/authenticated
   	@course = Course.new
-  	find_user
+      #@current_user
   end
 
   def edit
@@ -48,16 +50,20 @@ class CoursesController < ApplicationController
   end
 
 private
-	## 
-	def find_user
-		user_id = params[:user_id]
-		@user = User.find_by_id(user_id)
-	end
+	## in this case it finds the course's user_id which does not exist
+	# def find_course_owner
+	# 	user_id = params[:user_id]
+	# 	@user = User.find_by_id(user_id)
+	# end
 
 	def find_course
 		id = params[:id]
 		@course = Course.find_by_id(id)
 	end
+
+      def is_logged_in?
+        @current_user ||= User.find_by(id: session[:user_id])
+      end
 
 	def correct_user?
 		@user = find_user

@@ -10,6 +10,7 @@ class PollsController < ApplicationController
 
 	def index
 		# want to show all polls to everyone, limit what they can do
+		binding.pry
 		@polls = Poll.all
 	end
 

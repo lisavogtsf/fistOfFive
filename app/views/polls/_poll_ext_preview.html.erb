@@ -1,0 +1,13 @@
+<!-- _poll_ext_preview.html.erb -->
+
+<div class="row">
+	<% if user.id %>
+		<p>Poll ID: <%= poll.id  %> <%= link_to poll.topic.titleize, user_poll_path(user.id, poll.id) %>, for <%= Course.find_by_id(poll.course_id).title %></p>
+	<% elsif course.id %>
+		<p>Poll ID: <%= poll.id  %> <%= link_to poll.topic.titleize, course_poll_path(course.id, poll.id) %>, for <%= Course.find_by_id(course.id).title  %></p>
+	<% else %>
+		<p>Error retrieving poll previews</p>
+	<% end %>
+
+	
+</div>
