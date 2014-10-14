@@ -24,13 +24,15 @@ class UsersController < ApplicationController
 	end
 
 	def join_course
-		# add this course to @user.courses
-
-		@user.courses << @course
+		bindin.pry
+		# use affiliations
+		# add this course to @user.courses use
+		redirect_to user_path(@current_user.id)
 	end
 
 	def leave_course
-
+		bindin.pry
+		redirect_to user_path(@current_user.id)
 	end
 
 	def new

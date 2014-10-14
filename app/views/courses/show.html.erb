@@ -5,7 +5,7 @@
 <div class="row">
 		<%#= render partial: "course_details", locals: {course: @course}  %>
 	<div class="col-md-offset-1 col-md-5">
-		<h2><%= @course.title.titleize  %></h2><br>
+		<h2><%= @course.title  %></h2><br>
 		<h4>Details: <%=  @course.desc %> </h4>
 		<h4>Schedule: <%= @course.schedule  %></h4>
 		<h4>Timezone: <%= @course.course_time_zone  %></h4>
@@ -15,11 +15,11 @@
 		<!-- whether current user is enrolled -->
 		<!-- users preview partial -->
 		<% if @current_user %>
-			<% if  %> <!-- user is already part of the course -->
-				<div class="small-spacer"></div>
-				<%= link_to "Leave course", leave_course_path, class: "btn btn-md btn-info" %>
+			<div class="small-spacer"></div>
+			<% if @user_affiliated %> <!-- user is already part of the course -->
+				<%= link_to "Leave course", leave_course_path(@current_user.id, @course.id), class: "btn btn-md btn-warning" %>
 			<% else %> <!-- user is not part of the course -->
-				<%= link_to "Join course", join_course_path, class: "btn btn-md btn-info" %>
+				<%= link_to "Join course", join_course_path(@current_user.id, @course.id), class: "btn btn-md btn-primary" %>
 			<% end %>
 		<% else %>
 			<h4>To participate,<br> <%= link_to "Sign up for Fist of 5", signup_path  %></h4>
