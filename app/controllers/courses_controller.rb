@@ -22,7 +22,6 @@ class CoursesController < ApplicationController
 
 	def join_course
 		# comes from courses/:id page
-		binding.pry
 		@course = Course.find_by_id(params[:format])
 		@current_user
 		@current_user.courses << @course
@@ -33,8 +32,12 @@ class CoursesController < ApplicationController
 
 	def leave_course
 		# comes from courses/:id page
-		@course = Course.find_by_id(:id)
-		bindin.pry
+		@course = Course.find_by_id(params[:format])
+		@current_user
+		binding.pry
+		# remove course from user courses
+		@current_user.courses.delete(@course.id)
+		binding.pry
 
 		redirect_to user_path(@current_user.id)
 	end

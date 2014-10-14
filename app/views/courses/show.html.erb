@@ -18,7 +18,7 @@
 			<div class="small-spacer"></div>
 			<% if @user_affiliated %> <!-- user is already part of the course -->
 				<%= link_to "Start a new poll", new_user_poll_path(@user.id), class: "btn btn-md btn-primary"  %><br><br>
-				<%= link_to "Leave course", leave_course_path, method: :post, class: "btn btn-md btn-warning" %>
+				<%= link_to "Leave course", leave_course_path(@course.id), method: :post, class: "btn btn-md btn-warning" %>
 			<% else %> <!-- user is not part of the course -->
 				<%= link_to "Join course", join_course_path(@course.id), method: :post, class: "btn btn-md btn-primary" %>
 			<% end %>
