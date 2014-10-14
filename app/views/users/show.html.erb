@@ -2,15 +2,18 @@
 <% @page_title = "User Home" %>
 <%= render partial: "user_navbar", locals: {user: @user, page_title: "User Home"} %>
 
-<div class="row">
+<div class="row title-area">
 	<div class="col-md-offset-1 col-md-6 col-sm-offset-1 col-xs-offset-1">
 		<% flash.each do |k,v| %>
 			<h4 id="<%= k %>"><%= v %></h4>
 		<% end %>
-		<h1>Welcome to Fist of Five</h1>
+		<h2>Welcome to Fist of Five</h2>
 	</div>
-	<div>
+	<div class="col-md-3" id="user-options">
+		<div class="small-spacer"></div>
 		<%= link_to "Account Details", edit_user_path(@user.id), class: "h4"  %><br>
+		<%= link_to "View All Courses", courses_path, class: "h4" %><br>
+		<%= link_to "View All Polls", course_polls_path(@user.courses.first.id), class: "h4" %><br>
 		<%= link_to "Start a new poll", new_user_poll_path(@user.id), class: "h4"  %><br>
 	</div>
 </div>
@@ -18,16 +21,32 @@
 	<div class="col-md-offset-1 col-md-6 col-sm-offset-1 col-xs-offset-1" id="user_courses">
 		<!-- courses preview partial, only courses this user is in -->
 		<%#= link_to "Your Courses", user_courses_path(@user.id), class: "h1" %>
-		<h3>
-		Your Current Courses
+		
+		<h3>Your Current Courses</h3>
+		<h4>
 		<% for course in @user.courses.order(:id) do  %>
 			<%= render partial: "courses/course_preview", locals: {course: course, user: @user }  %>
 		<% end %>
-		</h3>
-		<%= link_to "View All Courses", courses_path, class: "h4" %>
+		</h4>
+		<h3>Polls for Your Courses</h3>
+		<h4>
+		<% for course in @user.courses do %>
+			<% for poll in course.polls.order(:id) do  %>
+				<%= render partial: "polls/poll_preview", locals: {poll: poll, user: @user }  %>
+			<% end %>
+		<% end %>
+		</h4>
+		
 	</div>
-	<div class="col-md-2 col-sm-offset-1 col-xs-offset-1" id="all_courses">
-		<!-- polls you wrote? polls for courses you're in preview partial, -->
+	<div class="col-md-3">
+		<div>
+			<h4>Polls You Created</h4>
+			<h5>
+			<% for poll in @user.polls.order(:id) do  %>
+				<%= render partial: "polls/poll_preview", locals: {poll: poll, user: @user }  %>
+			<% end %>
+			</h5>
+		</div>
 	</div>
 	
 

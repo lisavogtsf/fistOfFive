@@ -55,3 +55,9 @@ small {
 .small-spacer {
 	height: 20px;
 }
+#user-options {
+	/*background-color: rgba(204, 155, 135, .6);*/
+}
+.title-area {
+	background-color: rgba(204, 155, 135, .7);
+}
