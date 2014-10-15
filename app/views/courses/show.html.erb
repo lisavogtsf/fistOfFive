@@ -11,12 +11,16 @@
 		<div class="small-spacer"></div>
 		<div class="polls-for-course">
 			<h4>Polls for this course</h4>
-			<% for poll in @polls.order(:id) do  %>
-				<% if @current_user == true %>
-					<h5><%= render partial: "polls/poll_preview", locals: {poll: poll, path: "user"}  %></h5>
-				<% else %>
-					<h5><%= render partial: "polls/poll_preview", locals: {poll: poll, path: "course"}  %></h5>
+			<% if @course.polls.count > 0%>
+				<% for poll in @polls.order(:id) do  %>
+					<% if @current_user == true %>
+						<h5><%= render partial: "polls/poll_preview", locals: {poll: poll, path: "user"}  %></h5>
+					<% else %>
+						<h5><%= render partial: "polls/poll_preview", locals: {poll: poll, path: "course"}  %></h5>
+					<% end %>
 				<% end %>
+			<% else %>
+				<h5>No polls yet</h5>
 			<% end %>
 			<div class="small-spacer"></div>
 		</div>
