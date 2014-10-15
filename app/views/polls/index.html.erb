@@ -7,7 +7,7 @@
 	<% for poll in @polls.order(:id) do  %>
 		<% if @current_user %>
 			<div>
-				<h4><%= render partial: "poll_preview", locals: {poll: poll, path: "user"} %> </h4>
+				<h4><%= render partial: "poll_preview", locals: {user: (User.find_by_id(poll.user_id)), poll: poll, path: "user"} %> </h4>
 			</div>
 		<% else %>
 			<h4><%= render partial: "poll_preview", locals: {poll: poll, path: "course"}  %></h4>
