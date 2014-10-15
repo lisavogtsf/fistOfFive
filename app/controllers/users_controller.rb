@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 			@user = User.new(user_params)
 			if @user.save # user saved successfully
 				auth_user = User.authenticate(@user.email, @user.password)
-				# reformat sms number to be seven-digit string
+				# reformat sms number to be seven-digit string, further validation?
 				@user.sms_phone_number = @user.sms_phone_number.gsub(/\D/, '')
 				@user.save
 				if auth_user
