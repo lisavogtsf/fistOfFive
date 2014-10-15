@@ -2,15 +2,27 @@
 <% @page_title = "Course Details" %>
 
 <%= render partial: "users/user_navbar", locals: {user: @user, page_title: "Course Details"} %>
-<div class="row">
-		<%#= render partial: "course_details", locals: {course: @course}  %>
-	<div class="col-md-offset-1 col-md-5">
+<%= render partial: "shared/start_main_section"  %>
 		<h2><%= @course.title  %></h2><br>
 		<h4>Details: <%=  @course.desc %> </h4>
 		<h4>Schedule: <%= @course.schedule  %></h4>
 		<h4>Timezone: <%= @course.course_time_zone  %></h4>
-	</div>
-	<div class="col-md-offset-1 col-md-4">
+
+		<div class="small-spacer"></div>
+		<div class="polls-for-course">
+			<h4>Polls for this course</h4>
+			<% for poll in @polls.order(:id) do  %>
+				<% if @user %>
+					<h5><%= render partial: "polls/poll_preview", locals: {user: @user, poll: poll, course: @course}  %></h5>
+				<% else  %>
+					<% @user = User.find_by_id(poll.user_id) %>
+					<h5><%= render partial: "polls/poll_preview", locals: {user: @user, poll: poll, course: @course}  %></h5>
+				<% end %>
+			<% end %>
+			<div class="small-spacer"></div>
+		</div>
+<%= render partial: "shared/end_main_section"  %>
+<%= render partial: "shared/start_sidebar"  %>
 		<!-- show users involved with the course? -->
 		<!-- whether current user is enrolled -->
 		<!-- users preview partial -->
@@ -26,17 +38,5 @@
 		<% else %>
 			<h4>To participate,<br> <%= link_to "Sign up for Fist of 5", signup_path  %></h4>
 		<% end %>
-		<div class="small-spacer"></div>
-		<div>
-			<h4>Polls for this course</h4>
-			<% for poll in @polls.order(:id) do  %>
-				<% if @user %>
-					<h5><%= render partial: "polls/poll_preview", locals: {user: @user, poll: poll, course: @course}  %></h5>
-				<% else  %>
-					<% @user = User.find_by_id(poll.user_id) %>
-					<h5><%= render partial: "polls/poll_preview", locals: {user: @user, poll: poll, course: @course}  %></h5>
-				<% end %>
-			<% end %>
-		</div>
-	</div>
-</div>
+
+<%= render partial: "shared/end_sidebar"  %>

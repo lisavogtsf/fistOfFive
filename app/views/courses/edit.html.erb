@@ -2,14 +2,7 @@
 <% @page_title = "Edit Course" %>
 <%= render partial: "users/user_navbar", locals: {user: @user, page_title: "Edit Course"} %>
 
-<div class="row">
-
-	<!-- display flash messages -->
-	<% flash.each do |k,v| %>
-		<h2 id="<%= k %>"><%= v %></h2>
-	<% end %>
-	
-	<div class="col-md-offset-1 col-md-6">
+	<div class="jumbotron">
 		<%= render partial: "course_form", locals: {user: @user, form_title: "Edit Course", button_label: "Save Changes"}   %>
+		<%= button_to "Cancel", course_path(@course.id), method: :get, class: "btn btn-form btn-danger" %>
 	</div>
-</div>
