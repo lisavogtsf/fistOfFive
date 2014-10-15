@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 	## regex on email, sms_phone_number format
 	validates :email, presence: true, uniqueness: {case_sensitive: false}
 	validates :password, presence: true, length: {minimum: 6}, on: :create
-	validates :sms_phone_number, presence: true
+	validates :sms_phone_number, presence: true, length: {minimum: 6}, on: :create
 
 	## need to learn about Rails single table inheritance
 	## uses type, but then need to create child classes
