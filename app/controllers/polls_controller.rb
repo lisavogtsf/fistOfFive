@@ -21,6 +21,11 @@ class PollsController < ApplicationController
 		@course = Course.find_by_id(@poll.course_id)
 		@replies = @poll.replies
 		@user = @poll_owner
+		@poll_not_sent = true
+		if @poll.time_sent
+			@poll_not_sent = false
+		end
+
 		binding.pry
 
 		## begins tabulation for chart
@@ -111,23 +116,27 @@ class PollsController < ApplicationController
 
 private
 	## 
-	def find_poll_owner
-		user_id = params[:user_id]
-		@poll_owner = User.find_by_id(user_id)
-		# redirect_to users_path unless @user
-	end
-
 	def find_poll
 		id = params[:id]
 		@poll = Poll.find_by_id(id)
 		# redirect_to user_polls_path(@user.id) unless @poll
 	end
 
+	def find_poll_owner
+		@poll = find_poll
+		user_id = params[:user_id]
+		@poll_owner = (User.find_by_id(user_id) || User.find_by_id(@poll.user_id))
+		# redirect_to users_path unless @user
+	end
+
 	def correct_user? # is the current user the owner of this poll? gives @correct_user true/false
-		@poll_owner = find_poll_owner
-		@current_user ||= User.find_by(id: session[:user_id])
-		## returns result of this comparison
-		@correct_user = (@poll_owner == @current_user)
+		if @current_user
+			@poll_owner = find_poll_owner
+			# @current_user ||= User.find_by(id: session[:user_id])
+			## returns result of this comparison
+			@correct_user = (@poll_owner == @current_user)
+		end
+		@correct_user = false
 	end
 
 	def poll_params

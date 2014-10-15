@@ -7,11 +7,15 @@
 <!-- display flash messages -->
 <%= render partial: "shared/start_main_section"  %>
 
-		<h2><%= @poll.topic.titleize  %></h2>
+	<h2><%= @poll.topic.titleize  %></h2>
 
 	<% if @correct_user %>
+		<!-- needs to be the correct user of the poll to send out an SMS -->
 		<%#= link_to "Send poll via SMS", controller: :sendtexts, action: :send_text_message, method: :post, user: @user, id: @poll.id, class: "btn btn-primary btn-md"  %><br>
 		<%= button_to "Send poll via SMS", send_sms_path, params: {user: @user, id: @poll.id}, class: "btn btn-primary btn-md"  %><br>
+	<% end %>
+	<% if @poll_not_sent %>
+		<h4>This poll has not been sent out.</h4>
 	<% end %>
 <!-- <button class="btn btn-default" id="send-SMS"><%#= link_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", method: :post, user: @user, id: @poll.id %></button> -->
 
@@ -23,6 +27,7 @@
 		<% end %>
 
 		<% if @correct_user %>
+			<!-- needs to be the correct user to edit or delete the poll -->
 			<div class="small-spacer"></div>
 			<%= link_to "Edit Poll", edit_user_poll_path(@poll.user_id, @poll.id), class: "btn btn-info btn-md" %>
 			<%= link_to "Delete Poll", user_poll_path(@poll.user_id, @poll.id), method: :delete, :data => {:confirm => "Are you sure?"}, name: "delete", class: "btn btn-danger btn-md" %>
@@ -35,9 +40,9 @@
 		<%= render partial: "poll_details", locals: {user: @user, poll: @poll, course: @course}  %>
 		<% if @poll.replies.count > 0 %>
 			<h4>Full SMS Replies</h4>
-		<% end %>
 			<% for reply in @poll.replies do  %>
 				<%= render partial: "replies/reply_preview", locals: {poll: @poll, user: @user, reply: reply} %>
+			<% end %>
 		<% end %>
 
 <%= render partial: "shared/end_sidebar"  %>
