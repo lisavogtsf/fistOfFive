@@ -14,25 +14,7 @@
 		<% end %>
 		</h4>
 	</div>
-	<div id="polls-for-current-courses">
-		<% if @user.courses.count > 1 %>
-			<h3>Polls for Current Courses</h3>
-			<div class="indent">
-				<h4>
-				<% for course in @user.courses do %>
-					<p><%= course.title %></p>
-					<div class="indent">
-						<% for poll in course.polls.order(:id) do  %>
-							<p><%= render partial: "polls/poll_preview", locals: {user: @user, poll: poll} %></p>
-						<% end %>
-					</div>
-				<% end %>
-				</h4>
-			</div>
-		<% else %>
-			<%= link_to "view/add courses", courses_path, class: "btn btn-danger btn-xs"  %>
-		<% end %>
-	</div>
+
 <%= render partial: "shared/end_main_section"  %>
 <%= render partial: "shared/start_sidebar"  %>
 	<div>
@@ -44,16 +26,5 @@
 		<%= render partial: "shared/start_new_poll", locals: {link_class: "btn btn-sidebar btn-primary"}  %><br>
 	</div>
 	<div class="small-spacer"></div>
-	<div>
-		<% if @user.polls.count > 1 %>
-			<div>
-				<h4>Polls You Authored</h4>
-				<h5>
-				<% for poll in @user.polls.order(:id) do  %>
-					<p><%= render partial: "polls/poll_preview", locals: {poll: poll, user: @user }  %></p>
-				<% end %>
-				</h5>
-			</div>
-		<% end %>
-	</div>
+
 <%= render partial: "shared/end_sidebar"  %>

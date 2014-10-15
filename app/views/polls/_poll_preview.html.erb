@@ -1,13 +1,13 @@
 <!-- _poll_preview.html.erb -->
 <!-- given from template:  locals: {user: User.find_by_id(poll.user_id), poll: poll -->
 <!-- show poll topic, with link, date and number of replies -->
+<!-- poll -->
+<!-- 
+courses is working for now -->
 
-<% if course != nil || user != nil %>
-	<% if course %>
-		<%= link_to poll.topic, course_poll_path(course.id, poll.id) %>
-	<% elsif user %>
-	<%= link_to poll.topic, user_poll_path(user.id, poll.id) %>
-	<% end %>
+<% if path == "user" %>
+	<%= link_to poll.topic, user_poll_path(poll.user_id, poll.id)  %>
 <% else %>
-	Error retrieving poll previews
+	<%= link_to poll.topic, course_poll_path(poll.course_id, poll.id)  %>
 <% end %>
+

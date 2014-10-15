@@ -26,8 +26,6 @@ class PollsController < ApplicationController
 			@poll_not_sent = false
 		end
 
-		binding.pry
-
 		## begins tabulation for chart
 		scale = [0, 1, 2, 3, 4, 5]
 		scale_counter = [] # end [3, 5, 19, 4, 5, 4]
