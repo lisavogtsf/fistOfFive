@@ -116,8 +116,9 @@ private
 	def find_poll_owner
 		#@poll = find_poll
 		user_id = params[:user_id]
-		@poll_owner = (User.find_by_id(user_id) # || User.find_by_id(@poll.user_id))
+		@poll_owner = (User.find_by_id(user_id)) # || User.find_by_id(@poll.user_id))
 		# redirect_to users_path unless @user
+
 	end
 
 	def find_poll
