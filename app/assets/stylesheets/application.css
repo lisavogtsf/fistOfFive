@@ -42,15 +42,6 @@ body {
 #about-text .centered {
 	text-align: center;
 }
-/*div.jumbotron {
-	background-color: rgba(250, 250, 250, .9);
-}*/
-li {
-	display: inline-block;
-}
-.indent {
-	padding-left: 25px;
-}
 .polls-preview{
 	/* background-color: rgba(250, 250, 250, .85);*/
 	text-align: left;	
@@ -67,6 +58,12 @@ h1 {
 .splash {
 	max-height: 200px;
 }
+li {
+	display: inline-block;
+}
+.indent {
+	padding-left: 25px;
+}
 .small-spacer {
 	height: 20px;
 }
@@ -79,4 +76,10 @@ h1 {
 }
 .btn-form {
 	width: 250px;
+}
+.btn-sidebar {
+	width: 175px;
+}
+.sidebar {
+	text-align: center;
 }
