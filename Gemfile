@@ -47,9 +47,6 @@ group :development, :test do
 	gem 'rspec-rails', '~>3.0.0'
 end
 
-# for pushing data to the results screen, not yet in use
-gem "em-eventsource", "~>0.1.2"
-
 group :production do
   gem 'rails_12factor'
 end
