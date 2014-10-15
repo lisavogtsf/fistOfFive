@@ -2,7 +2,7 @@ class PollsController < ApplicationController
 
 	before_action :is_authenticated?, except: [:index, :show]
 	before_action :is_logged_in? #checks without kicking out
-	before_action :correct_user? #just makes @correct_user true or false
+	before_action :correct_user?, except: [:index, :new] #just makes @correct_user true or false
 	before_action :find_poll
 	before_action :find_poll_owner, except: [:index, :new]
 	## automatically supplies @poll, @poll_owner, @current_user, @correct_user to all actions
@@ -19,8 +19,8 @@ class PollsController < ApplicationController
 		@correct_user
 		@course = Course.find_by_id(@poll.course_id)
 		@replies = @poll.replies
-		@user = @poll_owner
-
+		@poll_owner
+binding.pry
 		## recently added
 		@poll_not_sent = true
 		if @poll.time_sent
@@ -89,11 +89,12 @@ class PollsController < ApplicationController
 	def edit
 		# has find_user and find_poll so has @user and @poll
 		# already checked that user is logged in, now check if correct user
-		if @correct_user
-			render edit_user_poll_path(@poll_owner.id)
-		else
-			redirect_to user_poll_path(@poll_owner.id), :notice => "You are not allowed to edit this poll"
-		end
+		# if @correct_user
+		binding.pry
+			render edit_user_poll_path(@poll.user_id, @poll.id)
+		# else
+		# 	redirect_to user_poll_path(@poll_owner.id), :notice => "You are not allowed to edit this poll"
+		# end
 		
 	end
 
@@ -114,11 +115,10 @@ class PollsController < ApplicationController
 private
 	## 
 	def find_poll_owner
-		#@poll = find_poll
-		user_id = params[:user_id]
+		@poll = find_poll
+		user_id = @poll.user_id
 		@poll_owner = (User.find_by_id(user_id)) # || User.find_by_id(@poll.user_id))
 		# redirect_to users_path unless @user
-
 	end
 
 	def find_poll
