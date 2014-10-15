@@ -33,15 +33,15 @@ Fist of Five-SMS provides teachers with necessary feedback while maintaining stu
 # User Interface
 Fist of Five home page, with login, signup, and browse buttons as well as explanatory text: "An app that allows a user to request and receive feedback by SMS and visualize the results."
 
-![Fist of Five home page, with login, signup, and browse buttons. An app that allows a user to request and receive feedback by SMS and visualize the results.](app/assets/fo5.jpg "Fist of Five")
+![Fist of Five home page, with login, signup, and browse buttons. An app that allows a user to request and receive feedback by SMS and visualize the results.](app/assets/images/fo5.jpg "Fist of Five")
 
 Results of poll on Angular with Rails.
 
-![Results of poll on Angular with Rails](app/assets/FistOfFiveAngularPoll.jpg "Results of poll on Angular with Rails")
+![Results of poll on Angular with Rails](app/assets/images/FistOfFiveAngularPoll.jpg "Results of poll on Angular with Rails")
 
 Results of poll on Rspec and Controllers, with text feedback.
 
-![Results of poll on Rspec and Controllers, with verbose feedback.](app/assets/FistOfFiveRspecSnap.jpg "Results of poll on Rspec and Controllers, with text feedback")
+![Results of poll on Rspec and Controllers, with verbose feedback.](app/assets/images/FistOfFiveRspecSnap.jpg "Results of poll on Rspec and Controllers, with text feedback")
 
 
 # General Assembly, WDI
