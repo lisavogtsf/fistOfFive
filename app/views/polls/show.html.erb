@@ -9,21 +9,19 @@
 
 	<h2><%= @poll.topic.titleize  %></h2>
 
-	<% if @correct_user %>
+	<% if @current_user %>
 		<!-- needs to be the correct user of the poll to send out an SMS -->
 		<%#= link_to "Send poll via SMS", controller: :sendtexts, action: :send_text_message, method: :post, user: @user, id: @poll.id, class: "btn btn-primary btn-md"  %><br>
-		<%= button_to "Send poll via SMS", send_sms_path, params: {user: @user, id: @poll.id}, class: "btn btn-primary btn-md"  %><br>
+		<%= button_to "Send poll via SMS", send_sms_path, params: {user: @current_user, id: @poll.id}, class: "btn btn-primary btn-md"  %><br>
 	<% end %>
 <!-- <button class="btn btn-default" id="send-SMS"><%#= link_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", method: :post, user: @user, id: @poll.id %></button> -->
 
 		<% if @poll.replies.count > 0 %>
-
-
-		<%= render partial: "poll_results", locals: {user: @user, poll: @poll, results: @results, percent_results: @percent_results}  %>		
+		<%= render partial: "poll_results", locals: {user: @poll_owner, poll: @poll, results: @results, percent_results: @percent_results}  %>		
 
 		<% end %>
 
-		<% if @correct_user %>
+		<% if @current_user %>
 			<!-- needs to be a user to edit or delete the poll -->
 			<div class="small-spacer"></div>
 			<%= link_to "Edit Poll", edit_user_poll_path(@poll.user_id, @poll.id), class: "btn btn-info btn-md" %>
@@ -41,7 +39,7 @@
 
 		<%#= render partial: "poll_details", locals: {user: @user, poll: @poll, course: @course}  %>
 	<h4>This is a poll for <%= link_to @course.title, course_path(@course.id) %>, 
-	by <%= @user.first_name  %> <%= @user.last_name  %></h4>
+	by <%= @poll_owner.first_name  %> <%= @poll_owner.last_name  %></h4>
 	<h5>Poll ID: <%= @poll.id  %>
 	Created <%= @poll.created_at.strftime("%b %d, %Y %I:%M%P")  %></h5>
 	<% if @poll.time_sent %>
@@ -53,12 +51,14 @@
 		<h4>This poll has not been sent out.</h4>
 	<% end %>
 
+	<div class="results-preview indent">
 		<% if @poll.replies.count > 0 %>
 			<h4>Full SMS Replies</h4>
 			<% for reply in @poll.replies do  %>
 				<%= render partial: "replies/reply_preview", locals: {poll: @poll, user: @user, reply: reply} %>
 			<% end %>
 		<% end %>
+	</div>
 
 <%= render partial: "shared/end_sidebar"  %>
 
