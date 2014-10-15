@@ -20,7 +20,7 @@ class PollsController < ApplicationController
 		@course = Course.find_by_id(@poll.course_id)
 		@replies = @poll.replies
 		@poll_owner
-binding.pry
+
 		## recently added
 		@poll_not_sent = true
 		if @poll.time_sent
@@ -90,7 +90,6 @@ binding.pry
 		# has find_user and find_poll so has @user and @poll
 		# already checked that user is logged in, now check if correct user
 		# if @correct_user
-		binding.pry
 			render edit_user_poll_path(@poll.user_id, @poll.id)
 		# else
 		# 	redirect_to user_poll_path(@poll_owner.id), :notice => "You are not allowed to edit this poll"
