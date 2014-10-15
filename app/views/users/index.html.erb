@@ -10,7 +10,7 @@
 <%= render partial: "shared/end_main_section"  %>
 <%= render partial: "shared/start_sidebar"  %>
 	<% if @current_user %>
-		<h2><%= link_to "Start a new poll", new_user_poll_path(@current_user.id)  %></h2>
+		<%= render partial: "shared/start_new_poll", locals: {link_class: "btn btn-md btn-primary"}  %>
 	<% else %>
 		<%= render partial: "shared/participate"  %>
 	<% end %>

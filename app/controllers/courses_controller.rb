@@ -96,7 +96,6 @@ private
 	def current_user_affiliated?
 		# is the current user is logged in and affiliated with this course
 		@course = find_course
-		binding.pry
 		if (@course.users.count && @course.users.find_by_id(@current_user.id))
 			@user_affiliated = true
 		else
