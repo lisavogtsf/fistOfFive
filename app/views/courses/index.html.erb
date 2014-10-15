@@ -20,7 +20,7 @@
 
 			<%= link_to "Create a new course", new_course_path, class: "h4"  %>
 		<% else %>
-			<h4>To participate,<br> <%= link_to "Sign up for Fist of 5", signup_path  %></h4>
+			<%= render partial: "shared/participate"  %>
 		<% end %>
 	</div>
 </div> <!-- closes row

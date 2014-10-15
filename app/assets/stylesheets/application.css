@@ -23,12 +23,24 @@ body {
 	height: 80px;
 }
  .container {
+	/*background-color: rgba(250, 250, 250, .9);*/
+	/*padding: 50px;*/
+}
+.backdrop {
 	background-color: rgba(250, 250, 250, .9);
-	padding: 10px;
 }
 .jumbotron {
 	text-align: center;
 	background-color: rgba(250, 250, 250, .9);
+}
+#about-text {
+	text-align: left;
+}
+#about-text a {
+	color: black;
+}
+#about-text .centered {
+	text-align: center;
 }
 /*div.jumbotron {
 	background-color: rgba(250, 250, 250, .9);
@@ -63,4 +75,7 @@ h1 {
 }
 .title-area {
 /*	background-color: rgba(204, 155, 135, .7);*/
+}
+.btn-form {
+	width: 250px;
 }

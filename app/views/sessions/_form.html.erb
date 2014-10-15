@@ -1,9 +1,8 @@
 <!-- _form.html.erb -->
 <!-- login form -->
 <div class="row">
-<!-- col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8 -->
 	<%= form_for :user, html: {class: "form-horizontal"} do |f|  %>
-	<fieldset>
+	<fieldset class="col-md-offset-3 col-md-6">
 		<legend>Log in</legend>
 		<div class="form-group">
 			<!-- <label for="email" class="col-lg-2 control-label">Email</label>
@@ -13,8 +12,9 @@
 		<div class="form-group">
 			<%= f.password_field :password, class: "form-control", placeholder: "Password"  %>
 		</div>	<!-- closes form-group -->
+
 		<div class="form-group">
-			<%= f.submit "Log in", class: "form-control"  %>
+			<%= f.submit "Log in", class: "btn btn-form btn-warning"  %>
 		</div>	<!-- closes form-group -->
 	
 	</fieldset>

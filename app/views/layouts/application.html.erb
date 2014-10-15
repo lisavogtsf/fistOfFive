@@ -26,11 +26,18 @@
 <body>
 	<div class="navbar-spacer"></div>
 	<div class="container">
-
-			<%= yield %>
-
+		<div class="row">
+			<div class="col-sm-1"></div><!-- creates space on left -->
+			<div class="col-sm-10 backdrop"> <!-- translucent backdrop center column -->
+				<div class="row"> <!-- creates new 12-grid reckoning inside it on templates -->
+					<%= yield %>
+				</div><!-- closes row inside center column -->
 <!-- for testing purposes, show params -->
-<%= params.inspect  %> 
+<!-- <%#= params.inspect  %>  -->
+
+			</div> <!-- closes center column -->
+			<div class="col-sm-1"></div><!-- creates space on right -->
+		</div><!-- closes row -->
 	</div><!-- closes container -->
 
 

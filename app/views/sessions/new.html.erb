@@ -1,18 +1,15 @@
 <!-- new.html.erb -->
 <!-- login form -->
-<div class="row">
-	<div class="col-sm-offset-2 col-sm-8">
-		<div class="jumbotron">
-			<h1>Fist of Five</h1>
-			<!-- display flash messages -->
-			<% flash.each do |k,v| %>
-				<h2 id="<%= k %>"><%= v %></h2>
-			<% end %>
-				<%= render partial: "form", locals: {user: @user}  %>
-			<div class="form-group">
-			<%= button_to "Return to home page", root_path, method: :get, class: "form-control" %>
-			</div>	
-		</div><!-- closes column -->
+
+	<div class="jumbotron">
+		<h1>Fist of Five</h1>
+		<!-- display flash messages -->
+		<% flash.each do |k,v| %>
+			<h2 id="<%= k %>"><%= v %></h2>
+		<% end %>
+
+		<%= render partial: "form", locals: {user: @user}  %>
+		
+		<%= button_to "Return to home page", root_path, method: :get, class: "btn btn-danger btn-form" %>
+		
 	</div>
-	
-</div>

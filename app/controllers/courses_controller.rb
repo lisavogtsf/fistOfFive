@@ -14,9 +14,11 @@ class CoursesController < ApplicationController
 	end
 
 	def show
-		current_user_affiliated? # @user_affiliated passed in
+		if @current_user # if logged in
+			current_user_affiliated? # is the current user in this course?
+			@user_affiliated
 		# does not require login, @course available
-			@current_user
+		end
 		@polls = @course.polls
 	end
 
@@ -92,8 +94,10 @@ private
 	end
 
 	def current_user_affiliated?
+		# is the current user is logged in and affiliated with this course
 		@course = find_course
-		if (@course.users.find_by_id(@current_user.id))
+		binding.pry
+		if (@course.users.count && @course.users.find_by_id(@current_user.id))
 			@user_affiliated = true
 		else
 			@user_affiliated = false
