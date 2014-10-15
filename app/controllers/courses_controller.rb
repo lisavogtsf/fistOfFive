@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
 	before_action :is_authenticated?, except: [:index, :show]
 	before_action :is_logged_in? 
 	before_action :find_course, except: [:index]	
-	# routes have @course available
+	# routes have @course, @current_user available
 
 	def index
 		# does not require login
@@ -44,7 +44,7 @@ class CoursesController < ApplicationController
 	def new
 		# if logged in/authenticated
 		@course = Course.new
-					@current_user
+		@current_user
 	end
 
 		# def edit
@@ -71,11 +71,6 @@ class CoursesController < ApplicationController
 		# end
 
 private
-	## in this case it finds the course's user_id which does not exist
-	# def find_course_owner
-	# 	user_id = params[:user_id]
-	# 	@user = User.find_by_id(user_id)
-	# end
 
 	def find_course
 		id = params[:id]
@@ -86,12 +81,13 @@ private
 		@current_user ||= User.find_by(id: session[:user_id])
 	end
 
-	def correct_user?
-		@user = find_user
-		@current_user ||= User.find_by(id: session[:user_id])
-		## returns result of this comparison
-		@user == @current_user
-	end
+	## as no user is saved on courses, there is no correct user
+	# def correct_user?
+	# 	@user = find_user
+	# 	@current_user ||= User.find_by(id: session[:user_id])
+	# 	## returns result of this comparison
+	# 	@user == @current_user
+	# end
 
 	def current_user_affiliated?
 		# is the current user is logged in and affiliated with this course

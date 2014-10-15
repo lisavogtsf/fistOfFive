@@ -1,17 +1,16 @@
 class PollsController < ApplicationController
 
 	before_action :is_authenticated?, except: [:index, :show]
+	before_action :is_logged_in? #checks without kicking out
 	before_action :correct_user? #just makes @correct_user true or false
 	before_action :find_poll
 	before_action :find_poll_owner, except: [:index, :new]
-	## how do I want to do permissions here?
-
-	# automatically supplies @poll and @poll_owner to all actions
+	## automatically supplies @poll, @poll_owner, @current_user, @correct_user to all actions
 
 	def index
 		# want to show all polls to everyone, limit what they can do
-		@current_user
-		@correct_user = false 
+		# @current_user
+		# @correct_user = false 
 		@polls = Poll.all
 	end
 
@@ -21,6 +20,8 @@ class PollsController < ApplicationController
 		@course = Course.find_by_id(@poll.course_id)
 		@replies = @poll.replies
 		@user = @poll_owner
+
+		## recently added
 		@poll_not_sent = true
 		if @poll.time_sent
 			@poll_not_sent = false
@@ -97,7 +98,6 @@ class PollsController < ApplicationController
 	end
 
 	def update
-		binding.pry
 		## would prefer better error handling
 		if @poll.update_attributes(poll_params)
 			redirect_to user_poll_path @user.id, @poll.id, :notice => "Poll updated"
@@ -107,34 +107,37 @@ class PollsController < ApplicationController
 	end
 
 	def destroy
-		binding.pry
 		@poll.destroy
 		redirect_to user_path @current_user.id, :notice => "Poll deleted"
 	end
 
 private
 	## 
-	def find_poll
-		id = params[:id]
-		@poll = Poll.find_by_id(id)
-		# redirect_to user_polls_path(@user.id) unless @poll
-	end
-
 	def find_poll_owner
-		@poll = find_poll
+		#@poll = find_poll
 		user_id = params[:user_id]
-		@poll_owner = (User.find_by_id(user_id) || User.find_by_id(@poll.user_id))
+		@poll_owner = (User.find_by_id(user_id) # || User.find_by_id(@poll.user_id))
 		# redirect_to users_path unless @user
 	end
 
+	def find_poll
+		id = params[:id]
+		@poll = Poll.find_by_id(id)
+	end
+
+	def is_logged_in?
+		@current_user ||= User.find_by(id: session[:user_id])
+	end
+
 	def correct_user? # is the current user the owner of this poll? gives @correct_user true/false
-		if @current_user
+		## setting to match master branch
+		#if @current_user
 			@poll_owner = find_poll_owner
 			# @current_user ||= User.find_by(id: session[:user_id])
 			## returns result of this comparison
 			@correct_user = (@poll_owner == @current_user)
-		end
-		@correct_user = false
+		#end
+		#@correct_user = false
 	end
 
 	def poll_params
