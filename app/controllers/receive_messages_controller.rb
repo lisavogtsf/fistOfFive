@@ -17,27 +17,27 @@ class ReceiveMessagesController < ApplicationController
 		from_number = params["From"]
 		## need to use this From to find the user_id of who sent it
 		## if the sender is not a user of the app, the reply won't be accepted
-		sms_user = User.find_by_sms_phone_number(from_number)
+		## remove first two characters of from_number
+		#sms_user = User.find_by_sms_phone_number(from_number)
 		
 		## determine the most recently sent poll
 		## if successful proceed
 		#@poll = Poll.order(:time_sent).last
 		@poll = Poll.where(is_open: true).order(:time_sent).last
-		binding.pry
-		if @poll && sms_user
-			## and info on poll -- what poll is open?
-			## for testing
-			#@poll = Poll.find_by_id(17)
+
+		if @poll 
 
 			@reply = Reply.new
 			@reply.response = message_body
 			@reply.from_number = from_number
 			@reply.poll_id = @poll.id
-			@reply.user_id = sms_user.id		
+			# if sms_user
+			# 	@reply.user_id = sms_user.id		
+			# end
 			@poll.replies << @reply
 
 			@reply.save
-				
+		binding.pry
 			render :nothing => true, :status => 200, :content_type => 'text/html'
 		else
 		## if a poll/user wasn't found, then they're not replying about anything
