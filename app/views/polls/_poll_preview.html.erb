@@ -2,10 +2,10 @@
 <!-- given from template:  locals: {user: User.find_by_id(poll.user_id), poll: poll -->
 <!-- show poll topic, with link, date and number of replies -->
 
-<% if user.id %>
-	<%= link_to poll.topic, user_poll_path(user.id, poll.id) %>
-<% elsif course.id %>
+<% if Course.find_by_id(course.id) %>
 	<%= link_to poll.topic, course_poll_path(course.id, poll.id) %>
+<% elsif User.find_by_id(user.id) %>
+	<%= link_to poll.topic, user_poll_path(user.id, poll.id) %>
 <% else %>
 	Error retrieving poll previews
 <% end %>

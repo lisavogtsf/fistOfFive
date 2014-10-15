@@ -5,18 +5,14 @@
 <%= render partial: "users/user_navbar", locals: {user: @user, poll: @poll, page_title: "Poll Details"} %>
 
 <!-- display flash messages -->
-<div class="row">
-	<div class="col-md-offset-1 col-md-6">
-		<% flash.each do |k,v| %>
-			<h4 id="<%= k %>"><%= v %></h4>
-		<% end %>
+<%= render partial: "shared/start_main_section"  %>
 
 		<h2><%= @poll.topic.titleize  %></h2>
 
-<% if @correct_user %>
-	<%#= link_to "Send poll via SMS", controller: :sendtexts, action: :send_text_message, method: :post, user: @user, id: @poll.id, class: "btn btn-primary btn-md"  %><br>
-	<%= button_to "Send poll via SMS", send_sms_path, params: {user: @user, id: @poll.id}, class: "btn btn-primary btn-md"  %><br>
-<% end %>
+	<% if @correct_user %>
+		<%#= link_to "Send poll via SMS", controller: :sendtexts, action: :send_text_message, method: :post, user: @user, id: @poll.id, class: "btn btn-primary btn-md"  %><br>
+		<%= button_to "Send poll via SMS", send_sms_path, params: {user: @user, id: @poll.id}, class: "btn btn-primary btn-md"  %><br>
+	<% end %>
 <!-- <button class="btn btn-default" id="send-SMS"><%#= link_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", method: :post, user: @user, id: @poll.id %></button> -->
 
 		<% if @poll.replies.count > 0 %>
@@ -28,22 +24,21 @@
 
 		<% if @correct_user %>
 			<div class="small-spacer"></div>
-			<%= link_to "Edit Poll", edit_user_poll_path(@user.id, @poll.id), class: "btn btn-info btn-md" %>
-			<%= link_to "Delete Poll", user_poll_path(@user.id, @poll.id), method: :delete, :data => {:confirm => "Are you sure?"}, name: "delete", class: "btn btn-danger btn-md" %>
+			<%= link_to "Edit Poll", edit_user_poll_path(@poll.user_id, @poll.id), class: "btn btn-info btn-md" %>
+			<%= link_to "Delete Poll", user_poll_path(@poll.user_id, @poll.id), method: :delete, :data => {:confirm => "Are you sure?"}, name: "delete", class: "btn btn-danger btn-md" %>
 		<% end %>
 	
-<!-- 		<div class="no-data">No poll data currently available</div>
-		<canvas id="myChart" width="800px" height="400"></canvas> -->
-	</div>
 
-	<div class="col-md-4">
-		<%= render partial: "poll_details", locals: {user: @user, poll: @poll}  %>
+<%= render partial: "shared/end_main_section"  %>
+<%= render partial: "shared/start_sidebar"  %>
+
+		<%= render partial: "poll_details", locals: {user: @user, poll: @poll, course: @course}  %>
 		<% if @poll.replies.count > 0 %>
-		<h4>Full SMS Replies</h4>
+			<h4>Full SMS Replies</h4>
 		<% end %>
-		<% for reply in @poll.replies do  %>
-			<%= render partial: "replies/reply_preview", locals: {poll: @poll, user: @user, reply: reply} %>
+			<% for reply in @poll.replies do  %>
+				<%= render partial: "replies/reply_preview", locals: {poll: @poll, user: @user, reply: reply} %>
 		<% end %>
-	</div>
-</div>
+
+<%= render partial: "shared/end_sidebar"  %>
 

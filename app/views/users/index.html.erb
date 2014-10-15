@@ -12,6 +12,6 @@
 	<% if @current_user %>
 		<%= render partial: "shared/start_new_poll", locals: {link_class: "btn btn-md btn-primary"}  %>
 	<% else %>
-		<%= render partial: "shared/participate"  %>
+		<%= render partial: "shared/participate", locals: {link_class: "btn btn-primary btn-form"} %>
 	<% end %>
 <%= render partial: "shared/end_sidebar"  %>

@@ -15,6 +15,6 @@
 			<br><br>
 			<%= render partial: "shared/create_new_course", locals: {link_class: "btn btn-sidebar btn-danger"}  %>
 		<% else %>
-			<%= render partial: "shared/participate"  %>
+			<%= render partial: "shared/participate", locals: {link_class: "btn btn-primary btn-form"} %>
 		<% end %>
 <%= render partial: "shared/end_sidebar"  %>

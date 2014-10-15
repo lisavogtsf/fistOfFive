@@ -10,6 +10,8 @@ class PollsController < ApplicationController
 
 	def index
 		# want to show all polls to everyone, limit what they can do
+		@current_user
+		@correct_user = false 
 		@polls = Poll.all
 	end
 
@@ -19,6 +21,7 @@ class PollsController < ApplicationController
 		@course = Course.find_by_id(@poll.course_id)
 		@replies = @poll.replies
 		@user = @poll_owner
+		binding.pry
 
 		## begins tabulation for chart
 		scale = [0, 1, 2, 3, 4, 5]
