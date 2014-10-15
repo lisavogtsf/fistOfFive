@@ -38,10 +38,10 @@
 	<% end %>
 
 		<%= render partial: "poll_details", locals: {user: @poll_owner, poll: @poll, course: @course}  %>
-	<!-- <h5>Poll open? <%#= poll.is_open  %></h5> -->
-	<h5>Number of replies: <%= @poll.replies.count  %></h5>
 	<% if @poll_not_sent %>
 		<h4>This poll has not been sent out.</h4>
+	<% else %>
+		<h5>Number of replies: <%= @poll.replies.count  %></h5>
 	<% end %>
 
 	<div class="results-preview indent">
