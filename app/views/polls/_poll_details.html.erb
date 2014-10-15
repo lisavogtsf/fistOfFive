@@ -1,6 +1,7 @@
 <!-- _poll_details.html.erb -->
 
-	<h4>a poll for <%= link_to @course.title, course_path(@course.id) %>, by <%= user.first_name  %> <%= user.last_name  %></h4>
+	<h4>This is a poll for <%= link_to @course.title, course_path(@course.id) %>, 
+	by <%= user.first_name  %> <%= user.last_name  %></h4>
 	<h5>Poll ID: <%= poll.id  %>
 	Created <%= poll.created_at.strftime("%b %d, %Y %I:%M%P")  %></h5>
 	<% if poll.time_sent %>

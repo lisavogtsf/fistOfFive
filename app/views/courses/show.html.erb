@@ -6,7 +6,7 @@
 		<h2><%= @course.title  %></h2><br>
 		<h4>Details: <%=  @course.desc %> </h4>
 		<h4>Schedule: <%= @course.schedule  %></h4>
-		<h4>Timezone: <%= @course.course_time_zone  %></h4>
+		<!-- <h4>Timezone: <%#= @course.course_time_zone  %></h4> -->
 
 		<div class="small-spacer"></div>
 		<div class="polls-for-course">
@@ -37,7 +37,7 @@
 			<% end %>
 			<%= link_to 'Edit course', edit_course_path(@course.id), class: "btn btn-md btn-info"  %>
 		<% else %>
-			<h4>To participate,<br> <%= link_to "Sign up for Fist of 5", signup_path  %></h4>
+			<%= render partial: "shared/participate", locals: {link_class: "btn btn-primary btn-form"} %>
 		<% end %>
 
 <%= render partial: "shared/end_sidebar"  %>

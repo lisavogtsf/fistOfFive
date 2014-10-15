@@ -37,6 +37,10 @@
 <%= render partial: "shared/end_main_section"  %>
 <%= render partial: "shared/start_sidebar"  %>
 
+	<% if !@current_user %>
+		<%= render partial: "shared/participate", locals: {link_class: "btn btn-primary btn-form"} %>
+	<% end %>
+
 		<%= render partial: "poll_details", locals: {user: @user, poll: @poll, course: @course}  %>
 		<% if @poll.replies.count > 0 %>
 			<h4>Full SMS Replies</h4>

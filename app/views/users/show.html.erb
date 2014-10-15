@@ -23,7 +23,7 @@
 					<p><%= course.title %></p>
 					<div class="indent">
 						<% for poll in course.polls.order(:id) do  %>
-							<p><%= render partial: "polls/poll_preview", locals: {user: @user, poll: poll, course: Course.find_by_id(poll.course_id)}  %></p>
+							<p><%= render partial: "polls/poll_preview", locals: {user: @user, poll: poll} %></p>
 						<% end %>
 					</div>
 				<% end %>
