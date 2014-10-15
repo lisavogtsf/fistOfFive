@@ -2,9 +2,9 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 
-	has_many :polls
+	has_many :polls, dependent: :destroy
 	has_many :replies
-	has_many :affiliations
+	has_many :affiliations, dependent: :destroy
 	has_many :courses, :through => :affiliations 
 
 	## validations go here
