@@ -2,14 +2,14 @@
 <!-- signup THIS ONE IS DIFFERENT FROM OTHER USERS VIEWS-->
 <% @page_title = "Sign Up" %>
 
-		<div class="jumbotron">
-			<h1>Fist of Five</h1>
-			<!-- display flash messages -->
-			<% flash.each do |k,v| %>
-				<h2 id="<%= k %>"><%= v %></h2>
-			<% end %>
-			<%= render partial: "user_form", locals: {user: @user, form_title: "Sign Up", button_label: "Sign Up"}   %>
-			<%= button_to "Return to home page", root_path, method: :get, class: "btn btn-form btn-danger" %>
+	<div class="jumbotron">
+		<h1>Fist of Five</h1>
+		<!-- display flash messages -->
+		<% flash.each do |k,v| %>
+			<h2 id="<%= k %>"><%= v %></h2>
+		<% end %>
+		<%= render partial: "user_form", locals: {user: @user, form_title: "Sign Up", button_label: "Sign Up"}   %>
+		<%= button_to "Return to home page", root_path, method: :get, class: "btn btn-form btn-danger" %>
 
-	
-</div>
+
+	</div>
