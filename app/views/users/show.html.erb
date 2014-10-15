@@ -15,7 +15,7 @@
 		</h4>
 	</div>
 	<div id="polls-for-current-courses">
-		<%= link_to "view/add courses", courses_path, class: "btn btn-primary btn-xs"  %>
+		<%= link_to "view/add courses", courses_path, class: "btn btn-warning btn-xs"  %>
 		<% if @user.courses.count > 1 %>
 			<h3>Polls for Current Courses</h3>
 			<div class="indent">
@@ -35,12 +35,12 @@
 <%= render partial: "shared/end_main_section"  %>
 <%= render partial: "shared/start_sidebar"  %>
 	<div>
-		<%= link_to "Account Details", edit_user_path(@user.id), class: "h4"  %><br>
-		<%= link_to "View All Courses", courses_path, class: "h4" %><br>
+		<%= link_to "Account Details", edit_user_path(@user.id), class: "btn btn-md btn-info"  %><br><br>
+		<%= link_to "View All Courses", courses_path, class: "btn btn-md btn-warning" %><br><br>
 		<% if @user.courses.count > 0%>
-		<%= link_to "View All Polls", course_polls_path(@user.courses.first.id), class: "h4" %><br>
+		<%= link_to "View All Polls", course_polls_path(@user.courses.first.id), class: "btn btn-md btn-danger" %><br><br>
 		<% end %>
-		<%= link_to "Start a new poll", new_user_poll_path(@user.id), class: "h4"  %><br>
+		<%= render partial: "shared/start_new_poll", locals: {link_class: "btn btn-md btn-primary"}  %><br>
 	</div>
 	<div>
 		<% if @user.polls.count > 1 %>
