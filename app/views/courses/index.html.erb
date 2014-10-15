@@ -1,26 +1,18 @@
 <!--Courses index.html.erb -->
 <!-- Shows all courses OR all user courses -->
 <% @page_title = "All Courses" %>
-
 <%= render partial: "users/user_navbar", locals: {user: @user, page_title: "All Courses"} %>
 
-<div class="row <%=@page_title.delete(' ')  %>">
-	<!-- display flash messages -->
-	<% flash.each do |k,v| %>
-		<h2 id="<%= k %>"><%= v %></h2>
+<%= render partial: "shared/start_main_section"  %>
+	<% for course in @courses %>
+		<h4><%= render partial: "course_preview", locals: {course: course, user: @user }  %></h4>
 	<% end %>
-	<div class="col-md-offset-1 col-md-5">
-		<% for course in @courses %>
-			<h4><%= render partial: "course_preview", locals: {course: course, user: @user }  %></h4>
-		<% end %>
-	</div>
-	<div class="col-md-offset-1 col-md-4">
-		<div class="small-spacer"></div>
+<%= render partial: "shared/end_main_section"  %>
+<%= render partial: "shared/start_sidebar"  %>
 		<% if @user %>
 
 			<%= link_to "Create a new course", new_course_path, class: "h4"  %>
 		<% else %>
 			<%= render partial: "shared/participate"  %>
 		<% end %>
-	</div>
-</div> <!-- closes row-->
+<%= render partial: "shared/start_sidebar"  %>
