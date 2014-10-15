@@ -14,9 +14,6 @@
 		<%#= link_to "Send poll via SMS", controller: :sendtexts, action: :send_text_message, method: :post, user: @user, id: @poll.id, class: "btn btn-primary btn-md"  %><br>
 		<%= button_to "Send poll via SMS", send_sms_path, params: {user: @user, id: @poll.id}, class: "btn btn-primary btn-md"  %><br>
 	<% end %>
-	<% if @poll_not_sent %>
-		<h4>This poll has not been sent out.</h4>
-	<% end %>
 <!-- <button class="btn btn-default" id="send-SMS"><%#= link_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", method: :post, user: @user, id: @poll.id %></button> -->
 
 		<% if @poll.replies.count > 0 %>
@@ -27,10 +24,11 @@
 		<% end %>
 
 		<% if @correct_user %>
-			<!-- needs to be the correct user to edit or delete the poll -->
+			<!-- needs to be a user to edit or delete the poll -->
 			<div class="small-spacer"></div>
 			<%= link_to "Edit Poll", edit_user_poll_path(@poll.user_id, @poll.id), class: "btn btn-info btn-md" %>
 			<%= link_to "Delete Poll", user_poll_path(@poll.user_id, @poll.id), method: :delete, :data => {:confirm => "Are you sure?"}, name: "delete", class: "btn btn-danger btn-md" %>
+			<br><br>
 		<% end %>
 	
 
@@ -51,6 +49,9 @@
 	<% end %> 
 	<!-- <h5>Poll open? <%#= poll.is_open  %></h5> -->
 	<h5>Number of replies: <%= @poll.replies.count  %></h5>
+	<% if @poll_not_sent %>
+		<h4>This poll has not been sent out.</h4>
+	<% end %>
 
 		<% if @poll.replies.count > 0 %>
 			<h4>Full SMS Replies</h4>
