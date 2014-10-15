@@ -3,5 +3,5 @@
 
 	<div class="jumbotron">
 		<%= render partial: "user_form", locals: {user: @user, form_title: "Edit User Information", button_label: "Save Changes"}   %>
-	<%= button_to "Cancel", user_path(@current_user.id), method: :get, class: "btn btn-form btn-danger" %>
+		<%= button_to "Cancel", user_path(@current_user.id), method: :get, class: "btn btn-form btn-danger" %>
 	</div>
