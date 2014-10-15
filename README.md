@@ -30,25 +30,19 @@ This can be modified as a "blind fist of five," which puts less peer pressure on
 
 Fist of Five-SMS provides teachers with necessary feedback while maintaining students' confidentiality and giving them a sense of where they stand compared to their classmates. 
 
-# Wireframes
-My wireframes remained fairly free-form, although I knew I would use a Bootswatch Bootstrap template.
+# User Interface
+Fist of Five home page, with login, signup, and browse buttons as well as explanatory text: "An app that allows a user to request and receive feedback by SMS and visualize the results."
 
-![wireframes1](wireframes1.png)
-![wireframes2](wireframes2.png)
+![Fist of Five home page, with login, signup, and browse buttons. An app that allows a user to request and receive feedback by SMS and visualize the results.](app/assets/fo5.jpg "Fist of Five")
 
+Results of poll on Angular with Rails.
 
-# Entity Relationship Diagram
-The potential complexity of the database was giving me nightmares, with many to many relationships between instructors, classes and students. I would use an assignments join table for instructors and an enrollments join table for students, but I never quite got to this level of complexity.
-![Fo5many](Fo5ERDmany.JPG "Fo5 Many many to many")
+![Results of poll on Angular with Rails](app/assets/FistOfFiveAngularPoll.jpg "Results of poll on Angular with Rails")
 
-I went with a revised version, although I never quite got to courses, trying to simplify to having stand-alone students with many replies.
-![Fo5moreReasonable](Fo5ERDstillmany.png "Fo5 still many to many")
+Results of poll on Rspec and Controllers, with text feedback.
+
+![Results of poll on Rspec and Controllers, with verbose feedback.](app/assets/FistOfFiveRspecSnap.jpg "Results of poll on Rspec and Controllers, with text feedback")
+
 
 # General Assembly, WDI
 This app was created as my [Final Project](https://github.com/wdi-sf-july/final_project_specs) for General Assembly's Web Development Immersive, San Francisco, July, 2014 cohort.
-
-# Wishlist
-* so many things
-* jQuery
-* AJAX
-* Angular
