@@ -26,14 +26,16 @@ class PollsController < ApplicationController
 		if @poll.time_sent
 			@poll_not_sent = false
 		end
-
+# binding.pry
 		## begins tabulation for chart
 		scale = [0, 1, 2, 3, 4, 5]
 		scale_counter = [] # end [3, 5, 19, 4, 5, 4]
 		
 		for scale_num in scale 
 			# for each number in the scale, zero out, then go through replies adding
-
+			# creates an array scale_counter which has keys 0-5
+			# each of those keys has a value equal to the number of times that resonse came up
+			# scale_counter[2] is the number of times "2" showed up in responses
 			scale_counter[scale_num] = 0
 			for reply in @replies
 				num_reply = reply.response[0].to_i
@@ -44,7 +46,7 @@ class PollsController < ApplicationController
 			end 
 		end
 		@results = scale_counter
-
+# binding.pry
 		# #percentage results
 		# @percent_results = @results
 		# # get sum of array known to have +0 items
