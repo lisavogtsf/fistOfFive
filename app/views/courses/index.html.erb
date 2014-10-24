@@ -5,7 +5,7 @@
 
 <%= render partial: "shared/start_main_section"  %>
 	<div class="small-spacer"></div>
-	<% for course in @courses %>
+	<% for course in @courses.order(:id) %>
 		<h4><%= render partial: "course_preview", locals: {course: course, user: @user }  %></h4>
 	<% end %>
 <%= render partial: "shared/end_main_section"  %>
