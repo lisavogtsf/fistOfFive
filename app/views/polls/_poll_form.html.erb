@@ -4,29 +4,33 @@
 	<%= form_for [user, poll], html: {class: "form-horizontal"} do |f|  %>
 	<fieldset  class="col-md-offset-3 col-md-6">
 		<legend><%= form_title  %></legend>
-		<% if @course %>
-			<div class="form-group">
-				<select name="poll[course_id]" id="course-select">
-					<option value="">Select one of your courses</option>
-					<% for course in @user.courses %>
-						<% if course == @course %>
-							<option selected="selected" value="<%= course.id  %>"><%= course.title  %></option>
-						<% else %>
+		<% if @user.courses %>
+			<% if @course %>
+				<div class="form-group">
+					<select name="poll[course_id]" id="course-select">
+						<option value="">Select one of your courses</option>
+						<% for course in @user.courses %>
+							<% if course == @course %>
+								<option selected="selected" value="<%= course.id  %>"><%= course.title  %></option>
+							<% else %>
+								<option value="<%= course.id  %>"><%= course.title  %></option>
+							<% end %>
+						<% end %>
+					</select>
+				</div>
+			<% else %>
+				<div class="form-group">
+					<select name="poll[course_id]" id="course-select">
+						<option value="">Select one of your courses</option>
+						<% for course in @user.courses %>
 							<option value="<%= course.id  %>"><%= course.title  %></option>
 						<% end %>
-					<% end %>
-				</select>
-			</div>
+					</select>
+				</div>
+			<% end %><!--  ends if statement checking whether a course is currently selected -->
 		<% else %>
-			<div class="form-group">
-				<select name="poll[course_id]" id="course-select">
-					<option value="">Select one of your courses</option>
-					<% for course in @user.courses %>
-						<option value="<%= course.id  %>"><%= course.title  %></option>
-					<% end %>
-				</select>
-			</div>
-		<% end %>
+			<h3>You need to join a course to create or edit a poll</h3>
+		<% end %> <!-- ends if statement checking whether user is in any courses -->
 		<div class="form-group">
 			<%= f.text_field :topic, class: "form-control", placeholder: "Poll topic", autofocus: true  %>
 		</div>

@@ -4,8 +4,8 @@
 <%= render partial: "users/user_navbar", locals: {user: @user, page_title: "Course Details"} %>
 <%= render partial: "shared/start_main_section"  %>
 		<h2><%= @course.title  %></h2><br>
-		<h4>Details: <%=  @course.desc %> </h4>
-		<h4>Schedule: <%= @course.schedule  %></h4>
+		<h4>Details: </h4><h4 class="indent"> <%=  @course.desc %> </h4>
+		<h4>Schedule: </h4><h4 class="indent"><%= @course.schedule  %></h4>
 		<!-- <h4>Timezone: <%#= @course.course_time_zone  %></h4> -->
 
 		<div class="small-spacer"></div>
@@ -20,7 +20,7 @@
 					<% end %>
 				<% end %>
 			<% else %>
-				<h5>No polls yet</h5>
+				<h5 class="indent">No polls yet</h5>
 			<% end %>
 			<div class="small-spacer"></div>
 		</div>

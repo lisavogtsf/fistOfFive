@@ -1,2 +1,4 @@
 <!-- _start_new_poll.html.erb -->
-<%= link_to "Start a new poll", new_user_poll_path(@current_user.id), class: link_class %>
+<% if @current_user.courses.count > 0 %>
+	<%= link_to "Start a new poll", new_user_poll_path(@current_user.id), class: link_class %>
+<% end %>
