@@ -45,13 +45,19 @@
 
 		<%= render partial: "poll_details", locals: {user: @poll_owner, poll: @poll, course: @course}  %>
 	<% if @poll_not_sent %>
-		<h4>This poll has not been sent out.</h4>
-	<% else %>
-		<h5>Number of replies: <%= @poll.replies.count  %></h5>
+		<h4>This poll has not been sent out.</h4><br><br>
 	<% end %>
 
 	<div class="results-preview indent">
 		<% if @poll.replies.count > 0 %>
+			<br>
+			<h4>Total replies: <%= @poll.replies.count  %></h4>
+			<h4>Tally of SMS Replies</h4>
+			<% i = 5  %>
+			<% while i >= 0 do %>
+				<h5><%=i %>: <%= @results[i] %></h5>
+				<% i -= 1%>
+			<% end %>
 			<h4>Full SMS Replies</h4>
 			<% for reply in @poll.replies do  %>
 				<%= render partial: "replies/reply_preview", locals: {poll: @poll, user: @user, reply: reply} %>

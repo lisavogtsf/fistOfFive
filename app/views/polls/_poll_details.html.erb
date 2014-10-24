@@ -1,10 +1,11 @@
 <!-- _poll_details.html.erb -->
 
+<div class="results-preview">
 	<h4>This is a poll for <%= link_to @course.title, course_path(@course.id) %>, 
 	by <%= user.first_name  %> <%= user.last_name  %></h4>
-	<h5>Poll ID: <%= poll.id  %>
-	Created <%= poll.created_at.strftime("%b %d, %Y %I:%M%P")  %></h5>
+	<h6>Poll ID: <%= poll.id  %><br>
+	Created <%= poll.created_at.strftime("%b %d, %Y %I:%M%P")  %></h6>
 	<% if poll.time_sent %>
- 		<h5>Most recently sent: <%= poll.time_sent.strftime("%b %d, %Y %I:%M%P")%></h5>
+ 		<h6>Most recently sent: <%= poll.time_sent.strftime("%b %d, %Y %I:%M%P")%></h6>
 	<% end %> 
-
+</div>

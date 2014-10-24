@@ -48,9 +48,7 @@ body {
 .results-preview{
 	text-align: left;	
 }
-small {
-	color: black;
-}
+
 h1 {
 	text-align: center;
 }
@@ -65,6 +63,9 @@ li {
 }
 .indent {
 	padding-left: 25px;
+}
+.small-indent {
+	padding-left: 15px;
 }
 .small-spacer {
 	height: 20px;
