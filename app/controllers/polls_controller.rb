@@ -88,7 +88,7 @@ class PollsController < ApplicationController
 			end
 		else
 			flash[:error] = poll.errors.full_messages.to_sentence
-			redirect_to user_path @current_user.id
+			redirect_to new_user_poll_path @current_user.id
 		end
 	end
 
