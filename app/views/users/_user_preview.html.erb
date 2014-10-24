@@ -1,3 +1,10 @@
 <!-- _user_preview.html.erb -->
 
-<%= user.first_name  %> <%= user.last_name  %>, <%= user.email  %>
+<%= user.first_name  %> <%= user.last_name  %> <br>
+
+<ul>
+	<li><i><%= user.email  %></i></li><br>
+	<% for course in user.courses.order(:title)  %>
+		<li> <%= link_to course.title, course_path(course.id)%></li><br>
+	<% end %>
+</ul>
