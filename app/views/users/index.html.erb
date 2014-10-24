@@ -4,7 +4,7 @@
 
 <%= render partial: "shared/start_main_section"  %>
 	<!-- <h3>User name, email course</h3> -->
-	<% for user in @users do  %>
+	<% for user in @users.order(:first_name) do  %>
 		<h4><%= render partial: "user_preview", locals: {user: user}  %></h4>
 		<!-- <div class="small-spacer"></div> -->
 	<% end %>
