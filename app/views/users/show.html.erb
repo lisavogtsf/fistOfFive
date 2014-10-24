@@ -7,21 +7,30 @@
 		<h1>Fist of Five</h1>
 	</div>
 	<div id="current-courses">
-		<h3>Current Courses</h3>
-		<h4>
-		<% for course in @user.courses.order(:id) do  %>
-			<%= render partial: "courses/course_preview", locals: {course: course, user: @user }  %>
+		<% if @user.courses.count > 0 %>
+		<h3>Your Courses</h3>
+			<h4>
+			<% for course in @user.courses.order(:id) do  %>
+				<%= render partial: "courses/course_preview", locals: {course: course, user: @user }  %>
+			<% end %>
+			</h4>
+		<% else %>
+			<h4>
+			To participate in Fist of Five polls, first join a course.  <%= link_to "View a list of all courses.", courses_path %>
+			<br><br>
+			Next you can start a new poll for that course or respond to a poll.
+			</h4>
 		<% end %>
-		</h4>
+		
 	</div>
 
 <%= render partial: "shared/end_main_section"  %>
 <%= render partial: "shared/start_sidebar"  %>
 	<div>
-		<%= link_to "Account Details", edit_user_path(@user.id), class: "btn btn-sidebar btn-info"  %><br><br>
+		<%= link_to "Account Details", edit_user_path(@user.id), class: "btn btn-sidebar btn-warning"  %><br><br>
 		<%= link_to "View All Courses", courses_path, class: "btn btn-sidebar btn-danger" %><br><br>
-		<% if @user.courses.count > 0%>
-		<%#= link_to "View All Polls", course_polls_path(@user.courses.first.id), class: "btn btn-sidebar btn-warning" %><br><br>
+		<% if @user.courses.count > 0 %>
+		<%#= link_to "View All Polls", course_polls_path(@user.courses.first.id), class: "btn btn-sidebar btn-warning" %>
 		<% end %>
 		<%= render partial: "shared/start_new_poll", locals: {link_class: "btn btn-sidebar btn-primary"}  %><br>
 	</div>
