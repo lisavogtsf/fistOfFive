@@ -2,12 +2,17 @@
 <% @page_title = "Users" %>
 <%= render partial: "user_navbar", locals: {user: @user, page_title: "Users"} %>
 
-<div class="row">
-	<!-- display flash messages -->
-	<% flash.each do |k,v| %>
-		<h2 id="<%= k %>"><%= v %></h2>
+<%= render partial: "shared/start_main_section"  %>
+	<!-- <h3>User name, email course</h3> -->
+	<% for user in @users.order(:first_name) do  %>
+		<h4><%= render partial: "user_preview", locals: {user: user}  %></h4>
+		<!-- <div class="small-spacer"></div> -->
 	<% end %>
-	<% for user in @users do  %>
-		<%= render partial: "user_preview", locals: {user: user}  %>
+<%= render partial: "shared/end_main_section"  %>
+<%= render partial: "shared/start_sidebar"  %>
+	<% if @current_user %>
+
+	<% else %>
+		<%= render partial: "shared/participate", locals: {link_class: "btn btn-primary btn-form"} %>
 	<% end %>
-</div>
+<%= render partial: "shared/end_sidebar"  %>

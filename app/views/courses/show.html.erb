@@ -2,40 +2,46 @@
 <% @page_title = "Course Details" %>
 
 <%= render partial: "users/user_navbar", locals: {user: @user, page_title: "Course Details"} %>
-<div class="row">
-		<%#= render partial: "course_details", locals: {course: @course}  %>
-	<div class="col-md-offset-1 col-md-5">
+<%= render partial: "shared/start_main_section"  %>
 		<h2><%= @course.title  %></h2><br>
 		<h4>Details: <%=  @course.desc %> </h4>
 		<h4>Schedule: <%= @course.schedule  %></h4>
-		<h4>Timezone: <%= @course.course_time_zone  %></h4>
-	</div>
-	<div class="col-md-offset-1 col-md-4">
+		<!-- <h4>Timezone: <%#= @course.course_time_zone  %></h4> -->
+
+		<div class="small-spacer"></div>
+		<div class="polls-for-course">
+			<h4>Polls for this course</h4>
+			<% if @course.polls.count > 0%>
+				<% for poll in @polls.order(:id) do  %>
+					<% if @current_user == true %>
+						<h5><%= render partial: "polls/poll_preview", locals: {poll: poll, path: "user"}  %></h5>
+					<% else %>
+						<h5><%= render partial: "polls/poll_preview", locals: {poll: poll, path: "course"}  %></h5>
+					<% end %>
+				<% end %>
+			<% else %>
+				<h5>No polls yet</h5>
+			<% end %>
+			<div class="small-spacer"></div>
+		</div>
+<%= render partial: "shared/end_main_section"  %>
+<%= render partial: "shared/start_sidebar"  %>
 		<!-- show users involved with the course? -->
 		<!-- whether current user is enrolled -->
 		<!-- users preview partial -->
 		<% if @current_user %>
 			<div class="small-spacer"></div>
 			<% if @user_affiliated %> <!-- user is already part of the course -->
-				<%= link_to "Start a new poll", new_user_poll_path(@user.id, @course.id), class: "btn btn-md btn-primary"  %><br><br>
+				<%= render partial: "shared/start_new_poll", locals: {link_class: "btn btn-sidebar btn-primary"}  %>
+				<br><br>
 				<%= link_to "Leave course", leave_course_path(@course.id), method: :post, class: "btn btn-md btn-warning" %>
+				<%= link_to 'Edit course', edit_course_path(@course.id), class: "btn btn-md btn-info"  %>
 			<% else %> <!-- user is not part of the course -->
 				<%= link_to "Join course", join_course_path(@course.id), method: :post, class: "btn btn-md btn-primary" %>
 			<% end %>
+			
 		<% else %>
-			<h4>To participate,<br> <%= link_to "Sign up for Fist of 5", signup_path  %></h4>
+			<%= render partial: "shared/participate", locals: {link_class: "btn btn-primary btn-form"} %>
 		<% end %>
-		<div class="small-spacer"></div>
-		<div>
-			<h4>Polls for this course</h4>
-			<% for poll in @polls.order(:id) do  %>
-				<% if @user %>
-					<h5><%= render partial: "polls/poll_preview", locals: {user: @user, poll: poll, course: @course}  %></h5>
-				<% else  %>
-					<% @user = User.find_by_id(poll.user_id) %>
-					<h5><%= render partial: "polls/poll_preview", locals: {user: @user, poll: poll, course: @course}  %></h5>
-				<% end %>
-			<% end %>
-		</div>
-	</div>
-</div>
+
+<%= render partial: "shared/end_sidebar"  %>

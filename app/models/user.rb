@@ -2,9 +2,9 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 
-	has_many :polls
+	has_many :polls, dependent: :destroy
 	has_many :replies
-	has_many :affiliations
+	has_many :affiliations, dependent: :destroy
 	has_many :courses, :through => :affiliations 
 
 	## validations go here
@@ -12,9 +12,9 @@ class User < ActiveRecord::Base
 	#validates :first_name, presence: true
 	#validates :last_name, presence: true
 	## regex on email, sms_phone_number format
-	validates :sms_phone_number, presence: true
 	validates :email, presence: true, uniqueness: {case_sensitive: false}
-	validates :password, presence: true, length: {minimum: 3}, on: :create
+	validates :password, presence: true, length: {minimum: 6}, on: :create
+	validates :sms_phone_number, presence: true, length: {minimum: 6}, on: :create
 
 	## need to learn about Rails single table inheritance
 	## uses type, but then need to create child classes

@@ -1,13 +1,10 @@
 <!-- _poll_details.html.erb -->
 
-<div class="row">
-	<h5>a poll for <%= link_to @course.title, course_path(@course.id) %>, by <%= @user.first_name  %> <%= @user.last_name  %></h5>
+	<h4>This is a poll for <%= link_to @course.title, course_path(@course.id) %>, 
+	by <%= user.first_name  %> <%= user.last_name  %></h4>
 	<h5>Poll ID: <%= poll.id  %>
 	Created <%= poll.created_at.strftime("%b %d, %Y %I:%M%P")  %></h5>
 	<% if poll.time_sent %>
  		<h5>Most recently sent: <%= poll.time_sent.strftime("%b %d, %Y %I:%M%P")%></h5>
 	<% end %> 
-	<!-- <h5>Poll open? <%#= poll.is_open  %></h5> -->
-	<h5>Number of replies: <%= @poll.replies.count  %></h5>
- 
-</div>
+

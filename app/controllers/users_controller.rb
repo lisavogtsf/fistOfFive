@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 			@user = User.new(user_params)
 			if @user.save # user saved successfully
 				auth_user = User.authenticate(@user.email, @user.password)
-				# reformat sms number to be seven-digit string
+				# reformat sms number to be seven-digit string, further validation?
 				@user.sms_phone_number = @user.sms_phone_number.gsub(/\D/, '')
 				@user.save
 				if auth_user
@@ -48,8 +48,8 @@ class UsersController < ApplicationController
 			else # user not saved successfully?
 				if User.find_by_email(@user.email)
 					redirect_to signup_path, :notice => 'An account with that email already exists'
-				elsif @user.password && @user.password.length < 4
-					redirect_to signup_path, :notice => "Password must be at least four characters"
+				elsif @user.password && @user.password.length < 6
+					redirect_to signup_path, :notice => "Password must be at least six characters"
 				elsif @user.password != @user.password_confirmation
 					redirect_to signup_path, :notice => "Password must match password confirmation"
 				# add validation for email format

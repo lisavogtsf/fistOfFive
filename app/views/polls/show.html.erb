@@ -2,48 +2,62 @@
 <!-- polls/show.html.erb  polls/:id  polls#show  user_poll_path-->
 <% @page_title = "Poll Details" %>
 
-<%= render partial: "users/user_navbar", locals: {user: @user, poll: @poll, page_title: "Poll Details"} %>
+<%= render partial: "users/user_navbar", locals: {user: @current_user, poll: @poll, page_title: "Poll Details"} %>
 
 <!-- display flash messages -->
-<div class="row">
-	<div class="col-md-offset-1 col-md-6">
-		<% flash.each do |k,v| %>
-			<h4 id="<%= k %>"><%= v %></h4>
-		<% end %>
+<%= render partial: "shared/start_main_section"  %>
 
-		<h2><%= @poll.topic.titleize  %></h2>
+	<h2><%= @poll.topic.titleize  %></h2>
 
-<% if @correct_user %>
-	<%#= link_to "Send poll via SMS", controller: :sendtexts, action: :send_text_message, method: :post, user: @user, id: @poll.id, class: "btn btn-primary btn-md"  %><br>
-	<%= button_to "Send poll via SMS", send_sms_path, params: {user: @user, id: @poll.id}, class: "btn btn-primary btn-md"  %><br>
-<% end %>
+	<% if @correct_user %>
+		<!-- needs to be the correct user of the poll to send out an SMS -->
+		<%#= link_to "Send poll via SMS", controller: :sendtexts, action: :send_text_message, method: :post, user: @user, id: @poll.id, class: "btn btn-primary btn-md"  %><br>
+		<%= button_to "Send poll via SMS", send_sms_path, params: {user: @current_user, id: @poll.id}, class: "btn btn-primary btn-md"  %><br>
+	<% end %>
 <!-- <button class="btn btn-default" id="send-SMS"><%#= link_to "Send poll via SMS", controller: "sendtexts", action: "send_text_message", method: :post, user: @user, id: @poll.id %></button> -->
 
 		<% if @poll.replies.count > 0 %>
-
-
-		<%= render partial: "poll_results", locals: {user: @user, poll: @poll, results: @results, percent_results: @percent_results}  %>		
+		<%= render partial: "poll_results", locals: {user: @poll_owner, poll: @poll, results: @results, percent_results: @percent_results}  %>		
 
 		<% end %>
 
 		<% if @correct_user %>
+			<!-- needs to be a user to edit or delete the poll -->
 			<div class="small-spacer"></div>
 			<%= link_to "Edit Poll", edit_user_poll_path(@user.id, @poll.id), class: "btn btn-info btn-md" %>
-			<%= link_to "Delete Poll", user_poll_path(@user.id, @poll.id), method: :delete, :data => {:confirm => "Are you sure?"}, name: "delete", class: "btn btn-danger btn-md" %>
+			<%= link_to "Delete Poll", user_poll_path(@poll_owner.id, @poll.id), method: :delete, :data => {:confirm => "Are you sure?"}, name: "delete", class: "btn btn-danger btn-md" %>
+			<br><br>
+		<% elsif @current_user %>
+			<br>
+			<h5>Only the user who created this poll can send it out via SMS and edit it.</h5>
+			<%= render partial: "shared/start_new_poll", locals: {link_class: "btn btn-sidebar btn-primary"}  %><br><br>
 		<% end %>
+
+
 	
-<!-- 		<div class="no-data">No poll data currently available</div>
-		<canvas id="myChart" width="800px" height="400"></canvas> -->
+
+<%= render partial: "shared/end_main_section"  %>
+<%= render partial: "shared/start_sidebar"  %>
+
+	<% if !@current_user %>
+		<%= render partial: "shared/participate", locals: {link_class: "btn btn-primary btn-form"} %>
+	<% end %>
+
+		<%= render partial: "poll_details", locals: {user: @poll_owner, poll: @poll, course: @course}  %>
+	<% if @poll_not_sent %>
+		<h4>This poll has not been sent out.</h4>
+	<% else %>
+		<h5>Number of replies: <%= @poll.replies.count  %></h5>
+	<% end %>
+
+	<div class="results-preview indent">
+		<% if @poll.replies.count > 0 %>
+			<h4>Full SMS Replies</h4>
+			<% for reply in @poll.replies do  %>
+				<%= render partial: "replies/reply_preview", locals: {poll: @poll, user: @user, reply: reply} %>
+			<% end %>
+		<% end %>
 	</div>
 
-	<div class="col-md-4">
-		<%= render partial: "poll_details", locals: {user: @user, poll: @poll}  %>
-		<% if @poll.replies.count > 0 %>
-		<h4>Full SMS Replies</h4>
-		<% end %>
-		<% for reply in @poll.replies do  %>
-			<%= render partial: "replies/reply_preview", locals: {poll: @poll, user: @user, reply: reply} %>
-		<% end %>
-	</div>
-</div>
+<%= render partial: "shared/end_sidebar"  %>
 

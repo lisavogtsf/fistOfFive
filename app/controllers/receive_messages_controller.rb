@@ -8,6 +8,7 @@ class ReceiveMessagesController < ApplicationController
 ## moving to replies controller
 
 	def index
+		## for testing purposes
 		# mapped this action to http://localhost:3000/sms
 		# POST 'sms' in the routes.rb file
 
@@ -24,16 +25,12 @@ class ReceiveMessagesController < ApplicationController
 		## if successful proceed
 		#@poll = Poll.order(:time_sent).last
 		@poll = Poll.where(is_open: true).order(:time_sent).last
-
 		if @poll 
 
 			@reply = Reply.new
 			@reply.response = message_body
 			@reply.from_number = from_number
 			@reply.poll_id = @poll.id
-			# if sms_user
-			# 	@reply.user_id = sms_user.id		
-			# end
 			@poll.replies << @reply
 
 			@reply.save
@@ -47,7 +44,7 @@ class ReceiveMessagesController < ApplicationController
 	end
 
 	private
-
+		## improve this
 		def find_user
 			@user = User.find_by_id(params[:user_id])
 		end

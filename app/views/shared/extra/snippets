@@ -1,0 +1,47 @@
+snippets
+
+Polls for current courses from user show
+
+
+	<div id="polls-for-current-courses">
+		<% if @user.courses.count > 1 %>
+			<h3>Polls for Current Courses</h3>
+			<div class="indent">
+				<h4>
+				<% for course in @user.courses do %>
+					<p><%= course.title %></p>
+					<div class="indent">
+						<% for poll in course.polls.order(:id) do  %>
+							<p><%= render partial: "polls/poll_preview", locals: {poll: poll, path: "user"} %></p>
+						<% end %>
+					</div>
+				<% end %>
+				</h4>
+			</div>
+		<% else %>
+			<%= link_to "view/add courses", courses_path, class: "btn btn-danger btn-xs"  %>
+		<% end %>
+	</div>
+
+
+
+Polls you authored from user show sidebar
+
+
+
+	<div>
+		<% if @user.polls.count > 1 %>
+			<div>
+				<h4>Polls You Authored</h4>
+				<h5>
+				<% for poll in @user.polls.order(:id) do  %>
+					<p><%= render partial: "polls/poll_preview", locals: {poll: poll, path: "user"}  %></p>
+				<% end %>
+				</h5>
+			</div>
+		<% end %>
+	</div>
+
+
+
+

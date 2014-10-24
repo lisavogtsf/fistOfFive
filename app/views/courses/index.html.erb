@@ -4,15 +4,17 @@
 <%= render partial: "users/user_navbar", locals: {user: @user, page_title: "All Courses"} %>
 
 <%= render partial: "shared/start_main_section"  %>
-	<% for course in @courses %>
+	<div class="small-spacer"></div>
+	<% for course in @courses.order(:id) %>
 		<h4><%= render partial: "course_preview", locals: {course: course, user: @user }  %></h4>
 	<% end %>
 <%= render partial: "shared/end_main_section"  %>
 <%= render partial: "shared/start_sidebar"  %>
-		<% if @user %>
-
-			<%= link_to "Create a new course", new_course_path, class: "h4"  %>
+		<% if @current_user %>
+			<%= render partial: "shared/start_new_poll", locals: {link_class: "btn btn-sidebar btn-primary"}  %>
+			<br><br>
+			<%= render partial: "shared/create_new_course", locals: {link_class: "btn btn-sidebar btn-danger"}  %>
 		<% else %>
-			<%= render partial: "shared/participate"  %>
+			<%= render partial: "shared/participate", locals: {link_class: "btn btn-primary btn-form"} %>
 		<% end %>
-<%= render partial: "shared/start_sidebar"  %>
+<%= render partial: "shared/end_sidebar"  %>

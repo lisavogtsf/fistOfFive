@@ -42,17 +42,10 @@ body {
 #about-text .centered {
 	text-align: center;
 }
-/*div.jumbotron {
-	background-color: rgba(250, 250, 250, .9);
-}*/
-li {
-	display: inline-block;
-}
-.indent {
-	padding-left: 25px;
-}
 .polls-preview{
-	/* background-color: rgba(250, 250, 250, .85);*/
+	text-align: left;	
+}
+.results-preview{
 	text-align: left;	
 }
 small {
@@ -67,6 +60,12 @@ h1 {
 .splash {
 	max-height: 200px;
 }
+li {
+	display: inline-block;
+}
+.indent {
+	padding-left: 25px;
+}
 .small-spacer {
 	height: 20px;
 }
@@ -74,8 +73,15 @@ h1 {
 	/*background-color: rgba(204, 155, 135, .6);*/
 }
 .title-area {
-/*	background-color: rgba(204, 155, 135, .7);*/
+	text-align: center;
+	font-weight: bolder;
 }
 .btn-form {
 	width: 250px;
+}
+.btn-sidebar {
+	width: 175px;
+}
+.sidebar {
+	text-align: center;
 }

@@ -1,0 +1,7 @@
+<% @page_title = "template" %>
+<%= render partial: "user_navbar", locals: {user: @user, page_title: "Users"} %>
+
+<%= render partial: "shared/start_main_section"  %>
+<%= render partial: "shared/end_main_section"  %>
+<%= render partial: "shared/start_sidebar"  %>
+<%= render partial: "shared/end_sidebar"  %>

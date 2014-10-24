@@ -9,10 +9,9 @@ An app that allows a user to elicit and receive feedback by SMS and visualize th
 * Ruby on Rails
 * Twilio API
 * PostgreSQL
+* Bootstrap
 * ngrok (for Twilio testing)
 * RSpec
-* jQuery (pending)
-* AJAX (pending)
 
 # User Flow
 

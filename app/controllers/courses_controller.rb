@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
 	before_action :is_authenticated?, except: [:index, :show]
 	before_action :is_logged_in? 
 	before_action :find_course, except: [:index]	
-	# routes have @course available
+	# routes have @course, @current_user available
 
 	def index
 		# does not require login
@@ -14,10 +14,10 @@ class CoursesController < ApplicationController
 	end
 
 	def show
+		# does not require login, @course available
 		if @current_user # if logged in
 			current_user_affiliated? # is the current user in this course?
 			@user_affiliated
-		# does not require login, @course available
 		end
 		@polls = @course.polls
 	end
@@ -44,38 +44,37 @@ class CoursesController < ApplicationController
 	def new
 		# if logged in/authenticated
 		@course = Course.new
-					@current_user
+		@current_user
 	end
 
-		# def edit
-		# 	# if this user created it
-		# 	#@course =?
-		# end
+	def edit
+		# ok getting to edit page
+	end
 
-		def create
-			# checked for logged in/is authenticated above
-			course = Course.new(course_params)
-			if course.save
-				redirect_to course_path(course.id), :notice => "Course created"
-			else
-				flash[:error] = course.errors.full_messages.to_sentence
-				redirect_to new_course_path
-			end
+	def create
+		# checked for logged in/is authenticated above
+		course = Course.new(course_params)
+		if course.save
+			redirect_to course_path(course.id), :notice => "Course created"
+		else
+			flash[:error] = course.errors.full_messages.to_sentence
+			redirect_to new_course_path
 		end
+	end
 
-		# def update
-		# end
+	def update
+		if @course.update_attributes(course_params)
+			redirect_to course_path(@course.id), :notice => "Course updated"
+		else
+			redirect_to course_path(@course.id), :notice => "Error updating"
+		end
+	end
 
 		# def destroy
 		# 	# if this user created it
 		# end
 
 private
-	## in this case it finds the course's user_id which does not exist
-	# def find_course_owner
-	# 	user_id = params[:user_id]
-	# 	@user = User.find_by_id(user_id)
-	# end
 
 	def find_course
 		id = params[:id]
@@ -86,17 +85,17 @@ private
 		@current_user ||= User.find_by(id: session[:user_id])
 	end
 
-	def correct_user?
-		@user = find_user
-		@current_user ||= User.find_by(id: session[:user_id])
-		## returns result of this comparison
-		@user == @current_user
-	end
+	## as no user is saved on courses, there is no correct user
+	# def correct_user?
+	# 	@user = find_user
+	# 	@current_user ||= User.find_by(id: session[:user_id])
+	# 	## returns result of this comparison
+	# 	@user == @current_user
+	# end
 
 	def current_user_affiliated?
 		# is the current user is logged in and affiliated with this course
 		@course = find_course
-		binding.pry
 		if (@course.users.count && @course.users.find_by_id(@current_user.id))
 			@user_affiliated = true
 		else

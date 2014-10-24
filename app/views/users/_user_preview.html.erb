@@ -1,7 +1,10 @@
 <!-- _user_preview.html.erb -->
 
-<div class="row">
-	<div class="col-md-offset-2 col-md-10">
-		<h4><%= user.first_name  %> <%= user.last_name  %> <%= user.email  %></h4>
-	</div>
-</div>
+<%= user.first_name  %> <%= user.last_name  %> <br>
+
+<ul>
+	<li><i><%= user.email  %></i></li><br>
+	<% for course in user.courses.order(:title)  %>
+		<li> <%= link_to course.title, course_path(course.id)%></li><br>
+	<% end %>
+</ul>
