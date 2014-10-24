@@ -26,10 +26,10 @@ Rails.application.routes.draw do
   end
 
   ## for showing all replies by a specific user
-  resources :users do 
-    resources :replies do 
-    end 
-  end
+  # resources :users do 
+  #   resources :replies do 
+  #   end 
+  # end
 
   post '/join_course' => 'courses#join_course'
   post '/leave_course' => 'courses#leave_course'

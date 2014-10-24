@@ -47,24 +47,24 @@ class CoursesController < ApplicationController
 		@current_user
 	end
 
-		# def edit
-		# 	# if this user created it
-		# 	#@course =?
-		# end
+	def edit
+		render edit_course_path(course.id)	
+	end
 
-		def create
-			# checked for logged in/is authenticated above
-			course = Course.new(course_params)
-			if course.save
-				redirect_to course_path(course.id), :notice => "Course created"
-			else
-				flash[:error] = course.errors.full_messages.to_sentence
-				redirect_to new_course_path
-			end
+	def create
+		# checked for logged in/is authenticated above
+		course = Course.new(course_params)
+		if course.save
+			redirect_to course_path(course.id), :notice => "Course created"
+		else
+			flash[:error] = course.errors.full_messages.to_sentence
+			redirect_to new_course_path
 		end
+	end
 
-		# def update
-		# end
+	def update
+		
+	end
 
 		# def destroy
 		# 	# if this user created it

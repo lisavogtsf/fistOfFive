@@ -5,7 +5,7 @@ class PollsController < ApplicationController
 	before_action :correct_user?, except: [:index, :new, :create] #just makes @correct_user true or false
 	before_action :find_poll
 	before_action :find_poll_owner, except: [:index, :new, :create]
-	before_action :find_user_for_polls, only: [:new, :update]
+	before_action :find_user_for_polls, except: [:index] 
 	## automatically supplies @poll, @poll_owner, @current_user, @correct_user to all actions
 	## provides @user for new and create
 
@@ -93,14 +93,7 @@ class PollsController < ApplicationController
 	end
 
 	def edit
-		# has find_user and find_poll so has @user and @poll
-		# already checked that user is logged in, now check if correct user
-		# if @correct_user
-			render edit_user_poll_path(@poll.user_id, @poll.id)
-		# else
-		# 	redirect_to user_poll_path(@poll_owner.id), :notice => "You are not allowed to edit this poll"
-		# end
-		
+		render edit_user_poll_path(@user.id, @poll.id)
 	end
 
 	def update

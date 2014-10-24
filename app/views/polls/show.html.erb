@@ -24,8 +24,8 @@
 		<% if @correct_user %>
 			<!-- needs to be a user to edit or delete the poll -->
 			<div class="small-spacer"></div>
-			<%= link_to "Edit Poll", edit_user_poll_path(@poll.user_id, @poll.id), class: "btn btn-info btn-md" %>
-			<%= link_to "Delete Poll", user_poll_path(@poll.user_id, @poll.id), method: :delete, :data => {:confirm => "Are you sure?"}, name: "delete", class: "btn btn-danger btn-md" %>
+			<%= link_to "Edit Poll", edit_user_poll_path(@user.id, @poll.id), class: "btn btn-info btn-md" %>
+			<%= link_to "Delete Poll", user_poll_path(@poll_owner.id, @poll.id), method: :delete, :data => {:confirm => "Are you sure?"}, name: "delete", class: "btn btn-danger btn-md" %>
 			<br><br>
 		<% elsif @current_user %>
 			<br>

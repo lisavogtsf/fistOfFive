@@ -10,7 +10,7 @@
 	<% end %>
 <%= render partial: "shared/end_main_section"  %>
 <%= render partial: "shared/start_sidebar"  %>
-		<% if @user %>
+		<% if @current_user %>
 			<%= render partial: "shared/start_new_poll", locals: {link_class: "btn btn-sidebar btn-primary"}  %>
 			<br><br>
 			<%= render partial: "shared/create_new_course", locals: {link_class: "btn btn-sidebar btn-danger"}  %>
