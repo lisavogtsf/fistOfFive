@@ -15,21 +15,22 @@ Rails.application.routes.draw do
   ## for showing courses to the public
   ## to see courses the user isn't necessarily in
   resources :courses do 
-    resources :polls do
-    end
   end
 
-  ## for creating new polls, only links user and polls they created
-  resources :users do 
-    resources :polls do 
-    end
+  resources :polls do
   end
 
-  ## for showing all replies by a specific user
-  resources :users do 
-    resources :replies do 
-    end 
-  end
+  # ## for creating new polls, only links user and polls they created
+  # resources :users do 
+  #   resources :polls do 
+  #   end
+  # end
+
+  # ## for showing all replies by a specific user
+  # resources :users do 
+  #   resources :replies do 
+  #   end 
+  # end
 
   post '/join_course' => 'courses#join_course'
   post '/leave_course' => 'courses#leave_course'
