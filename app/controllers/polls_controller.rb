@@ -93,7 +93,8 @@ class PollsController < ApplicationController
 	end
 
 	def edit
-		render edit_user_poll_path(@user.id, @poll.id)
+		# need to have the poll's course show up by default
+		@course = Course.find_by_id(@poll.course_id)
 	end
 
 	def update

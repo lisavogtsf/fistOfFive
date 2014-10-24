@@ -4,15 +4,29 @@
 	<%= form_for [user, poll], html: {class: "form-horizontal"} do |f|  %>
 	<fieldset  class="col-md-offset-3 col-md-6">
 		<legend><%= form_title  %></legend>
-		<div class="form-group">
-			<%#= f.collection_select :course, @poll.id, Course.all, :id, {:prompt => 'Please select which course this poll is for'}  %>
-			<select name="poll[course_id]" id="course-select">
-				<option value="">Select one of your courses</option>
-				<% for course in @user.courses %>
-					<option value="<%= course.id  %>"><%= course.title  %></option>
-				<% end %>
-			</select>
-		</div>
+		<% if @course %>
+			<div class="form-group">
+				<select name="poll[course_id]" id="course-select">
+					<option value="">Select one of your courses</option>
+					<% for course in @user.courses %>
+						<% if course == @course %>
+							<option selected="selected" value="<%= course.id  %>"><%= course.title  %></option>
+						<% else %>
+							<option value="<%= course.id  %>"><%= course.title  %></option>
+						<% end %>
+					<% end %>
+				</select>
+			</div>
+		<% else %>
+			<div class="form-group">
+				<select name="poll[course_id]" id="course-select">
+					<option value="">Select one of your courses</option>
+					<% for course in @user.courses %>
+						<option value="<%= course.id  %>"><%= course.title  %></option>
+					<% end %>
+				</select>
+			</div>
+		<% end %>
 		<div class="form-group">
 			<%= f.text_field :topic, class: "form-control", placeholder: "Poll topic", autofocus: true  %>
 		</div>
