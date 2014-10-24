@@ -14,10 +14,10 @@ class CoursesController < ApplicationController
 	end
 
 	def show
+		# does not require login, @course available
 		if @current_user # if logged in
 			current_user_affiliated? # is the current user in this course?
 			@user_affiliated
-		# does not require login, @course available
 		end
 		@polls = @course.polls
 	end
@@ -48,7 +48,7 @@ class CoursesController < ApplicationController
 	end
 
 	def edit
-		render edit_course_path(course.id)	
+		# ok getting to edit page
 	end
 
 	def create
@@ -63,7 +63,11 @@ class CoursesController < ApplicationController
 	end
 
 	def update
-		
+		if @course.update_attributes(course_params)
+			redirect_to course_path(@course.id), :notice => "Course updated"
+		else
+			redirect_to course_path(@course.id), :notice => "Error updating"
+		end
 	end
 
 		# def destroy
