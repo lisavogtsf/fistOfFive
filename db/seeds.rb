@@ -96,45 +96,53 @@
 
 # id: 12, poll_id: 4, user_id: nil, response: "5 ", created_at: "2014-10-15 19:49:54", updated_at: "2014-10-15 19:49:54", from_number: "+14158465918"
 
-repl = Reply.create(poll_id: 1, user_id: nil, response: "5 ", from_number: "+14158465918")
-polly = Poll.find_by_id(1)
+# repl = Reply.create(poll_id: 1, user_id: nil, response: "5 ", from_number: "+14158465918")
+# polly = Poll.find_by_id(1)
+# polly.replies << repl
+
+# repl = Reply.create(poll_id: 1, user_id: nil, response: "5 ", from_number: "+14158465918")
+# polly = Poll.find_by_id(1)
+# polly.replies << repl
+
+# repl = Reply.create(poll_id: 1, user_id: nil, response: "4 ", from_number: "+14158465918")
+# polly = Poll.find_by_id(1)
+# polly.replies << repl
+
+# repl = Reply.create(poll_id: 1, user_id: nil, response: "4 ", from_number: "+14158465918")
+# polly = Poll.find_by_id(1)
+# polly.replies << repl
+
+# repl = Reply.create(poll_id: 1, user_id: nil, response: "4 ", from_number: "+14158465918")
+# polly = Poll.find_by_id(1)
+# polly.replies << repl
+
+# repl = Reply.create(poll_id: 1, user_id: nil, response: "4 ", from_number: "+14158465918")
+# polly = Poll.find_by_id(1)
+# polly.replies << repl
+
+# repl = Reply.create(poll_id: 1, user_id: nil, response: "3 ", from_number: "+14158465918")
+# polly = Poll.find_by_id(1)
+# polly.replies << repl
+
+# repl = Reply.create(poll_id: 1, user_id: nil, response: "3 ", from_number: "+14158465918")
+# polly = Poll.find_by_id(1)
+# polly.replies << repl
+
+# repl = Reply.create(poll_id: 1, user_id: nil, response: "4 ", from_number: "+14158465918")
+# polly = Poll.find_by_id(4)
+# polly.replies << repl
+
+
+
+variable = 3
+repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
 polly.replies << repl
 
-repl = Reply.create(poll_id: 1, user_id: nil, response: "5 ", from_number: "+14158465918")
-polly = Poll.find_by_id(1)
+repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
 polly.replies << repl
 
-repl = Reply.create(poll_id: 1, user_id: nil, response: "4 ", from_number: "+14158465918")
-polly = Poll.find_by_id(1)
-polly.replies << repl
-
-repl = Reply.create(poll_id: 1, user_id: nil, response: "4 ", from_number: "+14158465918")
-polly = Poll.find_by_id(1)
-polly.replies << repl
-
-repl = Reply.create(poll_id: 1, user_id: nil, response: "4 ", from_number: "+14158465918")
-polly = Poll.find_by_id(1)
-polly.replies << repl
-
-repl = Reply.create(poll_id: 1, user_id: nil, response: "4 ", from_number: "+14158465918")
-polly = Poll.find_by_id(1)
-polly.replies << repl
-
-repl = Reply.create(poll_id: 1, user_id: nil, response: "3 ", from_number: "+14158465918")
-polly = Poll.find_by_id(1)
-polly.replies << repl
-
-repl = Reply.create(poll_id: 1, user_id: nil, response: "3 ", from_number: "+14158465918")
-polly = Poll.find_by_id(1)
-polly.replies << repl
-
-repl = Reply.create(poll_id: 1, user_id: nil, response: "4 ", from_number: "+14158465918")
-polly = Poll.find_by_id(4)
-polly.replies << repl
-
-
-
-variable = 2
 repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
 polly = Poll.find_by_id(variable)
 polly.replies << repl
@@ -151,7 +159,7 @@ repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number
 polly = Poll.find_by_id(variable)
 polly.replies << repl
 
-repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+repl = Reply.create(poll_id: variable, user_id: nil, response: "2 ", from_number: "+14158465918")
 polly = Poll.find_by_id(variable)
 polly.replies << repl
 
@@ -168,5 +176,192 @@ polly = Poll.find_by_id(variable)
 polly.replies << repl
 
 repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+
+variable = 5
+repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "2 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+
+variable = 7
+repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+
+variable = 8
+repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "2 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "2 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+variable = 10
+repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "5 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "2 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "4 ", from_number: "+14158465918")
+polly = Poll.find_by_id(variable)
+polly.replies << repl
+
+repl = Reply.create(poll_id: variable, user_id: nil, response: "3 ", from_number: "+14158465918")
 polly = Poll.find_by_id(variable)
 polly.replies << repl
