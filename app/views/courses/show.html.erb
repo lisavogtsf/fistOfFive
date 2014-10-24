@@ -35,10 +35,11 @@
 				<%= render partial: "shared/start_new_poll", locals: {link_class: "btn btn-sidebar btn-primary"}  %>
 				<br><br>
 				<%= link_to "Leave course", leave_course_path(@course.id), method: :post, class: "btn btn-md btn-warning" %>
+				<%= link_to 'Edit course', edit_course_path(@course.id), class: "btn btn-md btn-info"  %>
 			<% else %> <!-- user is not part of the course -->
 				<%= link_to "Join course", join_course_path(@course.id), method: :post, class: "btn btn-md btn-primary" %>
 			<% end %>
-			<%= link_to 'Edit course', edit_course_path(@course.id), class: "btn btn-md btn-info"  %>
+			
 		<% else %>
 			<%= render partial: "shared/participate", locals: {link_class: "btn btn-primary btn-form"} %>
 		<% end %>
