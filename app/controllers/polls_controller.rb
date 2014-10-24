@@ -2,10 +2,12 @@ class PollsController < ApplicationController
 
 	before_action :is_authenticated?, except: [:index, :show]
 	before_action :is_logged_in? #checks without kicking out
-	before_action :correct_user?, except: [:index, :new] #just makes @correct_user true or false
+	before_action :correct_user?, except: [:index, :new, :create] #just makes @correct_user true or false
 	before_action :find_poll
-	before_action :find_poll_owner, except: [:index, :new]
+	before_action :find_poll_owner, except: [:index, :new, :create]
+	before_action :find_user_for_polls, only: [:new, :update]
 	## automatically supplies @poll, @poll_owner, @current_user, @correct_user to all actions
+	## provides @user for new and create
 
 	def index
 		# want to show all polls to everyone, limit what they can do
@@ -64,9 +66,11 @@ class PollsController < ApplicationController
 	def new
 		# only logged in users should be able to see this
 		@poll = Poll.new
+
 	end
 
 	def create
+		find_user_for_polls
 		poll = Poll.new(poll_params)
 		# poll.user_id = @user.id #sending this over as @poll.user_id
 		## need to include timezone info from course to correct timestamp
@@ -115,6 +119,7 @@ class PollsController < ApplicationController
 
 private
 	## 
+
 	def find_poll_owner
 		@poll = find_poll
 		user_id = @poll.user_id
@@ -129,6 +134,10 @@ private
 
 	def is_logged_in?
 		@current_user ||= User.find_by(id: session[:user_id])
+	end
+
+	def find_user_for_polls
+		@user = @current_user
 	end
 
 	def correct_user? # is the current user the owner of this poll? gives @correct_user true/false

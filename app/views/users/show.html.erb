@@ -21,7 +21,7 @@
 		<%= link_to "Account Details", edit_user_path(@user.id), class: "btn btn-sidebar btn-info"  %><br><br>
 		<%= link_to "View All Courses", courses_path, class: "btn btn-sidebar btn-danger" %><br><br>
 		<% if @user.courses.count > 0%>
-		<%= link_to "View All Polls", course_polls_path(@user.courses.first.id), class: "btn btn-sidebar btn-warning" %><br><br>
+		<%#= link_to "View All Polls", course_polls_path(@user.courses.first.id), class: "btn btn-sidebar btn-warning" %><br><br>
 		<% end %>
 		<%= render partial: "shared/start_new_poll", locals: {link_class: "btn btn-sidebar btn-primary"}  %><br>
 	</div>
