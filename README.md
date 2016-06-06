@@ -44,4 +44,4 @@ Results of poll on Rspec and Controllers, with text feedback.
 
 
 # General Assembly, WDI
-This app was created as my [Final Project](https://github.com/wdi-sf-july/final_project_specs) for General Assembly's Web Development Immersive, San Francisco, July, 2014 cohort.
+This app was created as my [Final Project](https://github.com/wdi-sf-july/final_project_specs) for General Assembly's Web Development Immersive in San Francisco, "Cohort 10," July-September, 2014.
