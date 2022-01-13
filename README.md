@@ -2,7 +2,7 @@
 
 An app that allows a user to elicit and receive feedback by SMS and visualize the results
 
-* The app is deployed on Heroku [http://fistof5.herokuapp.com/](http://fistof5.herokuapp.com/)
+* ~The app is deployed on Heroku~ Formerly deployed on Heroku [http://fistof5.herokuapp.com/](http://fistof5.herokuapp.com/)
 * The source code is here on GitHub [https://github.com/lisavogtsf/fistOfFive](https://github.com/lisavogtsf/fistOfFive)
 
 # Built with
